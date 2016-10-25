@@ -1,11 +1,20 @@
 <template name="Header">
-    <div class="ui top fixed borderless inverted menu">
-  <div class="ui container">
-      <a class="item" href="{{pathFor 'Home_Page'}}"><h1>meteor-application-template</h1></a>
-      {{#if currentUser}}
-        <a class="{{ isActiveRoute 'Add_Stuff_Page'}} item" href="{{ pathFor 'Add_Stuff_Page' }}">Add Stuff </a>
-        <a class="{{ isActiveRoute 'List_Stuff_Page'}} item" href="{{ pathFor 'List_Stuff_Page' }}">List Stuff</a>
-      {{/if}}
+  <div class="ui borderless topmenu container menu">
+      <img class="ui image item" src="http://www.biztucson.com/wp-content/uploads/2014/03/StudyBuddy1_zps952c4327.png">
+    <div class="ui container">
+
+      <a class="right item" style="box-shadow: 30px;" href="{{pathFor 'Home_Page'}}">Home</a>
+      <a class="item" href="{{pathFor 'Study_Section_Page'}}">Study Section</a>
+      <a class="item" href="{{pathFor 'Calendar_Page'}}">Calendar</a>
+      <a class="item" href="{{pathFor 'Game_Page'}}">LeaderBoard</a>
+
+        <div class="ui dropdown icon item">
+          <i class="user icon"></i>
+          <div class="menu">
+              <a class="item" href="{{pathFor 'User_Profile_Page'}}">Profile</a>
+              <a class="item" href="{{pathFor 'Create_Section_Page'}}">Create Study Section</a>
+          </div>
+        </div>
       <a href="#" class="item">{{> loginButtons }} </a>
     </div>
   </div>

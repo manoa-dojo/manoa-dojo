@@ -1,0 +1,38 @@
+<template name="Create_Section_Page">
+  <div style="margin-top: 20px" class="ui container">
+    <form class="ui form section-data-form {{ errorClass }}">
+      <h4 class="ui dividing header">Create Section</h4>
+      <div class="field">
+        <label>Course Name</label>
+        <div class="field">
+            <input type="text" name="course" id="course" placeholder="Course Name">
+
+        </div>
+      </div>
+      <div class="field">
+        <label>Start/End Time</label>
+        <div class="two fields">
+          <div class="field">
+            <input type="text" name="start" id="start" placeholder="Start Time">
+
+          </div>
+          <div class="field">
+            <input type="text" name="end" id="end" placeholder="End Time">
+
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Room Capacity</label>
+        <div class="field">
+          <input type="text" name="people" id="people" placeholder="Number">
+
+        </div>
+      </div>
+
+
+      <button class="ui button" type="submit">Create</button>
+    </form>
+  </div>
+</template>

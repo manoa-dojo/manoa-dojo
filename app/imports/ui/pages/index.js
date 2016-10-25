@@ -1,10 +1,7 @@
-import './add-stuff-page.html';
-import './add-stuff-page.js';
-
-import './edit-stuff-page.html';
-import './edit-stuff-page.js';
-
 import './home-page.html';
+import './study-section.html';
+import './create-section.html';
+import './calendar.html';
+import './leaderboard.html';
+import './profile.html';
 
-import './list-stuff-page.html';
-import './list-stuff-page.js';

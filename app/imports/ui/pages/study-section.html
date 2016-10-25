@@ -1,0 +1,39 @@
+<template name="Study_Section_Page">
+  <div class="ui container">
+    {{#if Template.subscriptionsReady}}
+      <table style="margin-top:20px;" class="ui celled table">
+        <thead>
+        <tr>
+          <th>Course</th>
+          <th>Id</th>
+          <th>Available Spot</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+          <th>Status</th>
+          <th>Join</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td>ICS 314</td>
+        <td>3333</td>
+        <td>33/42</td>
+        <td>10:30</td>
+        <td>11:45</td>
+        <td>In Progress</td>
+          <td><a href="{{pathFor 'In_Section_Page' _id=section._id}}">Join</a></td>
+        </tr>
+        <!--<tr>-->
+        <!--<td>Chock</td>-->
+        <!--<td>Gor</td>-->
+        <!--<td>633 Komolio St.., Honolulu, HI</td>-->
+        <!--<td>808-392-8090</td>-->
+        <!--<td>chock@hawaii.edu</td>-->
+        <!--</tr>-->
+        </tbody>
+      </table>
+    {{else}}
+      {{> Loading}}
+    {{/if}}
+  </div>
+</template>
