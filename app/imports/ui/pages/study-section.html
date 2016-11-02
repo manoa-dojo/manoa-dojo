@@ -5,24 +5,31 @@
         <thead>
         <tr>
           <th>Course</th>
-          <th>Id</th>
+          <th>Type</th>
           <th>Available Spot</th>
           <th>Start Time</th>
           <th>End Time</th>
-          <th>Status</th>
+          <th>More Info</th>
           <th>Join</th>
         </tr>
         </thead>
         <tbody>
+        {{#each section in sectionsList}}
         <tr>
-        <td>ICS 314</td>
-        <td>3333</td>
-        <td>33/42</td>
-        <td>10:30</td>
-        <td>11:45</td>
-        <td>In Progress</td>
+        <td>{{section.course}}</td>
+        <td>{{section.purpose}}</td>
+          <td>{{section.currentCapacity}}/{{section.maxCapacity}}</td>
+        <td>{{section.startTime}}</td>
+        <td>{{section.endTime}}</td>
+        <td>
+          <div data-tooltip={{section.description}}>
+            <a>More..</a>
+          </div>
+        </td>
           <td><a href="{{pathFor 'In_Section_Page' _id=section._id}}">Join</a></td>
         </tr>
+        <tr></tr>
+        {{/each}}
         <!--<tr>-->
         <!--<td>Chock</td>-->
         <!--<td>Gor</td>-->
