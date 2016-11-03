@@ -28,7 +28,7 @@
 
     </table>
 
-    <button class="ui blue button" type="submit">Calendar View</button>
+    <a href="{{pathFor 'Calendar'}}" class="ui blue button" type="submit">Calendar View</a>
 
     <h2 style="text-align: center"> Future Sessions That May Interest You:</h2>
 
@@ -56,6 +56,7 @@
       </tbody>
 
     </table>
-    <button class="ui green button" type="submit">Create Study Session</button> <button class="ui red button" type="submit">Meet Right Now!</button>
+    <a href="{{pathFor 'Create_Section_Page'}}" class="ui green button" type="submit">Create Study Session</a>
+    <a href="{{pathFor 'Create_Section_Page'}}" class="ui red button" type="submit">Meet Right Now!</a>
   </div>
 </template>
