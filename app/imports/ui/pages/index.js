@@ -1,4 +1,5 @@
 import './home-page.html';
+import './user-home-page.html';
 
 import './study-section.html';
 import './study-section.js';
