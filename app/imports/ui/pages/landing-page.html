@@ -1,0 +1,47 @@
+<template name="Landing_Page">
+  <div id="mainimg">
+  <!--   <div class="ui fixed top borderless inverted menu" id="menu-bar">
+      <div class="ui container">
+        <a href="#" class="item"><img class="ui small image" src="/images/manoa-dojo-logo-white.png" alt=""></a>
+        <a href="#" class="right item">About</a>
+      </div>
+    </div> -->
+    <div class="buffer">
+      <p class="text">Learning and growing together</p>
+      <div id="action-btns">
+        <button id="signup-btn" class="ui huge inverted white button">Sign Up</button>
+        <button id="login-btn" class="ui huge inverted white button">Log In</button>
+      </div>
+
+      <div class="ui centered grid">
+        <div class="ui four wide column">
+          <div class="ui form" id="signup" style="display: none;">
+            <div class="field">
+              <input type="text" name="email" placeholder="UH Email Address">
+            </div>
+            <div class="field">
+              <input type="text" name="password" placeholder="Password">
+            </div>
+            <div class="field">
+              <input type="text" name="password" placeholder="Confirm Password">
+            </div>
+            <button class="ui inverted white button" id="signup-back"><i class="ui white arrow left icon"></i></button>
+            <button class="ui inverted white button" type="submit">Sign Up</button>
+          </div>
+
+          <div class="ui form" id="login" style="display: none;">
+            <div class="field">
+              <input type="text" name="email" placeholder="UH Email Address">
+            </div>
+            <div class="field">
+              <input type="text" name="password" placeholder="Password">
+            </div>
+            <button class="ui inverted white button" id="login-back"><i class="ui white arrow left icon"></i></button>
+            <button class="ui inverted white button" type="submit">Login</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>  
+</template>
