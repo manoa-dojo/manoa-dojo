@@ -11,7 +11,7 @@ import {_} from 'meteor/underscore';
 let d = new Date();
 
 const sectionSeeds = [
-  { course: 'ICS314', startTime: d.toLocaleString(), endTime: new Date(d.getTime() + 75*60000), currentCapacity: 0, maxCapacity: '45', description: 'No description Yet', purpose: 'Project' },
+  { course: 'ICS314', startTime: d.toLocaleString(), endTime: new Date(d.getTime() + 75*60000).toLocaleString(), currentCapacity: 0, maxCapacity: '45', purpose: 'Project', description: 'No description Yet' },
 ];
 
 /**
