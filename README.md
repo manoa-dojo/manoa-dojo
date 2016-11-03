@@ -24,4 +24,4 @@ Implemented by the Home_Page template.
 
 #### Create Study Section Page
 
-![](https://github.com/manoa-dojo/manoa-dojo/blob/master/doc/create_section.png)
+![](https://github.com/manoa-dojo/manoa-dojo/blob/master/doc/create_section.JPG)
