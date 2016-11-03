@@ -6,45 +6,84 @@
         <label>Course Name</label>
         <div class="field">
             <input type="text" name="course" id="course" placeholder="Course Name">
-          {{#if displayFieldError 'course' }}
-            <div class="ui error message">
-              <p>You must specify the course name.</p>
-            </div>
-          {{/if}}
+            {{#if displayFieldError 'course' }}
+              <div class="ui error message">
+                <p>You must specify the course name.</p>
+              </div>
+            {{/if}}
         </div>
       </div>
       <div class="field">
-        <label>Start/End Time</label>
+        <label>Start Time</label>
         <div class="two fields">
           <div class="field">
-            <input type="text" name="start" id="start" placeholder="Start Time">
-            {{#if displayFieldError 'start' }}
-              <div class="ui error message">
-                <p>You must specify the Start Time.</p>
-              </div>
-            {{/if}}
+            <input type="Date" name="startDate" id="startDate">
           </div>
           <div class="field">
-            <input type="text" name="end" id="end" placeholder="End Time">
-            {{#if displayFieldError 'end' }}
-              <div class="ui error message">
-                <p>You must specify the End Time.</p>
-              </div>
-            {{/if}}
+            <input type="Time" name="startTime" id="startTime">
           </div>
         </div>
+        {{#if displayFieldError 'startTime' }}
+          <div class="ui error message">
+            <p>You must specify the start time.</p>
+          </div>
+        {{/if}}
       </div>
-
       <div class="field">
-        <label>Room Capacity</label>
+        <label>End Time</label>
+        <div class="two fields">
+          <div class="field">
+            <input type="Date" name="endDate" id="endDate">
+          </div>
+          <div class="field">
+            <input type="Time" name="endTime" id="endTime">
+          </div>
+        </div>
+
+        {{#if displayFieldError 'endTime' }}
+          <div class="ui error message">
+            <p>You must specify the end time.</p>
+          </div>
+        {{/if}}
+      </div>
+      <div class="inline fields">
+        <label for="fruit">Select your purpose:</label>
         <div class="field">
-          <input type="text" name="people" id="people" placeholder="Number">
-          {{#if displayFieldError 'people' }}
+          <div class="ui radio checkbox">
+            <input type="radio" name="purpose" id="homework" value="Homework" checked="" tabindex="0" class="hidden">
+            <label>Homework</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" name="purpose" id="lecture" value="Lecture" tabindex="0" class="hidden">
+            <label>Lecture</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input type="radio" name="purpose" id="other" value="Other" tabindex="0" class="hidden">
+            <label>Other:</label>
+          </div>
+        </div>
+        <div class="field">
+            <input type="text" name="otherInput" id="otherInput">
+
+        </div>
+        <div class="field">
+          <label>Room Capacity:</label>
+            <input type="text" name="people" id="people" placeholder="Number">
+          {{#if displayFieldError 'maxCapacity' }}
             <div class="ui error message">
               <p>You must specify the room capacity.</p>
             </div>
           {{/if}}
         </div>
+      </div>
+      <div class="field">
+        <label>Description (Optional)</label>
+        <input type="text" name="description" id="description">
+
       </div>
 
 

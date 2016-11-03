@@ -42,14 +42,14 @@ export const SectionsSchema = new SimpleSchema({
     optional: false,
     max: 200,
   },
-  description: {
-    label: 'Description',
+  purpose: {
+    label: 'Purpose',
     type: String,
     optional: false,
     max: 200,
   },
-  purpose: {
-    label: 'Purpose',
+  description: {
+    label: 'Description',
     type: String,
     optional: false,
     max: 200,
