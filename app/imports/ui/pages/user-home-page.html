@@ -1,0 +1,61 @@
+<template name="User_Home_Page">
+  <h2 style="text-align: center"> Your Upcoming Study Buddy Sessions:</h2>
+
+  <div class="ui container">
+
+    <table style="margin-top: 20px" class="ui celled table">
+      <thead>
+      <tr>
+        <th>First</th>
+        <th>Last</th>
+        <th>Subject</th>
+        <th>Time</th>
+        <th>Phone</th>
+        <th>Edit</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr>
+        <td>Stephen</td>
+        <td>Mau</td>
+        <td>ICS 314</td>
+        <td>10/25/16, 20:30</td>
+        <td>808-271-8928</td>
+        <td><a href="{{pathFor 'Create_Section'}}">Edit</a></td>
+      </tr>
+      </tbody>
+
+    </table>
+
+    <button class="ui blue button" type="submit">Calendar View</button>
+
+    <h2 style="text-align: center"> Future Sessions That May Interest You:</h2>
+
+    <table style="margin-top: 20px" class="ui celled table">
+      <thead>
+      <tr>
+        <th>First</th>
+        <th>Last</th>
+        <th>Subject</th>
+        <th>Time</th>
+        <th>Phone</th>
+        <th>Join</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr>
+        <td>Philip</td>
+        <td>Johnson</td>
+        <td>ICS 314</td>
+        <td>10/26/16, 8:00</td>
+        <td>808-956-3489</td>
+        <td><a href="#">Join</a></td>
+      </tr>
+      </tbody>
+
+    </table>
+    <button class="ui green button" type="submit">Create Study Session</button> <button class="ui red button" type="submit">Meet Right Now!</button>
+  </div>
+</template>

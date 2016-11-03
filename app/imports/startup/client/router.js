@@ -51,6 +51,13 @@ FlowRouter.route('/create-section', {
   },
 });
 
+FlowRouter.route('/user-home-page', {
+  name: 'User_Home_Page',
+  action() {
+    BlazeLayout.render('App_Body', { main: 'User_Home_Page' });
+  },
+});
+
 FlowRouter.notFound = {
   action() {
     BlazeLayout.render('App_Body', { main: 'App_Not_Found' });
