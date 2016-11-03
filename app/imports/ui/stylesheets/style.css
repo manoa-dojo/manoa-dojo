@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Comfortaa);
+
 body {
 
 }
@@ -86,4 +88,36 @@ p{
   padding: 5px;
   background: #1abc9c;
   color: white !important
+}
+
+#calendar {
+  font-family: Comfortaa;
+}
+
+#menu-bar {
+  border-style: none;
+  box-shadow: none;
+  background-color: rgba(0,0,0,0);
+  font-family: Comfortaa;
+}
+
+#mainimg{
+  height: 800px;
+  background: url("/images/library-girl-dark.jpg") no-repeat;
+  background-size: 100% auto;
+  color: white;
+  font-size: 50px;
+  font-family: Comfortaa;
+  text-align: center;
+  overflow: hidden;
+}
+
+
+#info {
+  color: white;
+  text-align: left;
+}
+
+.buffer {
+  padding-top: 200px;
 }
