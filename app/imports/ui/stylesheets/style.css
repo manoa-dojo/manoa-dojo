@@ -4,9 +4,24 @@ body {
 
 }
 
+/* Header */
+.ui.header.container {
+  height: 150px;
+}
+.ui.image.headerlogo.item {
+  height: 150px;
+  width: 300px;
+  float: left;
+  margin: 10px 10px 10px 10px;
+
+}
+
 .ui.borderless.topmenu.container.menu {
   border: none;
   box-shadow:  none;
+  float: right;
+  margin-top: 75px;
+  width: 50%;
 }
 
 .ui.middle.container {
@@ -14,6 +29,7 @@ body {
   background-size: cover;
   height: 1000px;
 }
+
 
 p{
 }
