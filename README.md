@@ -1,9 +1,10 @@
-#### Home page
-
-Implemented by the Home_Page template. 
+#### Landing page
 
 ![](https://github.com/manoa-dojo/manoa-dojo/blob/master/doc/landing.png)
 
+#### UserHome page
+
+![](https://github.com/manoa-dojo/manoa-dojo/blob/master/doc/User_Home.JPG)
 
 #### List Current Study Sections Page
 
