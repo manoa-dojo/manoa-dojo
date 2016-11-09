@@ -9,9 +9,9 @@ import {_} from 'meteor/underscore';
  * @type {*[]}
  */
 let d = new Date();
-
+console.log(typeof(d));
 const sectionSeeds = [
-  { course: 'ICS314', startTime: d.toLocaleString(), endTime: new Date(d.getTime() + 75*60000).toLocaleString(), currentCapacity: 0, maxCapacity: '45', purpose: 'Project', description: 'No description Yet' },
+  // { course: 'ICS314', startTime: d, endTime: new Date(d.getTime() + 75*60000), currentCapacity: 0, maxCapacity: '45', purpose: 'Project', description: 'No description Yet' },
 ];
 
 /**
@@ -22,3 +22,4 @@ if (Sections.find().count() === 0) {
     Sections.insert(stuff);
   });
 }
+

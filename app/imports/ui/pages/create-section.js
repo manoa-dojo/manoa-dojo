@@ -47,9 +47,10 @@ Template.Create_Section_Page.events({
     // Get name (text field)
     const course = event.target.course.value;
     console.log(course);
-    const startTime = event.target.startDate.value + ' ' + event.target.startTime.value ;
+    const startTime = new Date(event.target.startDate.value + ' ' + event.target.startTime.value);
     console.log(startTime);
-    const endTime= event.target.endDate.value + ' ' + event.target.endTime.value ;
+    const endTime= new Date(event.target.endDate.value + ' ' + event.target.endTime.value);
+    console.log(typeof(endTime));
     const currentCapacity = 1;
     const maxCapacity = event.target.people.value;
     let p = instance.$('input[name="purpose"]:checked').val();

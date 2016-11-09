@@ -5,8 +5,10 @@ body {
 }
 
 /* Header */
-.ui.header.container {
-  height: 150px;
+.mainheader {
+  height: 175px;
+  background-color: springgreen;
+
 }
 .ui.image.headerlogo.item {
   height: 150px;
@@ -22,6 +24,7 @@ body {
   float: right;
   margin-top: 75px;
   width: 50%;
+  background-color: springgreen;
 }
 
 .ui.middle.container {

@@ -1,18 +1,12 @@
 <template name="Landing_Page">
   <div id="mainimg">
-    {{#if currentUser}}
-    {{else}}
-    <div class="ui fixed top borderless inverted menu" id="menu-bar">
-      <div class="ui container">
-        <a href="#" class="item"><img class="ui small image" src="/images/manoa-dojo-logo-white.png" alt=""></a>
-        <a href="#" class="right item">About</a>
-      </div>
-    </div>
-    {{/if}}
+    <a href="#" id="landingLogo"><img class="ui small image" src="/images/manoa-dojo-logo-white.png" alt=""></a>
+    <a href="https://manoa-dojo.github.io/" id="aboutBt">About</a>
     <div class="buffer">
       <p class="text">Learning and growing together</p>
         {{#if currentUser}}
           <button id="logout-btn" class="ui huge inverted white button cas-logout">Log Out</button>
+          <a class="ui huge inverted white button" href="{{pathFor 'User_Home_Page'}}">Try Now</a>
         {{else}}
           <button id="login-btn" class="ui huge inverted white button cas-login">Log In</button>
         {{/if}}

@@ -21,15 +21,13 @@ export const SectionsSchema = new SimpleSchema({
   },
   startTime: {
     label: 'StartTime',
-    type: String,
+    type: Date,
     optional: false,
-    max: 200,
   },
   endTime: {
     label: 'EndTime',
-    type: String,
+    type: Date,
     optional: false,
-    max: 200,
   },
   currentCapacity: {
     label: 'CurrentCapacity',
@@ -51,7 +49,7 @@ export const SectionsSchema = new SimpleSchema({
   description: {
     label: 'Description',
     type: String,
-    optional: false,
+    optional: true,
     max: 200,
   }
 });

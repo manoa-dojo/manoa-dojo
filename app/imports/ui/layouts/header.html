@@ -1,22 +1,23 @@
 <template name="Header">
-  <div class="ui header container">
-    <img class="ui image headerlogo item" src="/images/Manoa-Dojo-logo.png"/>
-    <div class="ui borderless topmenu container menu">
+  <div class="mainheader">
+    <div class="ui container">
+      <img class="ui image headerlogo item" src="/images/Manoa-Dojo-logo.png"/>
+      <div class="ui borderless topmenu container menu">
 
-      <a class="right home item" href="{{pathFor 'User_Home_Page'}}">Home</a>
-      <a class="item" href="{{pathFor 'Study_Section_Page'}}">Study Section</a>
-      <a class="item" href="{{pathFor 'Calendar_Page'}}">Calendar</a>
-      <a class="item" href="{{pathFor 'Game_Page'}}">LeaderBoard</a>
+        <a class="right home item" href="{{pathFor 'User_Home_Page'}}">Home</a>
+        <a class="item" href="{{pathFor 'Study_Section_Page'}}">Study Section</a>
+        <a class="item" href="{{pathFor 'Calendar_Page'}}">Calendar</a>
+        <a class="item" href="{{pathFor 'Game_Page'}}">LeaderBoard</a>
 
-        <div class="ui dropdown icon item">
-          <i class="user icon"></i>
-          <div class="menu">
-              <a class="item" href="{{pathFor 'User_Profile_Page'}}">Profile</a>
-              <a class="item" href="{{pathFor 'Create_Section_Page'}}">Create Study Section</a>
+          <div class="ui dropdown icon item">
+            <i class="user icon"></i>
+            <div class="menu">
+                <a class="item" href="{{pathFor 'User_Profile_Page'}}">Profile</a>
+                <a class="item" href="{{pathFor 'Create_Section_Page'}}">Create Study Section</a>
+            </div>
           </div>
-        </div>
-      {{> Cas_Login}}
+        {{> Cas_Login}}
+      </div>
     </div>
-
   </div>
 </template>
