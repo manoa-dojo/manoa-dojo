@@ -1,9 +1,10 @@
-#### Home page
+#### Landing page
 
-Implemented by the Home_Page template. 
+![](https://github.com/manoa-dojo/manoa-dojo/blob/master/doc/landing.png)
 
-![](https://github.com/manoa-dojo/manoa-dojo/blob/master/doc/Landing_Page.JPG)
+#### UserHome page
 
+![](https://github.com/manoa-dojo/manoa-dojo/blob/master/doc/User_Home.JPG)
 
 #### List Current Study Sections Page
 
@@ -12,7 +13,7 @@ Implemented by the Home_Page template.
 #### List Scheduled Study Sections on calendar Page
 
 
-![](https://github.com/manoa-dojo/manoa-dojo/blob/master/doc/calendar.JPG)
+![](https://github.com/manoa-dojo/manoa-dojo/blob/master/doc/calendar.png)
 
 #### Leaderboard Page
 
@@ -20,7 +21,7 @@ Implemented by the Home_Page template.
 
 #### User Profile Page
 
-![](https://github.com/manoa-dojo/manoa-dojo/blob/master/doc/profile.JPG)
+![](https://github.com/manoa-dojo/manoa-dojo/blob/master/doc/user-profile-page.png)
 
 #### Create Study Section Page
 
