@@ -44,6 +44,13 @@ FlowRouter.route('/profile', {
   },
 });
 
+FlowRouter.route('/edit-profile-page', {
+  name: 'Edit_Profile_Page',
+  action() {
+    BlazeLayout.render('App_Body', { main: 'Edit_Profile_Page' });
+  },
+});
+
 FlowRouter.route('/create-section', {
   name: 'Create_Section_Page',
   action() {

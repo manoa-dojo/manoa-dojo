@@ -1,0 +1,29 @@
+<template name="Edit_Profile_Page">
+  <div style="margin-top: 20px" class="ui container">
+    <form class="ui form profile-form {{ successClass }} {{ errorClass }}">
+      <h4 class="ui dividing header">Edit Student Data</h4>
+      <div class="two fields">
+        <div class="field">
+          <input type="text" name="telephone" id="telephone" placeholder="Telephone Number">
+          {{#if displayFieldError 'telephone' }}
+          <div class="ui error message">
+            <p>You must specify your telephone.</p>
+          </div>
+          {{/if}}
+        </div>
+
+        <div class="field">
+          <input type="text" name="email" id="email" placeholder="Email" value="{{contactField 'email'}}">
+          {{#if displayFieldError 'email' }}
+          <div class="ui error message">
+            <p>You must specify your email.</p>
+          </div>
+          {{/if}}
+        </div>
+
+      </div>
+    </form>
+
+
+  </div>
+</template>

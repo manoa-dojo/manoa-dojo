@@ -14,3 +14,7 @@ import './calendar.js';
 import './leaderboard.html';
 import './profile.html';
 
+import './edit-profile-page.html'
+import './edit-profile-page.js'
+
+
