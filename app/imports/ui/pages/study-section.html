@@ -1,6 +1,8 @@
 <template name="Study_Section_Page">
+  {{#if currentUser}}
   <div class="ui container">
     {{#if Template.subscriptionsReady}}
+      <h1>Current Available Study Sections</h1>
       <table style="margin-top:20px;" class="ui celled table">
         <thead>
         <tr>
@@ -10,6 +12,7 @@
           <th>Start Time</th>
           <th>End Time</th>
           <th>More Info</th>
+          <th>CreatedBy</th>
           <th>Join</th>
         </tr>
         </thead>
@@ -26,6 +29,7 @@
             <a>More..</a>
           </div>
         </td>
+        <td>{{section.createdBy}}</td>
           <td><a href="{{pathFor 'In_Section_Page' _id=section._id}}">Join</a></td>
         </tr>
         <tr></tr>
@@ -43,4 +47,6 @@
       {{> Loading}}
     {{/if}}
   </div>
+  {{else}}
+  {{/if}}
 </template>

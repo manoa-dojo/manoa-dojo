@@ -22,6 +22,24 @@ import { _ } from 'meteor/underscore';
 
 /* eslint-disable no-console */
 
+Accounts.onCreateUser((options, user) => {
+  if (! user.services.cas) {
+    throw new Error('Expected login with UH Cas only.');
+  }
+
+  // New custom fields added.
+  const { id } = user.services.cas;
+  user.userName = id;
+  user.firstName = 'Xen';
+  user.lastName = 'Huang';
+  user.senseiPts = 0;
+  user.grassPts = 0;
+  user.avatar = '';
+  user.subjects =[];
+
+  // Don't forget to return the new user object at the end!
+  return user;
+});
 
 /* Validate username, sending a specific error message on failure. */
 Accounts.validateNewUser(function (user) {

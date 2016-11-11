@@ -1,4 +1,5 @@
 <template name="Create_Section_Page">
+  {{#if currentUser}}
   <div style="margin-top: 20px" class="ui container">
     <form class="ui form section-data-form {{ errorClass }}">
       <h4 class="ui dividing header">Create Section</h4>
@@ -90,4 +91,6 @@
       <button class="ui button" type="submit">Schedule</button>
     </form>
   </div>
+  {{else}}
+  {{/if}}
 </template>

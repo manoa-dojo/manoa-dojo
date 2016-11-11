@@ -46,6 +46,12 @@ export const SectionsSchema = new SimpleSchema({
     optional: false,
     max: 200,
   },
+  createdBy: {
+    label: 'createdBy',
+    type: String,
+    optional: false,
+    max: 200,
+  },
   description: {
     label: 'Description',
     type: String,

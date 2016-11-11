@@ -61,8 +61,10 @@ Template.Create_Section_Page.events({
        purpose = p;
     }
     console.log(purpose);
+    const createdBy = Meteor.user().userName;
+    console.log(createdBy);
     const description = event.target.description.value;
-    const newSection = { course, startTime, endTime, currentCapacity, maxCapacity, purpose, description };
+    const newSection = { course, startTime, endTime, currentCapacity, maxCapacity, purpose, createdBy, description };
     // Clear out any old validation errors.
     instance.context.resetValidation();
     // Invoke clean so that newStudentData reflects what will be inserted.

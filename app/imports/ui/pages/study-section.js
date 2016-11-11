@@ -12,12 +12,12 @@ Template.Study_Section_Page.helpers({
   sectionsList() {
     let currentTime = new Date();
     for (let section of Sections.find().fetch()) {
-      if (section.endTime.getTime() < currentTime.getTime()){
-        console.log('Removing a section');
+      if (section.endTime.getTime() < currentTime.getTime() && section.startTime.getTime() < currentTime.getTime()){
+        // console.log('Removing a section');
         Sections.remove(section._id);
       }
     }
-
+    console.log(Meteor.users.find().fetch());
     return Sections.find();
   },
 
@@ -26,5 +26,6 @@ Template.Study_Section_Page.helpers({
 Template.Study_Section_Page.onCreated(function onCreated() {
   this.autorun(() => {
     this.subscribe('Sections');
+    this.subscribe('userData');
   });
 });

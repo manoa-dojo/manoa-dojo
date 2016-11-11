@@ -1,5 +1,9 @@
 <template name="Calendar_Page">
+
   <div class="ui container">
-    {{>fullcalendar options}}
+    {{#if currentUser}}
+      {{>fullcalendar options}}
+    {{else}}
+    {{/if}}
   </div>
 </template>

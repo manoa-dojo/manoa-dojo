@@ -1,4 +1,5 @@
 <template name="Game_Page">
+  {{#if currentUser}}
   <div class="ui center container">
     <h1>Top 10 Senseis</h1>
   <table class="ui celled table">
@@ -74,4 +75,6 @@
     </tbody>
   </table>
   </div>
+  {{else}}
+  {{/if}}
 </template>

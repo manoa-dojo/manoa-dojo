@@ -1,13 +1,19 @@
 <template name="Cas_Login">
-  <div class="ui simple dropdown item">
-    <div class="text">Account</div>
-    <i class="dropdown icon"></i>
-    <div class="menu">
-      {{#if currentUser}}
-      <div class="item cas-logout">Logout</div>
-      {{else}}
-      <div class="item cas-login">Login</div>
-      {{/if}}
-    </div>
-  </div>
+
+      <div class="ui dropdown icon item">
+        <i class="user icon"></i>
+        <i class="dropdown icon"></i>
+
+        <div class="menu">
+        {{#if currentUser}}
+          <a class="item" href="{{pathFor 'User_Profile_Page'}}">Profile</a>
+          <a class="item" href="{{pathFor 'Create_Section_Page'}}">Create Study Section</a>
+          <a class="item cas-logout">Logout</a>
+        {{else}}
+          <a class="item cas-login">Login</a>
+        {{/if}}
+        </div>
+      </div>
+
+
 </template>
