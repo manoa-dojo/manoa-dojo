@@ -1,7 +1,7 @@
 {
   "galaxy.meteor.com": {
     "env": {
-      "MONGO_URL": "mongodb://cpalpall:123456abc@ds147777.mlab.com:47777/manoadojodb"
+      "MONGO_URL": "mongodb://cpalpall:123456@ds147777.mlab.com:47777/manoadojodb"
     }
   }
 }
