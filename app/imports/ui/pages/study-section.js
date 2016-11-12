@@ -3,6 +3,7 @@
  */
 import { Template } from 'meteor/templating';
 import { Sections } from '../../api/sections/sections.js';
+import { Meteor } from 'meteor/meteor';
 
 Template.Study_Section_Page.helpers({
 
@@ -17,6 +18,9 @@ Template.Study_Section_Page.helpers({
         Sections.remove(section._id);
       }
     }
+
+
+
     console.log(Meteor.users.find().fetch());
     return Sections.find();
   },
@@ -28,4 +32,13 @@ Template.Study_Section_Page.onCreated(function onCreated() {
     this.subscribe('Sections');
     this.subscribe('userData');
   });
+  // Example API Calls
+  // Meteor.call('updateUser','firstName', 'Xyman');
+  // Meteor.call('updateUser','lastName', 'Hman');
+  // Meteor.call('updateUser','avatar', 'http://semantic-ui.com/images/avatar2/large/kristy.png');
+  // Meteor.call('updateUser','senseiPts', 2);
+  // Meteor.call('updateUser','grassPts', 10);
+  // Meteor.call('updateUser','grassSubjects', 'ICS314');
+  // Meteor.call('updateUser','senseiSubjects', 'ICS211');
+
 });

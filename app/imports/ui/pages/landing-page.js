@@ -2,7 +2,7 @@ import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
 
 Template.Landing_Page.onCreated(function onCreated() {
-	console.log(Meteor.userId());
+	// console.log(Meteor.userId());
 
 });
 
