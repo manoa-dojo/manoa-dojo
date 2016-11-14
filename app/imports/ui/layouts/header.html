@@ -1,21 +1,19 @@
 <template name="Header">
-  <div class="mainheader">
+  <div class="ui borderless menu" id="mainheader">
     <div class="ui container">
-      <img class="ui image headerlogo item" src="/images/Manoa-Dojo-logo.png"/>
-      <div class="ui borderless topmenu container menu">
-        {{#if currentUser}}
-          <a class="right home item" href="{{pathFor 'User_Home_Page'}}">Home</a>
-          <a class="item" href="{{pathFor 'Study_Section_Page'}}">Study Section</a>
-          <a class="item" href="{{pathFor 'Calendar_Page'}}">Calendar</a>
-          <a class="item" href="{{pathFor 'Game_Page'}}">LeaderBoard</a>
-          {{> Cas_Login}}
+      <a href="#" id="landingLogo"><img class="ui small image" src="/images/manoa-dojo-logo-white.png" alt=""></a>
+      {{#if currentUser}}
+      <a class="right home item" href="{{pathFor 'User_Home_Page'}}">Home</a>
+      <a class="item" href="{{pathFor 'Study_Section_Page'}}">Study Section</a>
+      <a class="item" href="{{pathFor 'Calendar_Page'}}">Calendar</a>
+      <a class="item" href="{{pathFor 'Game_Page'}}">LeaderBoard</a>
+      {{> Cas_Login}}
 
-        {{else}}
-          <div class="right item">{{> Cas_Login}}</div>
+      {{else}}
+      <div class="right item">{{> Cas_Login}}</div>
 
-        {{/if}}
+      {{/if}}
 
-      </div>
     </div>
   </div>
 </template>
