@@ -5,8 +5,7 @@ body {
 }
 
 /* Header */
-.mainheader {
-  height: 175px;
+#mainheader {
   background-color: springgreen;
 
 }
