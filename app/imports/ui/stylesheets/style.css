@@ -70,3 +70,7 @@ p{
 .buffer {
   padding-top: 200px;
 }
+
+.hide{
+  display: none;
+}

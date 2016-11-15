@@ -57,14 +57,17 @@
 
     <div class="column" style="width:70%;">
       <div class="ui secondary pointing menu">
-        <a id="overview" class="item">
+        <a id="overview" class="item menuItemA">
           Overview
         </a>
-        <a id="personal" class="active item">
+        <a id="personal" class="active item menuItemB">
           Additional Details
         </a>
+        <a href="{{pathFor 'Edit_Profile_Page'}}" class="right item edit-profile">
+          Edit<i class="write icon"></i>
+        </a>
       </div>
-      <!--<div class="ui segment" id="summary">
+      <div class="ui segment hide summary">
         <div class="ui internally celled grid">
           <div class="row">
             <div class="eight wide column">
@@ -87,8 +90,8 @@
             </div>
           </div>
         </div>
-      </div>-->
-      <div class="ui segment" id="details">
+      </div>
+      <div class="ui segment details">
         <div class="ui internally celled grid">
           <div class="six wide column">
             <div class="ui selection list">
@@ -119,16 +122,16 @@
           <div class="four wide column">
             <div class="ui selection list">
               <a class="item">
-                <div class="ui horizontal label">Facebook<i class="facebook icon"></i></div>
+                <i class="facebook icon"></i>
+              </a>
+              <a  href="{{pathFor 'Calendar_Page'}}" class="item">
+                <i class="calendar icon"></i>
               </a>
               <a class="item">
-                <div class="ui horizontal label">Calendar<i class="calendar icon"></i></div>
+                <i class="slack icon"></i>
               </a>
               <a class="item">
-                <div class="ui horizontal label">Slack<i class="slack icon"></i></div>
-              </a>
-              <a class="item">
-                <div class="ui horizontal label">Mail<i class="mail icon"></i></div>
+                <i class="mail icon"></i>
               </a>
             </div>
           </div>

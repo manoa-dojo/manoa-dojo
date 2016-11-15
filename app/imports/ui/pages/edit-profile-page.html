@@ -1,29 +1,128 @@
 <template name="Edit_Profile_Page">
   <div style="margin-top: 20px" class="ui container">
-    <form class="ui form profile-form {{ successClass }} {{ errorClass }}">
-      <h4 class="ui dividing header">Edit Student Data</h4>
-      <div class="two fields">
-        <div class="field">
-          <input type="text" name="telephone" id="telephone" placeholder="Telephone Number">
-          {{#if displayFieldError 'telephone' }}
-          <div class="ui error message">
-            <p>You must specify your telephone.</p>
+    <form class="ui form profile-form">
+      <h4 class="ui dividing header">Edit Profile</h4>
+      <div class="field">
+        <label>Social Links</label>
+        <div class="two fields">
+          <div class="field">
+            <input type="text" name="facebook" id="facebook" placeholder="Facebook">
           </div>
-          {{/if}}
-        </div>
-
-        <div class="field">
-          <input type="text" name="email" id="email" placeholder="Email" value="{{contactField 'email'}}">
-          {{#if displayFieldError 'email' }}
-          <div class="ui error message">
-            <p>You must specify your email.</p>
+          <div class="field">
+            <input type="text" name="slack" id="slack" placeholder="Slack">
           </div>
-          {{/if}}
         </div>
-
+      </div>
+      <div class="field">
+        <label>Contact Info</label>
+        <div class="two fields">
+          <div class="field">
+            <input type="text" name="email" id="email" placeholder="Alt. Email">
+          </div>
+          <div class="field">
+            <input type="text" name="telephone" id="telephone" placeholder="Cell Phone #">
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Description (Optional)</label>
+        <input type="text" name="description" id="description">
+      </div>
+      <div class="ui inverted segment">Add or update your sensei and grasshopper subjects here</div>
+      <div class="ui grid">
+        <div class="eight wide column">
+          <div class="inline fields">
+            <label for="fruit">ICS 111</label>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="ICS111" id="grasshopper" value="grasshopper" checked="" tabindex="0"
+                       class="hidden">
+                <label>Grasshopper</label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="ICS111" id="sensei" value="sensei" tabindex="0" class="hidden">
+                <label>Sensei</label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="ICS111" id="none" value="none" tabindex="0" class="hidden">
+                <label>None:</label>
+              </div>
+            </div>
+          </div>
+          <div class="inline fields">
+            <label for="fruit">ICS 141</label>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="ICS141" id="grasshopper" value="grasshopper" checked="" tabindex="1"
+                       class="hidden">
+                <label>Grasshopper</label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="ICS141" id="sensei" value="sensei" tabindex="1" class="hidden">
+                <label>Sensei</label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="ICS141" id="none" value="none" tabindex="1" class="hidden">
+                <label>None:</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eight wide column">
+          <div class="inline fields">
+            <label for="fruit">ICS 211</label>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="ICS211" id="grasshopper" value="grasshopper" checked="" tabindex="0"
+                       class="hidden">
+                <label>Grasshopper</label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="ICS211" id="sensei" value="sensei" tabindex="0" class="hidden">
+                <label>Sensei</label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="ICS211" id="none" value="none" tabindex="0" class="hidden">
+                <label>None:</label>
+              </div>
+            </div>
+          </div>
+          <div class="inline fields">
+            <label for="fruit">ICS 212</label>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="ICS212" id="grasshopper" value="grasshopper" checked="" tabindex="1"
+                       class="hidden">
+                <label>Grasshopper</label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="ICS212" id="sensei" value="sensei" tabindex="1" class="hidden">
+                <label>Sensei</label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="ICS212" id="none" value="none" tabindex="1" class="hidden">
+                <label>None:</label>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </form>
-
-
   </div>
 </template>
