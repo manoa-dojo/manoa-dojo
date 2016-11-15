@@ -1,5 +1,7 @@
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
+import { Meteor } from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base';
 
 FlowRouter.route('/', {
   name: 'Landing_Page',
@@ -63,3 +65,11 @@ FlowRouter.notFound = {
     BlazeLayout.render('App_Body', { main: 'App_Not_Found' });
   },
 };
+
+Accounts.onLogin(function() {
+  if ( Meteor.isClient ) {
+    let currentRoute = FlowRouter.current(),
+        path           = currentRoute.path;
+    return path !== '/' ? FlowRouter.go( path ) : FlowRouter.go( 'User_Home_Page' );
+  }
+});

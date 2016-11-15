@@ -25,7 +25,7 @@ Template.Landing_Page.events({
 		      console.log(error);
 		    }
 		  };
-		  Meteor.loginWithCas(callback);
+      Meteor.loginWithCas(callback);
 		  return false;
 		}
 
