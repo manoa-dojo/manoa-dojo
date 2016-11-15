@@ -1,5 +1,16 @@
 <template name="Game_Page">
   {{#if currentUser}}
+
+  <div style="margin-top: 10px" class="ui center container">
+    <div align="right">
+      <a class="ui item" href="{{pathFor 'Game_Page'}}">
+        <button class="ui green button">
+          <i class="refresh icon"></i>Update
+        </button>
+      </a>
+    </div>
+  </div>
+
   <div class="ui center container">
     <h1>Current Belt Holders (Sensei)</h1>
     <table class="ui celled table">
