@@ -30,7 +30,6 @@ Template.Study_Section_Page.helpers({
 Template.Study_Section_Page.onCreated(function onCreated() {
   this.autorun(() => {
     this.subscribe('Sections');
-    this.subscribe('userData');
   });
   // Example API Calls
   // Meteor.call('updateUser','firstName', 'Xyman');
