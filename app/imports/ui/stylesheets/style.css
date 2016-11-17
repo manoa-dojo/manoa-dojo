@@ -1,5 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Comfortaa);
 
+@font-face {
+    font-family: gangofthree;
+    src: url(/fonts/go3v2.ttf);
+}
+
 body {
 
 }
@@ -48,7 +53,7 @@ p{
   background-size: 100% auto;
   color: white;
   font-size: 50px;
-  font-family: Comfortaa;
+  font-family: gangofthree;
   text-align: center;
   overflow: hidden;
 }
