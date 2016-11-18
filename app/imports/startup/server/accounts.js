@@ -29,7 +29,7 @@ Accounts.onCreateUser((options, user) => {
 
   // New custom fields added.
   const { id } = user.services.cas;
-  user.owner - this.userID;
+  user.owner = this.userID;
   user.userName = id;
   user.firstName = 'Xen';
   user.lastName = 'Huang';

@@ -4,7 +4,8 @@
 
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-
+import { Meteor } from 'meteor/meteor';
+import { _ } from 'meteor/underscore';
 /* eslint-disable object-shorthand */
 
 export const Sections = new Mongo.Collection('Sections');
@@ -61,3 +62,7 @@ export const SectionsSchema = new SimpleSchema({
 });
 
 Sections.attachSchema(SectionsSchema);
+
+Meteor.methods({
+
+})

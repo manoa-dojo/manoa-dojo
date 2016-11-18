@@ -21,6 +21,7 @@ Template.Calendar_Page.helpers({
     	let sectionArr = [];
         let eventColor = 'orange';
     	for(section of sec){
+        // Meteor.user() = Meteor.users.findOne(Meteor.userID())
             if (Meteor.user().userName == section.createdBy){
                 eventColor = 'green';
             };

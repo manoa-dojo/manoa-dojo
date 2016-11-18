@@ -39,7 +39,7 @@ FlowRouter.route('/leaderboard', {
 });
 
 
-FlowRouter.route('/profile', {
+FlowRouter.route('/profile/', {
   name: 'User_Profile_Page',
   action() {
     BlazeLayout.render('App_Body', { main: 'User_Profile_Page' });
