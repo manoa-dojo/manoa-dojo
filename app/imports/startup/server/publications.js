@@ -15,7 +15,7 @@ Meteor.publish('Sections', function publishSectionsData() {
 
 Meteor.publish('userData', function publishUserData() {
   if (this.userId) {
-    return Meteor.users.find({fields: {'services': false}});
+    return Meteor.users.find({},{fields: {'services': false}});
   } else {
     this.ready();
   }

@@ -12,15 +12,17 @@ Template.Study_Section_Page.helpers({
    */
   sectionsList() {
     let currentTime = new Date();
+
     for (let section of Sections.find().fetch()) {
-      if (section.endTime.getTime() < currentTime.getTime() && section.startTime.getTime() < currentTime.getTime()){
+      let startTime = new Date(section.startTime);
+      console.log(startTime);
+      let endTime = new Date(section.endTime);
+      console.log(endTime);
+      if (endTime.getTime() < currentTime.getTime() && startTime.getTime() < currentTime.getTime()){
         // console.log('Removing a section');
         Sections.remove(section._id);
       }
     }
-
-
-
     console.log(Meteor.users.find().fetch());
     return Sections.find();
   },
