@@ -11,7 +11,10 @@ import './create-section.js';
 
 import './calendar.html';
 import './calendar.js';
+
 import './leaderboard.html';
+import './leaderboard.js';
+
 import './profile.html';
 import './profile.js';
 
