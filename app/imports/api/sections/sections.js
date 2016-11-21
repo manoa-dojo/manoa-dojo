@@ -6,6 +6,7 @@ import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Meteor } from 'meteor/meteor';
 import { _ } from 'meteor/underscore';
+import { check } from 'meteor/check';
 /* eslint-disable object-shorthand */
 
 export const Sections = new Mongo.Collection('Sections');
@@ -47,6 +48,12 @@ export const SectionsSchema = new SimpleSchema({
     optional: false,
     max: 200,
   },
+  roomNumber: {
+    label: 'roomNumber',
+    type: String,
+    optional: false,
+    max: 200,
+  },
   createdBy: {
     label: 'createdBy',
     type: String,
@@ -58,11 +65,33 @@ export const SectionsSchema = new SimpleSchema({
     type: String,
     optional: true,
     max: 200,
+  },
+  usersIn: {
+    label: 'usersIn',
+    type: [String],
+    minCount: 0,
+    optional: false,
+    max: 200,
   }
 });
 
 Sections.attachSchema(SectionsSchema);
-
+console.log(new Date());
 Meteor.methods({
-
+  'sections.insert'(newSection) {
+    check(newSection, Object);
+    // console.log(newSection.endTime);
+    if (!this.userId){
+      throw new Meteor.Error('not-authorized');
+    }
+    Sections.insert(newSection);
+  },
+  'sections.join'(newSec,oldSec, user){
+    check(user,String);
+    if (!this.userId){
+      throw new Meteor.Error('not-authorized');
+    }
+    Sections.update(oldSec, { $pull: {usersIn: user}});
+    Sections.update(newSec, { $push: {usersIn: user}});
+  }
 })

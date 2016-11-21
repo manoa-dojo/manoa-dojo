@@ -6,7 +6,11 @@ import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 
 Meteor.publish('Sections', function publishSectionsData() {
-  return Sections.find();
+  if (this.userId) {
+    return Sections.find();
+  } else {
+    this.ready();
+  }
 });
 
 /*

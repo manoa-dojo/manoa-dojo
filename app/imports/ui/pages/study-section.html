@@ -2,7 +2,11 @@
   {{#if currentUser}}
   <div class="ui container">
     {{#if Template.subscriptionsReady}}
-      <h1>Current Available Study Sections</h1>
+      <h1>Available Study Sections</h1>
+      <select class="ui dropdown">
+        <option value="current">Current</option>
+        <option value="commingUp">Comming Up</option>
+      </select>
       <table style="margin-top:20px;" class="ui celled table">
         <thead>
         <tr>
@@ -11,6 +15,7 @@
           <th>Available Spot</th>
           <th>Start Time</th>
           <th>End Time</th>
+          <th>Room</th>
           <th>More Info</th>
           <th>CreatedBy</th>
           <th>Join</th>
@@ -24,13 +29,18 @@
           <td>{{section.currentCapacity}}/{{section.maxCapacity}}</td>
         <td>{{section.startTime.toLocaleString}}</td>
         <td>{{section.endTime.toLocaleString}}</td>
+        <td>{{section.roomNumber}}</td>
         <td>
           <div data-tooltip={{section.description}}>
             <a>More..</a>
           </div>
         </td>
         <td>{{section.createdBy}}</td>
-          <td><a href="{{pathFor 'In_Section_Page' _id=section._id}}">Join</a></td>
+        {{#if currentInSec section._id}}
+          <td><a style="color:darkgray;">Joined</a></td>
+        {{else}}
+          <td><a href="" class="joinBt" name="{{section._id}}">Join</a></td>
+        {{/if}}
         </tr>
         <tr></tr>
         {{/each}}

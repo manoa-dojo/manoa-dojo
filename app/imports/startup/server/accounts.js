@@ -29,7 +29,7 @@ Accounts.onCreateUser((options, user) => {
 
   // New custom fields added.
   const { id } = user.services.cas;
-  user.owner = this.userID;
+  user.owner = this.userId;
   user.userName = id;
   user.firstName = 'Xen';
   user.lastName = 'Huang';
@@ -38,6 +38,7 @@ Accounts.onCreateUser((options, user) => {
   user.avatar = '';
   user.senseiSubjects =[];
   user.grassSubjects = [];
+  user.currentInSection = '';
   user.sectionMade = 0;
   user.sectionAttended = 0;
 

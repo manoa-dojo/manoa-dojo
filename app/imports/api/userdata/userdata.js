@@ -35,7 +35,10 @@ Meteor.methods({
     } else if (field === 'senseiSubjects') {
       check(value, String);
       Meteor.users.update(this.userId, { $push: { senseiSubjects: value } });
-    }  else {
+    } else if (field === 'currentInSection') {
+      check(value, String);
+      Meteor.users.update(this.userId, { $set: { currentInSection: value } });
+    } else {
       console.log('Invalid field');
     }
   },

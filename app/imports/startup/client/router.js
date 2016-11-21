@@ -20,6 +20,7 @@ FlowRouter.route('/home-page', {
 FlowRouter.route('/study-section', {
   name: 'Study_Section_Page',
   action() {
+
     BlazeLayout.render('App_Body', { main: 'Study_Section_Page' });
   },
 });
