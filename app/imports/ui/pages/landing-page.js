@@ -18,7 +18,7 @@ Template.Landing_Page.events({
 
 	'click .cas-login': function casLogin(event, instance) {
 		event.preventDefault();
-		if(confirm("By logging in you agree to the terms and conditions stated in the about page."))
+		if(confirm("By loggin in you agree to the Terms of Use:\n This application has been developed by students at the University of Hawaii. It is provided on a pilot basis and there are no guarantees regarding future access to this system. All users are expected to adhere to the principles specified in the University of Hawaii Systemwide Student Conduct Code. The developers reserve the right to ban access to this system by any students who violate this code of conduct or otherwise display inappropriate behavior on the site."))
 		{
 		  const callback = function loginCallback(error) {
 		    if (error) {

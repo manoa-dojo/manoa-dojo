@@ -61,10 +61,16 @@ Template.Create_Section_Page.events({
        purpose = p;
     }
     console.log(purpose);
+    const roomNumber = event.target.room.value;
     const createdBy = Meteor.user().userName;
     console.log(createdBy);
+    console.log(typeof(createdBy));
     const description = event.target.description.value;
-    const newSection = { course, startTime, endTime, currentCapacity, maxCapacity, purpose, createdBy, description };
+    let usersIn = ["zhenfeng"];
+    console.log(usersIn);
+    console.log(usersIn instanceof Array);
+    const newSection = { course, startTime, endTime, currentCapacity, maxCapacity, purpose, roomNumber, createdBy, description, usersIn };
+    console.log(typeof(newSection));
     // Clear out any old validation errors.
     instance.context.resetValidation();
     // Invoke clean so that newStudentData reflects what will be inserted.
@@ -72,11 +78,12 @@ Template.Create_Section_Page.events({
     // Determine validity.
     instance.context.validate(newSection);
     if (instance.context.isValid()) {
-      Sections.insert(newSection);
+      Meteor.call('sections.insert',newSection);
       instance.messageFlags.set(displayErrorMessages, false);
       FlowRouter.go('Study_Section_Page');
     } else {
       instance.messageFlags.set(displayErrorMessages, true);
+      console.log("it's not valid");
     }
   },
 });

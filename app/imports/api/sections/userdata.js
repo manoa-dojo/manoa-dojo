@@ -13,53 +13,74 @@ export const UserData = new Mongo.Collection('UserData');
  * Create the schema for Stuff
  */
 export const UserDataSchema = new SimpleSchema({
+  userName: {
+    label: 'userName',
+    type: String,
+    optional: false,
+    max: 200,
+  },
   firstName: {
-    label: 'FirstName',
+    label: 'firstName',
     type: String,
     optional: false,
     max: 200,
   },
   lastName: {
-    label: 'LastName',
+    label: 'lastName',
     type: String,
     optional: false,
+    max: 200,
   },
-  email: {
-    label: 'Email',
+  avatar: {
+    label: 'avatar',
+    type: String,
+    optional: false,
+    max: 200,
+  },
+  telephone: {
+    label: 'telephone',
     type: String,
     optional: false,
   },
   sessionsAttended: {
-    label: 'SessionsAttended',
+    label: 'sessionsAttended',
     type: Number,
     optional: false,
   },
   sessionsCreated: {
-    label: 'SessionsCreated',
+    label: 'sessionsCreated',
     type: Number,
     optional: false,
   },
   sessionsAttendedThisMonth: {
-    label: 'SessionsAttendedThisMonth',
-        type: Number,
-        optional: false,
+    label: 'sessionsAttendedThisMonth',
+    type: Number,
+    optional: false,
   },
   sessionsCreatedThisMonth: {
-    label: 'SessionsCreatedThisMonth',
-        type: Number,
+    label: 'sessionsCreatedThisMonth',
+    type: Number,
     optional: false,
   },
   grasshopperSubjects: {
     label: 'grasshopperSubjects',
     type: [String],
+    minCount: 0,
     optional: false,
     max: 200,
   },
   senseiSubjects: {
     label: 'senseiSubjects',
-        type: [String],
-        optional: false,
-        max: 200,
+    type: [String],
+    minCount: 0,
+    optional: false,
+    max: 200,
+  },
+  currentInSection: {
+    label: 'currentInSection',
+    type: String,
+    optional: true,
+    max: 200,
   }
 });
 

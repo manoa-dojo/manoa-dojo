@@ -20,6 +20,7 @@ FlowRouter.route('/home-page', {
 FlowRouter.route('/study-section', {
   name: 'Study_Section_Page',
   action() {
+
     BlazeLayout.render('App_Body', { main: 'Study_Section_Page' });
   },
 });
@@ -39,7 +40,7 @@ FlowRouter.route('/leaderboard', {
 });
 
 
-FlowRouter.route('/profile', {
+FlowRouter.route('/profile/', {
   name: 'User_Profile_Page',
   action() {
     BlazeLayout.render('App_Body', { main: 'User_Profile_Page' });

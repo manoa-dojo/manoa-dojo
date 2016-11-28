@@ -1,129 +1,261 @@
 <template name="Game_Page">
   {{#if currentUser}}
 
+  <div align="right" style="margin-right: 58px" class="ui item">
+    <a id="updateButton" href="{{pathFor 'Game_Page'}}">
+      <button class="ui green button">
+        <i class="refresh icon"></i>Update
+      </button>
+    </a>
+  </div>
+
   <div style="margin-top: 10px" class="ui center container">
-    <div align="right">
-      <a class="ui item" href="{{pathFor 'Game_Page'}}">
-        <button class="ui green button">
-          <i class="refresh icon"></i>Update
-        </button>
+    <div class="ui secondary pointing menu">
+      <a id="topSessionsCreated" class="item menuItemA">
+        Most Sessions Created
+      </a>
+      <a id="topSessionAttendence" class="active item menuItemB">
+        Most Attendees
       </a>
     </div>
   </div>
 
   <div class="ui center container">
-    <div align="center">
-      <h1>
-        Current Belt Holders (Sensei)
-      </h1>
-    </div>
-    <table class="ui celled table">
-      <thead>
-      <tr>
-        <th>Rank</th>
-        <th>Name</th>
-        <th># of Sessions Hosted</th>
-        <th># of Attendees</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td><img style="max-height: 50px; max-width: 50px" class="image" src="/images/black-belt.png"/></td>
-        <td>Philip Johnson</td>
-        <td>20</td>
-        <td>250</td>
-      </tr>
-      </tbody>
-    </table>
-    <div class="ui two column grid">
-      <div class="column">
-        <table class="ui celled table">
-          <tr>
-            <td><img style="max-height: 50px; max-width: 50px" class="image" src="/images/brown-belt.png"/></td>
-            <td>Philip Johnson</td>
-            <td>19</td>
-            <td>242</td>
-          </tr>
-        </table>
+    <div class="ui segment hide summary">
+      <div align="center">
+        <h1 style="text-align: center">
+          Current Belt Holders (Sessions Created)
+        </h1>
+        <p>These are the current belt holders in the Most Sections Created Category.</p>
       </div>
-      <div class="column">
-        <table class="ui celled table">
-          <tr>
-            <td><img style="max-height: 50px; max-width: 50px" class="image" src="/images/red-belt.png"/></td>
-            <td>Philip Johnson</td>
-            <td>18</td>
-            <td>230</td>
-          </tr>
-        </table>
+      <table class="ui celled table">
+        <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Name</th>
+          <th># of Sessions Hosted</th>
+          <th># of Attendees</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td><img style="max-height: 50px; max-width: 50px" class="image" src="/images/black-belt.png"/></td>
+          <td>Philip Johnson</td>
+          <td>20</td>
+          <td>250</td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="ui two column grid">
+        <div class="column">
+          <table class="ui celled table">
+            <tr>
+              <td><img style="max-height: 50px; max-width: 50px" class="image" src="/images/brown-belt.png"/></td>
+              <td>Philip Johnson</td>
+              <td>19</td>
+              <td>242</td>
+            </tr>
+          </table>
+        </div>
+        <div class="column">
+          <table class="ui celled table">
+            <tr>
+              <td><img style="max-height: 50px; max-width: 50px" class="image" src="/images/red-belt.png"/></td>
+              <td>Philip Johnson</td>
+              <td>18</td>
+              <td>230</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="ui two column grid">
+        <div class="column">
+          <table class="ui celled table">
+            <tr>
+              <td><img style="max-height: 50px; max-width: 50px" class="image" src="/images/purple-belt.png"/></td>
+              <td>Philip Johnson</td>
+              <td>19</td>
+              <td>242</td>
+            </tr>
+          </table>
+        </div>
+        <div class="column">
+          <table class="ui celled table">
+            <tr>
+              <td><img style="max-height: 50px; max-width: 50px" class="image" src="/images/blue-belt.png"/></td>
+              <td>Philip Johnson</td>
+              <td>18</td>
+              <td>230</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="ui two column grid">
+        <div class="column">
+          <table class="ui celled table">
+            <tr>
+              <td><img style="max-height: 50px; max-width: 50px" class="image" src="/images/green-belt.png"/></td>
+              <td>Philip Johnson</td>
+              <td>19</td>
+              <td>242</td>
+            </tr>
+          </table>
+        </div>
+        <div class="column">
+          <table class="ui celled table">
+            <tr>
+              <td><img style="max-height: 50px; max-width: 50px" class="image" src="/images/orange-belt.png"/></td>
+              <td>Philip Johnson</td>
+              <td>18</td>
+              <td>230</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="ui two column grid">
+        <div class="column">
+          <table class="ui celled table">
+            <tr>
+              <td><img style="max-height: 50px; max-width: 50px" class="image" src="/images/yellow-belt.png"/></td>
+              <td>Philip Johnson</td>
+              <td>19</td>
+              <td>242</td>
+            </tr>
+          </table>
+        </div>
+        <div class="column">
+          <table class="ui celled table">
+            <tr>
+              <td><img style="max-height: 50px; max-width: 50px" class="image" src="/images/white-belt.png"/></td>
+              <td>Philip Johnson</td>
+              <td>18</td>
+              <td>230</td>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
 
-    <div class="ui two column grid">
-      <div class="column">
+    <div class="ui center container">
+      <div class="ui segment details">
+        <div align="center">
+          <h1 style="text-align: center">
+            Current Belt Holders (Attendees)
+          </h1>
+          <p>These are the current belt holders in the Most Session Attendees category.</p>
+        </div>
         <table class="ui celled table">
+          <thead>
           <tr>
-            <td><img style="max-height: 50px; max-width: 50px" class="image" src="/images/purple-belt.png"/></td>
-            <td>Philip Johnson</td>
-            <td>19</td>
-            <td>242</td>
+            <th>Rank</th>
+            <th>Name</th>
+            <th># of Sessions Hosted</th>
+            <th># of Attendees</th>
           </tr>
-        </table>
-      </div>
-      <div class="column">
-        <table class="ui celled table">
+          </thead>
+          <tbody>
           <tr>
-            <td><img style="max-height: 50px; max-width: 50px" class="image" src="/images/blue-belt.png"/></td>
+            <td><img style="max-height: 50px; max-width: 50px" class="image" src="/images/black-belt.png"/></td>
             <td>Philip Johnson</td>
-            <td>18</td>
-            <td>230</td>
+            <td>20</td>
+            <td>250</td>
           </tr>
+          </tbody>
         </table>
-      </div>
-    </div>
+        <div class="ui two column grid">
+          <div class="column">
+            <table class="ui celled table">
+              <tr>
+                <td><img style="max-height: 50px; max-width: 50px" class="image" src="/images/brown-belt.png"/></td>
+                <td>Philip Johnson</td>
+                <td>19</td>
+                <td>242</td>
+              </tr>
+            </table>
+          </div>
+          <div class="column">
+            <table class="ui celled table">
+              <tr>
+                <td><img style="max-height: 50px; max-width: 50px" class="image" src="/images/red-belt.png"/></td>
+                <td>Philip Johnson</td>
+                <td>18</td>
+                <td>230</td>
+              </tr>
+            </table>
+          </div>
+        </div>
 
-    <div class="ui two column grid">
-      <div class="column">
-        <table class="ui celled table">
-          <tr>
-            <td><img style="max-height: 50px; max-width: 50px" class="image" src="/images/green-belt.png"/></td>
-            <td>Philip Johnson</td>
-            <td>19</td>
-            <td>242</td>
-          </tr>
-        </table>
-      </div>
-      <div class="column">
-        <table class="ui celled table">
-          <tr>
-            <td><img style="max-height: 50px; max-width: 50px" class="image" src="/images/orange-belt.png"/></td>
-            <td>Philip Johnson</td>
-            <td>18</td>
-            <td>230</td>
-          </tr>
-        </table>
-      </div>
-    </div>
+        <div class="ui two column grid">
+          <div class="column">
+            <table class="ui celled table">
+              <tr>
+                <td><img style="max-height: 50px; max-width: 50px" class="image" src="/images/purple-belt.png"/></td>
+                <td>Philip Johnson</td>
+                <td>19</td>
+                <td>242</td>
+              </tr>
+            </table>
+          </div>
+          <div class="column">
+            <table class="ui celled table">
+              <tr>
+                <td><img style="max-height: 50px; max-width: 50px" class="image" src="/images/blue-belt.png"/></td>
+                <td>Philip Johnson</td>
+                <td>18</td>
+                <td>230</td>
+              </tr>
+            </table>
+          </div>
+        </div>
 
-    <div class="ui two column grid">
-      <div class="column">
-        <table class="ui celled table">
-          <tr>
-            <td><img style="max-height: 50px; max-width: 50px" class="image" src="/images/yellow-belt.png"/></td>
-            <td>Philip Johnson</td>
-            <td>19</td>
-            <td>242</td>
-          </tr>
-        </table>
-      </div>
-      <div class="column">
-        <table class="ui celled table">
-          <tr>
-            <td><img style="max-height: 50px; max-width: 50px" class="image" src="/images/white-belt.png"/></td>
-            <td>Philip Johnson</td>
-            <td>18</td>
-            <td>230</td>
-          </tr>
-        </table>
+        <div class="ui two column grid">
+          <div class="column">
+            <table class="ui celled table">
+              <tr>
+                <td><img style="max-height: 50px; max-width: 50px" class="image" src="/images/green-belt.png"/></td>
+                <td>Philip Johnson</td>
+                <td>19</td>
+                <td>242</td>
+              </tr>
+            </table>
+          </div>
+          <div class="column">
+            <table class="ui celled table">
+              <tr>
+                <td><img style="max-height: 50px; max-width: 50px" class="image" src="/images/orange-belt.png"/></td>
+                <td>Philip Johnson</td>
+                <td>18</td>
+                <td>230</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="ui two column grid">
+          <div class="column">
+            <table class="ui celled table">
+              <tr>
+                <td><img style="max-height: 50px; max-width: 50px" class="image" src="/images/yellow-belt.png"/></td>
+                <td>Philip Johnson</td>
+                <td>19</td>
+                <td>242</td>
+              </tr>
+            </table>
+          </div>
+          <div class="column">
+            <table class="ui celled table">
+              <tr>
+                <td><img style="max-height: 50px; max-width: 50px" class="image" src="/images/white-belt.png"/></td>
+                <td>Philip Johnson</td>
+                <td>18</td>
+                <td>230</td>
+              </tr>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>

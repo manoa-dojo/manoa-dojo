@@ -9,7 +9,7 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
-import { Sections, SectionsSchema } from '../../api/sections/userdata.js';
+import { UserData, UserDataSchema } from '../../api/sections/userdata.js';
 
 /* eslint-disable no-param-reassign */
 
@@ -20,7 +20,7 @@ const displayErrorMessages = 'displayErrorMessages';
 Template.Edit_Profile_Page.onCreated(function onCreated() {
   this.messageFlags = new ReactiveDict();
   this.messageFlags.set(displayErrorMessages, false);
-  this.context = SectionsSchema.namedContext('Edit_Profile_Page');
+  this.context = UserDataSchema.namedContext('Edit_Profile_Page');
 });
 
 Template.Edit_Profile_Page.helpers({
@@ -46,13 +46,15 @@ Template.Edit_Profile_Page.onRendered(function enableRadioCheckBox() {
 // });
 
 Template.Edit_Profile_Page.events({
-  'submit .section-data-form'(event, instance) {
+  'submit .profile-form'(event, instance) {
     event.preventDefault();
     // Get name (text field)
     const firstName = event.target.firstName.value;
+    console.log(firstName);
     const lastName = event.target.lastName.value;
+    console.log(lastName);
     const email = event.target.email.value;
-
+    console.log(email);
     // let p = instance.$('input[name="purpose"]:checked').val();
     // let purpose = '';
     // if (p === 'Other'){
@@ -61,17 +63,16 @@ Template.Edit_Profile_Page.events({
     //   purpose = p;
     // }
     // console.log(purpose);
-    const newSection = { course, startTime, endTime, currentCapacity, maxCapacity, purpose, createdBy, description };
     // Clear out any old validation errors.
     instance.context.resetValidation();
     // Invoke clean so that newStudentData reflects what will be inserted.
-    SectionsSchema.clean(newSection);
+    UserDataSchema.clean(updatedData);
     // Determine validity.
-    instance.context.validate(newSection);
+    instance.context.validate(updatedData);
     if (instance.context.isValid()) {
-      Sections.update(newSection);
+      //UserData.update(FlowRouter.getParam('_id'), { $inc: { grassPts: value });
       instance.messageFlags.set(displayErrorMessages, false);
-      FlowRouter.go('Profile_Page');
+      FlowRouter.go('User_Profile_Page');
     } else {
       instance.messageFlags.set(displayErrorMessages, true);
     }
