@@ -10,6 +10,14 @@ FlowRouter.route('/', {
   },
 });
 
+FlowRouter.route('/about', {
+  name: 'About_Page',
+  action() {
+    BlazeLayout.render('Landing_Body', { main: 'About_Page' });
+  },
+});
+
+
 FlowRouter.route('/home-page', {
   name: 'Home_Page',
   action() {
