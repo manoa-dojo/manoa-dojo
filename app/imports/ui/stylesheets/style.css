@@ -58,6 +58,17 @@ p{
   overflow: hidden;
 }
 
+#aboutimg {
+  height: 950px;
+  background: url("/images/art-building.JPG") no-repeat;
+  background-size: 100% auto;
+  color: white;
+  font-size: 40px;
+  font-family: gangofthree;
+  text-align: center;
+  overflow: hidden;
+}
+
 #landingLogo {
   margin: 10px 10px 10px 10px;   /* Top right bottom left */
   float:left;
@@ -78,6 +89,9 @@ p{
   padding-top: 200px;
 }
 
+.about-buffer {
+  padding-top: 100px;
+}
 .hide{
   display: none;
 }
