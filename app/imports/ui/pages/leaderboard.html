@@ -1,13 +1,23 @@
 <template name="Game_Page">
   {{#if currentUser}}
 
-  <div align="right" style="margin-right: 58px" class="ui item">
-    <a id="updateButton" href="{{pathFor 'Game_Page'}}">
-      <button class="ui green button">
-        <i class="refresh icon"></i>Update
-      </button>
-    </a>
-  </div>
+
+    <div class="ui center two column grid container">
+      <div class="column">
+        <select class="ui dropdown">
+          <option value="filter">Filter Leaderboard</option>
+          <option value="sensei">Top Senseis</option>
+          <option value="grasshoppers">Top Grasshoppers</option>
+        </select>
+      </div>
+      <div class="column">
+        <div align="right" id="updateButton" href="{{pathFor 'Game_Page'}}">
+          <button class="ui green button">
+            <i class="refresh icon"></i>Update
+          </button>
+        </div>
+      </div>
+    </div>
 
   <div style="margin-top: 10px" class="ui center container">
     <div class="ui secondary pointing menu">
