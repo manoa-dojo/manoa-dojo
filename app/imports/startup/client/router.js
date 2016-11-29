@@ -84,8 +84,12 @@ FlowRouter.notFound = {
 
 Accounts.onLogin(function() {
   if ( Meteor.isClient ) {
-    let currentRoute = FlowRouter.current(),
-        path           = currentRoute.path;
-    return path !== '/' ? FlowRouter.go( path ) : FlowRouter.go( 'User_Home_Page' );
+    let currentRoute = FlowRouter.current();
+    let path = currentRoute.path;
+    if (path !== '/' ){
+      return false;
+    }else{
+      return FlowRouter.go( 'User_Home_Page' );
+    }
   }
 });
