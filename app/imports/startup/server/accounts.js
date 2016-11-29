@@ -19,6 +19,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { _ } from 'meteor/underscore';
+import { UserData } from '../../api/sections/userdata.js';
 
 /* eslint-disable no-console */
 
@@ -28,20 +29,21 @@ Accounts.onCreateUser((options, user) => {
   }
 
   // New custom fields added.
-  const { id } = user.services.cas;
-  user.owner = this.userId;
-  user.userName = id;
-  user.firstName = '';
-  user.lastName = '';
-  user.senseiPts = 0;
-  user.grassPts = 0;
-  user.avatar = '';
-  user.senseiSubjects =[];
-  user.grassSubjects = [];
-  user.sectionCreated = 0;
-  user.currentInSection = '';
-  user.sectionMade = 0;
-  user.sectionAttended = 0;
+  // const { id } = user.services.cas;
+  // user.owner = this.userId;
+  // user.userName = id;
+  // user.firstName = '';
+  // user.lastName = '';
+  // user.senseiPts = 0;
+  // user.grassPts = 0;
+  // user.avatar = '';
+  // user.senseiSubjects =[];
+  // user.grassSubjects = [];
+  // user.sectionCreated = 0;
+  // user.currentInSection = '';
+  // user.sectionMade = 0;
+  // user.sectionAttended = 0;
+  const userDataSeeds = {userName: this.userId};
 
   // Don't forget to return the new user object at the end!
   return user;

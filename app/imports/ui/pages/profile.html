@@ -61,7 +61,7 @@
         <a id="personal" class="active item menuItemB">
           Additional Details
         </a>
-        <a href="{{pathFor 'Edit_Profile_Page' _id=user.userName}}" class="right item edit-profile">
+        <a href="{{pathFor 'Edit_Profile_Page'}}" class="right item edit-profile">
           Edit<i class="write icon"></i>
         </a>
       </div>
@@ -70,21 +70,21 @@
           <div class="row">
             <div class="eight wide column">
               <h1 style="color: darkgreen">Sessions Created</h1>
-              <h3>6</h3>
+              <h3>{{profile.sessionsCreated}}</h3>
             </div>
             <div class="eight wide column">
               <h1 style="color: darkgreen">Sessions Attended</h1>
-              <h3>7</h3>
+              <h3>{{profile.sessionsAttended}}</h3>
             </div>
           </div>
           <div class="row">
             <div class="eight wide column">
               <h1 style="color: darkgreen">Sensei Points</h1>
-              <h3>52</h3>
+              <h3>{{profile.sessionsAttendedThisMonth}}</h3>
             </div>
             <div class="eight wide column">
               <h1 style="color: darkgreen">Grasshopper Points</h1>
-              <h3>127</h3>
+              <h3>{{profile.sessionsCreatedThisMonth}}</h3>
             </div>
           </div>
         </div>
@@ -96,12 +96,14 @@
               <a class="item">
                 <div class="ui green label">Grasshopper Subjects</div>
               </a>
+
               <a class="item">
                 <div class="ui horizontal label">ICS 314</div>
               </a>
               <a class="item">
                 <div class="ui horizontal label">ICS 321</div>
               </a>
+
             </div>
           </div>
           <div class="six wide column">
@@ -109,12 +111,14 @@
               <a class="item">
                 <div class="ui red label">Sensei Subjects</div>
               </a>
+
               <a class="item">
                 <div class="ui horizontal label">ICS 141</div>
               </a>
               <a class="item">
                 <div class="ui horizontal label">ICS 212</div>
               </a>
+
             </div>
           </div>
           <div class="four wide column">

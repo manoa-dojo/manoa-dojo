@@ -1,26 +1,25 @@
 <template name="Edit_Profile_Page">
   <div style="margin-top: 20px" class="ui container">
-    <form class="ui form profile-form">
+    <form class="ui form edit-profile-form {{ errorClass }}">
       <h4 class="ui dividing header">Edit Profile</h4>
       <div class="field">
         <label>Name</label>
         <div class="two fields">
           <div class="field">
             <input type="text" name="firstName" id="firstName" placeholder="First Name">
+            {{#if displayFieldError 'firstName' }}
+            <div class="ui error message">
+              <p>You must specify your first name.</p>
+            </div>
+            {{/if}}
           </div>
           <div class="field">
             <input type="text" name="lastName" id="lastName" placeholder="Last Name">
-          </div>
-        </div>
-      </div>
-      <div class="field">
-        <label>Social Links</label>
-        <div class="two fields">
-          <div class="field">
-            <input type="text" name="facebook" id="facebook" placeholder="Facebook">
-          </div>
-          <div class="field">
-            <input type="text" name="slack" id="slack" placeholder="Slack">
+            {{#if displayFieldError 'lastName' }}
+            <div class="ui error message">
+              <p>You must specify your last name.</p>
+            </div>
+            {{/if}}
           </div>
         </div>
       </div>
@@ -32,6 +31,11 @@
           </div>
           <div class="field">
             <input type="text" name="telephone" id="telephone" placeholder="Cell Phone #">
+            {{#if displayFieldError 'telephone' }}
+            <div class="ui error message">
+              <p>You must specify your phone number.</p>
+            </div>
+            {{/if}}
           </div>
         </div>
       </div>
@@ -43,45 +47,91 @@
       <div class="ui grid">
         <div class="eight wide column">
           <div class="inline fields">
-            <label for="fruit">ICS 111</label>
+            <label>ICS 111</label>
             <div class="field">
               <div class="ui radio checkbox">
-                <input type="radio" name="ICS111" id="grasshopper" value="grasshopper" tabindex="0"
+                <input type="radio" name="ICS111" id="ICS111g" value="grasshopper" tabindex="0"
                        class="hidden">
                 <label>Grasshopper</label>
               </div>
             </div>
             <div class="field">
               <div class="ui radio checkbox">
-                <input type="radio" name="ICS111" id="sensei" value="sensei" tabindex="0" class="hidden">
+                <input type="radio" name="ICS111" id="ICS111s" value="sensei" tabindex="0" class="hidden">
                 <label>Sensei</label>
               </div>
             </div>
             <div class="field">
               <div class="ui radio checkbox">
-                <input type="radio" name="ICS111" id="none" value="none" checked="" tabindex="0" class="hidden">
+                <input type="radio" name="ICS111" id="ICS111n" value="none" checked="" tabindex="0" class="hidden">
                 <label>No Interest</label>
               </div>
             </div>
           </div>
           <div class="inline fields">
-            <label for="fruit">ICS 141</label>
+            <label>ICS 141</label>
             <div class="field">
               <div class="ui radio checkbox">
-                <input type="radio" name="ICS141" id="grasshopper" value="grasshopper" tabindex="1"
+                <input type="radio" name="ICS141" id="ICS141g" value="grasshopper" tabindex="1"
                        class="hidden">
                 <label>Grasshopper</label>
               </div>
             </div>
             <div class="field">
               <div class="ui radio checkbox">
-                <input type="radio" name="ICS141" id="sensei" value="sensei" tabindex="1" class="hidden">
+                <input type="radio" name="ICS141" id="ICS141s" value="sensei" tabindex="1" class="hidden">
                 <label>Sensei</label>
               </div>
             </div>
             <div class="field">
               <div class="ui radio checkbox">
-                <input type="radio" name="ICS141" id="none" value="none" checked="" tabindex="1" class="hidden">
+                <input type="radio" name="ICS141" id="ICS414n" value="none" checked="" tabindex="1" class="hidden">
+                <label>No Interest</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="eight wide column">
+          <div class="inline fields">
+            <label>ICS 111</label>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="ICS211" id="ICS211g" value="grasshopper" tabindex="0"
+                       class="hidden">
+                <label>Grasshopper</label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="ICS211" id="ICS211s" value="sensei" tabindex="0" class="hidden">
+                <label>Sensei</label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="ICS211" id="ICS211n" value="none" checked="" tabindex="0" class="hidden">
+                <label>No Interest</label>
+              </div>
+            </div>
+          </div>
+          <div class="inline fields">
+            <label>ICS 141</label>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="ICS212" id="ICS212g" value="grasshopper" tabindex="1"
+                       class="hidden">
+                <label>Grasshopper</label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="ICS212" id="ICS212s" value="sensei" tabindex="1" class="hidden">
+                <label>Sensei</label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input type="radio" name="ICS212" id="ICS212n" value="none" checked="" tabindex="1" class="hidden">
                 <label>No Interest</label>
               </div>
             </div>

@@ -40,14 +40,14 @@ FlowRouter.route('/leaderboard', {
 });
 
 
-FlowRouter.route('/profile/', {
+FlowRouter.route('/profile', {
   name: 'User_Profile_Page',
   action() {
     BlazeLayout.render('App_Body', { main: 'User_Profile_Page' });
   },
 });
 
-FlowRouter.route('/edit-profile-page/:_id', {
+FlowRouter.route('/edit-profile-page', {
   name: 'Edit_Profile_Page',
   action() {
     BlazeLayout.render('App_Body', { main: 'Edit_Profile_Page' });

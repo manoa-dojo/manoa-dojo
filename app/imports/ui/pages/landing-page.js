@@ -1,5 +1,6 @@
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
+import { UserData } from '../../api/sections/userdata.js';
 
 Template.Landing_Page.onCreated(function onCreated() {
 	// console.log(Meteor.userId());
@@ -7,6 +8,9 @@ Template.Landing_Page.onCreated(function onCreated() {
 });
 
 Template.Landing_Page.helpers({
+  userDataList() {
+    return UserData.find();
+  },
 });
 
 Template.Landing_Page.events({
@@ -26,7 +30,10 @@ Template.Landing_Page.events({
 		    }
 		  };
       Meteor.loginWithCas(callback);
-		  return false;
+      console.log(Meteor.userId());
+      //const updatedProfile = {userId: Meteor.userId(), userName: Meteor.user().username, firstName: firstName, lastName : lastName, telephone : telephone, sessionsAttended: 0, sessionsCreated: 0, sessionsAttendedThisMonth: 0, sessionsCreatedThisMonth: 0, grasshopperSubjects: grasshopper, SenseiSubjects: sensei };
+      //Contacts.insert(newContact);
+      return false;
 		}
 
 	},

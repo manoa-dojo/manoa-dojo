@@ -13,6 +13,12 @@ export const UserData = new Mongo.Collection('UserData');
  * Create the schema for Stuff
  */
 export const UserDataSchema = new SimpleSchema({
+  userId: {
+    label: 'userId',
+    type: String,
+    optional: false,
+    max: 200,
+  },
   userName: {
     label: 'userName',
     type: String,
@@ -34,7 +40,7 @@ export const UserDataSchema = new SimpleSchema({
   avatar: {
     label: 'avatar',
     type: String,
-    optional: false,
+    optional: true,
     max: 200,
   },
   telephone: {
@@ -45,35 +51,35 @@ export const UserDataSchema = new SimpleSchema({
   sessionsAttended: {
     label: 'sessionsAttended',
     type: Number,
-    optional: false,
+    optional: true,
   },
   sessionsCreated: {
     label: 'sessionsCreated',
     type: Number,
-    optional: false,
+    optional: true,
   },
   sessionsAttendedThisMonth: {
     label: 'sessionsAttendedThisMonth',
     type: Number,
-    optional: false,
+    optional: true,
   },
   sessionsCreatedThisMonth: {
     label: 'sessionsCreatedThisMonth',
     type: Number,
-    optional: false,
+    optional: true,
   },
   grasshopperSubjects: {
     label: 'grasshopperSubjects',
     type: [String],
     minCount: 0,
-    optional: false,
+    optional: true,
     max: 200,
   },
   senseiSubjects: {
     label: 'senseiSubjects',
     type: [String],
     minCount: 0,
-    optional: false,
+    optional: true,
     max: 200,
   },
   currentInSection: {
