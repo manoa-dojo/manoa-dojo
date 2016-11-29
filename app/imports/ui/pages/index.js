@@ -22,6 +22,5 @@ import './profile.html';
 import './profile.js';
 
 import './edit-profile-page.html'
-import './edit-profile-page.js'
 
 
