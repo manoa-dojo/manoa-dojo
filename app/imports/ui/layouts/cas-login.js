@@ -1,5 +1,16 @@
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
+import { UserData } from '../../api/sections/userdata.js';
+
+Template.Cas_Login.helpers({
+  userDataList() {
+    console.log(Meteor.user().userName);
+    return UserData.find();
+  },
+  matchUser: function(user) {
+    return Meteor.user().userName == user;
+  }
+})
 
 Template.Cas_Login.events({
   /**

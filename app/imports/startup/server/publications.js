@@ -15,16 +15,19 @@ Meteor.publish('Sections', function publishSectionsData() {
 });
 
 Meteor.publish('UserData', function publishSectionsData() {
-  if (this.userId) {
+  // if (this.userId) {
     return UserData.find();
-  } else {
-    this.ready();
-  }
+  // } else {
+  //   this.ready();
+  // }
 });
 /*
   Publish all the fields except the services field because it has private data about the user.
  */
-// Meteor.publish('UserData', function publishUserData() {
-//   const owner = this.userId;
-//   return owner ? UserData.find({ userId }) : this.ready();
-// });
+Meteor.publish('UserData2', function publishUserData() {
+  if (this.userId) {
+    return Meteor.users.find({},{fields: {'services': false}});
+  } else {
+    this.ready();
+  }
+});

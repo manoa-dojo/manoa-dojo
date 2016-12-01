@@ -16,25 +16,24 @@ export const UserDataSchema = new SimpleSchema({
   userId: {
     label: 'userId',
     type: String,
-    optional: false,
+    optional: true,
     max: 200,
   },
   userName: {
     label: 'userName',
     type: String,
-    optional: false,
     max: 200,
   },
   firstName: {
     label: 'firstName',
+    defaultValue: '',
     type: String,
-    optional: false,
     max: 200,
   },
   lastName: {
     label: 'lastName',
+    defaultValue: '',
     type: String,
-    optional: false,
     max: 200,
   },
   avatar: {
@@ -45,41 +44,41 @@ export const UserDataSchema = new SimpleSchema({
   },
   telephone: {
     label: 'telephone',
+    defaultValue: '',
     type: String,
-    optional: false,
   },
   sessionsAttended: {
     label: 'sessionsAttended',
+    defaultValue: 0,
     type: Number,
-    optional: true,
   },
   sessionsCreated: {
     label: 'sessionsCreated',
+    defaultValue: 0,
     type: Number,
-    optional: true,
   },
   sessionsAttendedThisMonth: {
     label: 'sessionsAttendedThisMonth',
+    defaultValue: 0,
     type: Number,
-    optional: true,
   },
   sessionsCreatedThisMonth: {
     label: 'sessionsCreatedThisMonth',
+    defaultValue: 0,
     type: Number,
-    optional: true,
   },
   grasshopperSubjects: {
     label: 'grasshopperSubjects',
     type: [String],
+    defaultValue: [],
     minCount: 0,
-    optional: true,
     max: 200,
   },
   senseiSubjects: {
     label: 'senseiSubjects',
     type: [String],
+    defaultValue: [],
     minCount: 0,
-    optional: true,
     max: 200,
   },
   currentInSection: {

@@ -23,10 +23,6 @@ Template.User_Profile_Page.helpers({
     const errorKeys = Template.instance().context.invalidKeys();
     return _.find(errorKeys, (keyObj) => keyObj.name === fieldName);
   },
-  profile() {
-    console.log(UserData.find({ userId: Meteor.userId() }).fetch());
-    return UserData.find({ userId: Meteor.userId() });
-  }
 });
 
 Template.User_Profile_Page.onCreated(function onCreated() {

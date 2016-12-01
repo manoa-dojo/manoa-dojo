@@ -73,8 +73,12 @@ Template.Edit_Profile_Page.events({
     console.log(grasshopper);
     console.log(sensei);
     console.log(Meteor.userId());
-    console.log(Meteor.user().username);
-    const updatedProfile = {userId: Meteor.userId(), userName: "smau4", firstName: firstName, lastName : lastName, telephone : telephone, sessionsAttended: 0, sessionsCreated: 0, sessionsAttendedThisMonth: 0, sessionsCreatedThisMonth: 0, grasshopperSubjects: grasshopper, SenseiSubjects: sensei };
+    console.log(Meteor.user().userName);
+    var user = JSON.stringify(Meteor.user());
+    alert(user);
+    console.log(typeof(alert(user)));
+    console.log(UserData.find({userName: Meteor.user().userName}));
+    const updatedProfile = {userId: Meteor.userId(), userName: Meteor.user().userName, firstName: firstName, lastName : lastName, telephone : telephone, sessionsAttended: 0, sessionsCreated: 0, sessionsAttendedThisMonth: 0, sessionsCreatedThisMonth: 0, grasshopperSubjects: grasshopper, SenseiSubjects: sensei };
     // Clear out any old validation errors.
     instance.context.resetValidation();
     // Invoke clean so that newStudentData reflects what will be inserted.
@@ -82,21 +86,6 @@ Template.Edit_Profile_Page.events({
     // Determine validity.
     instance.context.validate(updatedProfile);
     if (instance.context.isValid()) {
-      const userDataList = UserData.find().fetch();
-      console.log(userDataList);
-      var userProfile;
-      var inList = false;
-      for(userProfile in userDataList){
-        console.log(Meteor.userId());
-        if(userProfile.userId == Meteor.userId());
-        console.log(userProfile);
-        UserData.update(userProfile, {$set: updatedProfile});
-        inList = true;
-      }
-      if (!inList) {
-        UserData.insert(updatedProfile);
-        console.log(UserData.find().fetch());
-      }
       instance.messageFlags.set(displayErrorMessages, false);
       FlowRouter.go('User_Profile_Page');
     } else {

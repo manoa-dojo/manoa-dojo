@@ -27,24 +27,21 @@ Accounts.onCreateUser((options, user) => {
   if (! user.services.cas) {
     throw new Error('Expected login with UH Cas only.');
   }
+  //New custom fields added.
+  const { id } = user.services.cas;
+  console.log(user.services.cas);
+  console.log(id.toLowerCase());
+  user.userName = id;
+  console.log(user.userName);
 
-  // New custom fields added.
-  // const { id } = user.services.cas;
-  // user.owner = this.userId;
-  // user.userName = id;
-  // user.firstName = '';
-  // user.lastName = '';
-  // user.senseiPts = 0;
-  // user.grassPts = 0;
-  // user.avatar = '';
-  // user.senseiSubjects =[];
-  // user.grassSubjects = [];
-  // user.sectionCreated = 0;
-  // user.currentInSection = '';
-  // user.sectionMade = 0;
-  // user.sectionAttended = 0;
-  const userDataSeeds = {userName: this.userId};
-
+  /**
+   * Initialize userData collection.
+   */
+  console.log("Made new user!");
+  const newUserData = {userName: id.toLowerCase(), firstName: '', lastName : '', telephone : '', sessionsAttended: 0, sessionsCreated: 0, sessionsAttendedThisMonth: 0, sessionsCreatedThisMonth: 0, grasshopperSubjects: [], senseiSubjects: []};
+  UserData.insert(newUserData);
+  console.log(UserData.find().fetch());
+  console.log("Inserted data!");
   // Don't forget to return the new user object at the end!
   return user;
 });
