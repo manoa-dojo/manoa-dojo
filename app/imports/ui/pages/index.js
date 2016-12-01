@@ -1,3 +1,6 @@
+import './about-page.html';
+
+
 import './landing-page.html';
 import './landing-page.js';
 

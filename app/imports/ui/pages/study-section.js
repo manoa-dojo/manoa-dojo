@@ -45,7 +45,7 @@ Template.Study_Section_Page.helpers({
     console.log(Meteor.users.find().fetch());
     console.log(Sections.find().fetch());
     // console.log(Template.instance().dropdownValue.get());
-    if (Template.instance().dropdownValue.get() === 'commingUp'){
+    if (Template.instance().dropdownValue.get() === 'comingUp'){
       return Sections.find({ startTime: { $gte: new Date()}});
     }else{
       return Sections.find({endTime: { $gte: new Date() }, startTime: { $lte: new Date()}});
