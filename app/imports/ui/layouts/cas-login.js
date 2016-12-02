@@ -3,12 +3,17 @@ import { Meteor } from 'meteor/meteor';
 import { UserData } from '../../api/sections/userdata.js';
 
 Template.Cas_Login.helpers({
-  userDataList() {
-    console.log(Meteor.user().userName);
-    return UserData.find();
+  // userDataList() {
+  //   return UserData.find();
+  // },
+  matchUser: function(userData) {
+    if(typeof(userData) != "undefined")
+      return userData.userName !== "undefined";
+    else
+      return false;
   },
-  matchUser: function(user) {
-    return Meteor.user().userName == user;
+  userProfile() {
+    return UserData.findOne({userName: Meteor.user().userName});
   }
 })
 

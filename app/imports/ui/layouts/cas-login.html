@@ -6,11 +6,9 @@
 
         <div class="menu">
         {{#if currentUser}}
-          {{#each userData in userDataList}}
-          {{#if matchUser userData.userName}}
-          <a class="item" href="{{pathFor 'User_Profile_Page' _id=userData.userName}}">Profile</a>
+          {{#if matchUser userProfile}}
+          <a class="item" href="{{pathFor 'User_Profile_Page' _id=userProfile.userName}}">Profile</a>
           {{/if}}
-          {{/each}}
           <a class="item" href="{{pathFor 'Create_Section_Page'}}">Create Study Section</a>
           <a class="item cas-logout">Logout</a>
         {{else}}

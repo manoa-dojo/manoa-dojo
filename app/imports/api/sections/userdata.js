@@ -4,6 +4,7 @@
 
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 
 /* eslint-disable object-shorthand */
 
@@ -90,3 +91,14 @@ export const UserDataSchema = new SimpleSchema({
 });
 
 UserData.attachSchema(UserDataSchema);
+
+// Meteor.methods({
+//   'userdata.insert'(newUserData) {
+//     console.log(this.userId);
+//     if (!this.userId){
+//       throw new Meteor.Error('not-authorized');
+//     }
+//     UserData.update(FlowRouter.getParam('_id'), {$set: newUserData});
+//     console.log(UserData.find().fetch());
+//   }
+// })

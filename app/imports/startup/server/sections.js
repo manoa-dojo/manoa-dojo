@@ -34,6 +34,7 @@ Meteor.setInterval(function() {
       // console.log(user);
       let userId = Meteor.users.findOne({userName: user});
       // console.log(userId);
+      // Must be changed
       Meteor.users.update(userId._id, { $inc: { senseiPts: 2 } });
     }
     Sections.remove(section._id);

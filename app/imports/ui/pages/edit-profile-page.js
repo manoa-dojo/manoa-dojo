@@ -42,7 +42,8 @@ Template.Edit_Profile_Page.events({
   'submit .edit-profile-form'(event, instance) {
     event.preventDefault();
     // Get name (text field)
-    const username = "smau4";
+    const oldProfile = UserData.findOne({userName: Meteor.user().userName});
+    const username = Meteor.user().userName;
     console.log(typeof(username));
     const firstName = event.target.firstName.value;
     console.log(typeof(firstName));
@@ -76,9 +77,8 @@ Template.Edit_Profile_Page.events({
     console.log(Meteor.user().userName);
     var user = JSON.stringify(Meteor.user());
     alert(user);
-    console.log(typeof(alert(user)));
-    console.log(UserData.find({userName: Meteor.user().userName}));
-    const updatedProfile = {userId: Meteor.userId(), userName: Meteor.user().userName, firstName: firstName, lastName : lastName, telephone : telephone, sessionsAttended: 0, sessionsCreated: 0, sessionsAttendedThisMonth: 0, sessionsCreatedThisMonth: 0, grasshopperSubjects: grasshopper, SenseiSubjects: sensei };
+    console.log(UserData.findOne({userName: Meteor.user().userName}));
+    const updatedProfile = {userId: Meteor.userId(), userName: Meteor.user().userName, firstName: firstName, lastName : lastName, telephone : telephone, sessionsAttended: oldProfile.sessionsAttended + 1, sessionsCreated: oldProfile.sessionsCreated + 1, sessionsAttendedThisMonth: 0, sessionsCreatedThisMonth: 0, grasshopperSubjects: grasshopper, SenseiSubjects: sensei };
     // Clear out any old validation errors.
     instance.context.resetValidation();
     // Invoke clean so that newStudentData reflects what will be inserted.
@@ -86,8 +86,8 @@ Template.Edit_Profile_Page.events({
     // Determine validity.
     instance.context.validate(updatedProfile);
     if (instance.context.isValid()) {
-      instance.messageFlags.set(displayErrorMessages, false);
-      FlowRouter.go('User_Profile_Page');
+      UserData.update(FlowRouter.getParam('_id'), {$set: updatedProfile});
+      FlowRouter.go('User_Profile_Page', {_id: updatedProfile.userName.toLowerCase()});
     } else {
       instance.messageFlags.set(displayErrorMessages, true);
       console.log("it's not valid");

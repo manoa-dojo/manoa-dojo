@@ -23,6 +23,15 @@ Template.User_Profile_Page.helpers({
     const errorKeys = Template.instance().context.invalidKeys();
     return _.find(errorKeys, (keyObj) => keyObj.name === fieldName);
   },
+  matchUser: function(userData) {
+    if(typeof(userData) != "undefined")
+      return userData.userName !== "undefined";
+    else
+      return false;
+  },
+  userProfile() {
+    return UserData.findOne({userName: Meteor.user().userName});
+  }
 });
 
 Template.User_Profile_Page.onCreated(function onCreated() {
