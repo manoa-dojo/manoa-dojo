@@ -70,7 +70,7 @@ Template.Create_Section_Page.events({
     console.log(usersIn);
     console.log(usersIn instanceof Array);
     const newSection = { course, startTime, endTime, currentCapacity, maxCapacity, purpose, roomNumber, createdBy, description, usersIn };
-    console.log(typeof(newSection));
+    console.log(newSection);
     // Clear out any old validation errors.
     instance.context.resetValidation();
     // Invoke clean so that newStudentData reflects what will be inserted.

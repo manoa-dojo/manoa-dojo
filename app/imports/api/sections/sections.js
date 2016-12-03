@@ -85,13 +85,24 @@ Meteor.methods({
       throw new Meteor.Error('not-authorized');
     }
     Sections.insert(newSection);
+
   },
   'sections.join'(newSec,oldSec, user){
     check(user,String);
     if (!this.userId){
       throw new Meteor.Error('not-authorized');
     }
-    Sections.update(oldSec, { $pull: {usersIn: user}});
+    if (oldSec !== ''){
+      Sections.update(oldSec, { $pull: {usersIn: user}});
+    }
+
     Sections.update(newSec, { $push: {usersIn: user}});
-  }
+  },
+  'sections.remove'(id){
+    check(id,String);
+    if (!this.userId){
+      throw new Meteor.Error('not-authorized');
+    }
+    Sections.remove(id);
+  },
 })

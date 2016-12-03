@@ -12,7 +12,7 @@ Template.Study_Section_Page.onCreated(function onCreated() {
     this.subscribe('Sections');
   });
   this.dropdownValue = new ReactiveVar()
-  this.dropdownValue.set('current');
+  this.dropdownValue.set('all');
   // Example API Calls
   // Meteor.call('updateUser','firstName', 'Xyman');
   // Meteor.call('updateUser','lastName', 'Hman');
@@ -45,16 +45,31 @@ Template.Study_Section_Page.helpers({
     console.log(Meteor.users.find().fetch());
     console.log(Sections.find().fetch());
     // console.log(Template.instance().dropdownValue.get());
-    if (Template.instance().dropdownValue.get() === 'commingUp'){
+    if (Template.instance().dropdownValue.get() === 'comingUp'){
       return Sections.find({ startTime: { $gte: new Date()}});
-    }else{
+    }else if (Template.instance().dropdownValue.get() === 'current'){
       return Sections.find({endTime: { $gte: new Date() }, startTime: { $lte: new Date()}});
+    } else {
+      return Sections.find();
     }
 
   },
   currentInSec(id) {
     return Meteor.user().currentInSection === id;
   },
+  ownerSec(userName, secId){
+    if (Meteor.user().userName === userName){
+      // const oldSec = Meteor.user().currentInSection;
+      // Meteor.call('sections.join', secId, oldSec, Meteor.user().userName);
+      // Meteor.call('updateUser','currentInSection', secId);
+      return Meteor.user().userName === userName;
+    }else{
+      return Meteor.user().userName === userName;
+    }
+  },
+  futureSec(secId){
+    return Sections.findOne({_id: secId}).startTime > new Date();
+  }
 
 });
 
@@ -66,12 +81,20 @@ Template.Study_Section_Page.onRendered(function enableDropDown() {
 Template.Study_Section_Page.events({
   'change .ui.dropdown'(event,instance) {
     Template.instance().dropdownValue.set(event.target.value);
-    // console.log(event.target.value);
+    console.log(event.target.value);
   },
   'click .joinBt'(event,instance){
     console.log(typeof(event.target.name));
     const oldSec = Meteor.user().currentInSection;
     Meteor.call('updateUser','currentInSection', event.target.name);
     Meteor.call('sections.join', event.target.name, oldSec, Meteor.user().userName);
+  },
+  'click .removeBt'(event,instance){
+    if (confirm('Do you really want to cancel this section?')) {
+      event.preventDefault();
+      Meteor.call('sections.remove',event.target.name);
+      Meteor.call('updateUser','currentInSection', '');
+    }
+    return false;
   }
 });

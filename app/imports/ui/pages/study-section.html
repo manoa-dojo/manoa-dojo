@@ -3,8 +3,9 @@
   <div class="ui container">
     {{#if Template.subscriptionsReady}}
       <h1>Available Study Sections</h1>
+      Session Type:
       <select class="ui dropdown">
-        <option value="filter">Session Type</option>
+        <option value="all">All</option>
         <option value="current">Current</option>
         <option value="comingUp">Coming Up</option>
       </select>
@@ -37,10 +38,14 @@
           </div>
         </td>
         <td>{{section.createdBy}}</td>
-        {{#if currentInSec section._id}}
-          <td><a style="color:darkgray;">Joined</a></td>
+        {{#if ownerSec section.createdBy section._id}}
+            <td><a href="" class="removeBt" name="{{section._id}}">Cancel</a></td>
         {{else}}
-          <td><a href="" class="joinBt" name="{{section._id}}">Join</a></td>
+          {{#if currentInSec section._id}}
+            <td><a style="color:darkgray;">Joined</a></td>
+          {{else}}
+            <td><a href="" class="joinBt" name="{{section._id}}">Join</a></td>
+          {{/if}}
         {{/if}}
         </tr>
         <tr></tr>
