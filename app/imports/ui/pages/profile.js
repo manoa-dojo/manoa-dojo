@@ -2,6 +2,8 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { _ } from 'meteor/underscore';
 import { FlowRouter } from 'meteor/kadira:flow-router';
+import { UserData } from '../../api/sections/userdata.js';
+import { Meteor } from 'meteor/meteor';
 
 /* eslint-disable no-param-reassign */
 
@@ -23,6 +25,11 @@ Template.User_Profile_Page.helpers({
   },
 });
 
+Template.User_Profile_Page.onCreated(function onCreated() {
+  this.autorun(() => {
+    this.subscribe('UserData');
+  });
+});
 // Template.Add_Contact_Page.onRendered(function enableSemantic() {
 //   const instance = this;
 //   instance.$('select.ui.dropdown').dropdown();

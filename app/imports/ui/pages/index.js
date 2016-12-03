@@ -5,6 +5,7 @@ import './landing-page.html';
 import './landing-page.js';
 
 import './user-home-page.html';
+import './user-home-page.js';
 
 import './study-section.html';
 import './study-section.js';

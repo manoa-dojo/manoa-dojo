@@ -19,6 +19,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { _ } from 'meteor/underscore';
+import { UserData } from '../../api/sections/userdata.js';
 
 /* eslint-disable no-console */
 
@@ -26,22 +27,21 @@ Accounts.onCreateUser((options, user) => {
   if (! user.services.cas) {
     throw new Error('Expected login with UH Cas only.');
   }
-
-  // New custom fields added.
+  //New custom fields added.
   const { id } = user.services.cas;
-  user.owner = this.userId;
+  console.log(user.services.cas);
+  console.log(id.toLowerCase());
   user.userName = id;
-  user.firstName = 'Xen';
-  user.lastName = 'Huang';
-  user.senseiPts = 0;
-  user.grassPts = 0;
-  user.avatar = '';
-  user.senseiSubjects =[];
-  user.grassSubjects = [];
-  user.currentInSection = '';
-  user.sectionMade = 0;
-  user.sectionAttended = 0;
+  console.log(user.userName);
 
+  /**
+   * Initialize userData collection.
+   */
+  console.log("Made new user!");
+  const newUserData = {userName: id.toLowerCase(), firstName: '', lastName : '', telephone : '', sessionsAttended: 0, sessionsCreated: 0, sessionsAttendedThisMonth: 0, sessionsCreatedThisMonth: 0, grasshopperSubjects: [], senseiSubjects: []};
+  UserData.insert(newUserData);
+  console.log(UserData.find().fetch());
+  console.log("Inserted data!");
   // Don't forget to return the new user object at the end!
   return user;
 });
