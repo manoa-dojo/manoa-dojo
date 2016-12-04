@@ -10,6 +10,9 @@ import './user-home-page.js';
 import './study-section.html';
 import './study-section.js';
 
+import './in-section.html';
+import './in-section.js';
+
 import './create-section.html';
 import './create-section.js';
 

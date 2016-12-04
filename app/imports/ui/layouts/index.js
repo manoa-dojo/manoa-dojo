@@ -2,6 +2,8 @@ import './app-body.html';
 import './app-body.js';
 import './landing-body.html';
 import './landing-body.js';
+import './section-body.html';
+import './section-body.js';
 import './app-not-found.html';
 import './footer.html';
 import './header.html';

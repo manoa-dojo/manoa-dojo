@@ -1,10 +1,10 @@
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
-import { UserData } from '../../api/sections/userdata.js';
+import { UserData } from '../../api/userdata/userdata.js';
 
 Template.Cas_Login.helpers({
   userDataList() {
-    console.log(Meteor.user().userName);
+    // console.log(Meteor.user().userName);
     return UserData.find();
   },
   matchUser: function(user) {

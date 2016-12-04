@@ -7,6 +7,7 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Meteor } from 'meteor/meteor';
 import { _ } from 'meteor/underscore';
 import { check } from 'meteor/check';
+import { UserData } from '../../api/userdata/userdata.js';
 /* eslint-disable object-shorthand */
 
 export const Sections = new Mongo.Collection('Sections');
@@ -56,9 +57,9 @@ export const SectionsSchema = new SimpleSchema({
   },
   createdBy: {
     label: 'createdBy',
-    type: String,
+    type: Object,
     optional: false,
-    max: 200,
+    blackbox: true,
   },
   description: {
     label: 'Description',
@@ -68,15 +69,21 @@ export const SectionsSchema = new SimpleSchema({
   },
   usersIn: {
     label: 'usersIn',
-    type: [String],
+    type: [Object],
     minCount: 0,
     optional: false,
-    max: 200,
+    blackbox: true,
+  },
+  likes: {
+    label: 'likes',
+    type: Number,
+    min: 0,
+    optional: true,
   }
 });
 
 Sections.attachSchema(SectionsSchema);
-console.log(new Date());
+
 Meteor.methods({
   'sections.insert'(newSection) {
     check(newSection, Object);
@@ -84,7 +91,18 @@ Meteor.methods({
     if (!this.userId){
       throw new Meteor.Error('not-authorized');
     }
-    Sections.insert(newSection);
+    Sections.insert(newSection,function(err,result){
+      if (err){
+        console.log(result);
+      }else{
+        console.log('good ' + result);
+
+        const user = UserData.findOne({userName: Meteor.user().userName});
+        Meteor.call('updateUser',user._id, 'currentInSection', result);
+        FlowRouter.go('Joined_Section_Page',{_id: result});
+      }
+
+    });
 
   },
   'sections.join'(newSec,oldSec, user){
@@ -93,10 +111,10 @@ Meteor.methods({
       throw new Meteor.Error('not-authorized');
     }
     if (oldSec !== ''){
-      Sections.update(oldSec, { $pull: {usersIn: user}});
+      Sections.update(oldSec, { $pull: {usersIn: {user:user}}});
     }
 
-    Sections.update(newSec, { $push: {usersIn: user}});
+    Sections.update(newSec, { $push: {usersIn: {user:user}}});
   },
   'sections.remove'(id){
     check(id,String);

@@ -19,7 +19,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { _ } from 'meteor/underscore';
-import { UserData } from '../../api/sections/userdata.js';
+import { UserData } from '../../api/userdata/userdata.js';
 
 /* eslint-disable no-console */
 

@@ -3,6 +3,7 @@
  */
 import { Template } from 'meteor/templating';
 import { Sections } from '../../api/sections/sections.js';
+import { UserData } from '../../api/userdata/userdata.js';
 import { Meteor } from 'meteor/meteor';
 import { ReactiveVar } from 'meteor/reactive-var';
 
@@ -42,7 +43,7 @@ Template.Study_Section_Page.helpers({
     //     // Sections.remove(section._id);
     //   }
     // }
-    console.log(Meteor.users.find().fetch());
+    console.log(UserData.find().fetch());
     console.log(Sections.find().fetch());
     // console.log(Template.instance().dropdownValue.get());
     if (Template.instance().dropdownValue.get() === 'comingUp'){
@@ -55,7 +56,8 @@ Template.Study_Section_Page.helpers({
 
   },
   currentInSec(id) {
-    return Meteor.user().currentInSection === id;
+    const user = UserData.findOne({userName: Meteor.user().userName});
+    return user.currentInSection === id;
   },
   ownerSec(userName, secId){
     if (Meteor.user().userName === userName){
@@ -69,32 +71,52 @@ Template.Study_Section_Page.helpers({
   },
   futureSec(secId){
     return Sections.findOne({_id: secId}).startTime > new Date();
+  },
+  getRole(array, name){
+    console.log(_.findWhere(array, {user: name}).role);
+    return _.findWhere(array, {user: name}).role;
   }
 
 });
 
 
 Template.Study_Section_Page.onRendered(function enableDropDown() {
-  $('.ui.dropdown').dropdown();
+  $('#select').dropdown();
 });
 
 Template.Study_Section_Page.events({
-  'change .ui.dropdown'(event,instance) {
-    Template.instance().dropdownValue.set(event.target.value);
-    console.log(event.target.value);
+
+  'change #select'(event,instance) {
+    Template.instance().dropdownValue.set($('#select').dropdown('get value'));
+    console.log($('#select').dropdown('get value'));
   },
   'click .joinBt'(event,instance){
-    console.log(typeof(event.target.name));
-    const oldSec = Meteor.user().currentInSection;
-    Meteor.call('updateUser','currentInSection', event.target.name);
-    Meteor.call('sections.join', event.target.name, oldSec, Meteor.user().userName);
+    event.preventDefault();
+    const user = UserData.findOne({userName: Meteor.user().userName});
+    const oldSec = user.currentInSection;
+    const newSec = Sections.findOne({_id:event.target.name});
+    if (oldSec === '') {
+      Meteor.call('updateUser',user._id, 'currentInSection', event.target.name);
+      Meteor.call('sections.join', event.target.name, oldSec, Meteor.user().userName);
+    }else{
+      if (confirm('You are currently already in a study section. Do you wish to leave and join `${newSec.course}` section?')) {
+        Meteor.call('updateUser',user._id, 'currentInSection', event.target.name);
+        Meteor.call('sections.join', event.target.name, oldSec, Meteor.user().userName);
+      }
+    }
   },
   'click .removeBt'(event,instance){
+    const user = UserData.findOne({userName: Meteor.user().userName});
     if (confirm('Do you really want to cancel this section?')) {
       event.preventDefault();
       Meteor.call('sections.remove',event.target.name);
-      Meteor.call('updateUser','currentInSection', '');
+      Meteor.call('updateUser',user._id, 'currentInSection', '');
     }
     return false;
   }
 });
+/*
+ {{#if ownerSec section.createdBy section._id}}
+ <td><a href="" class="removeBt" name="{{section._id}}">Cancel</a></td>
+ {{else}}
+ */

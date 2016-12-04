@@ -95,3 +95,40 @@ p{
 .hide{
   display: none;
 }
+
+/* In Section */
+.ui.messages.container{
+  height: 500px;
+  border: 1px solid #DDD;
+  border-radius:5px;
+  background-color: #EAFAF1;
+  width:80%;
+  float:left;
+}
+.ui.comments.topleft{
+
+  height: 300px;
+  margin-left:10px;
+  margin-top:10px;
+
+}
+.ui.container.replyform{
+  width:80%;
+  height:50px;
+  float:left;
+}
+#roomInfo{
+  width:20%;
+  height: 500px;
+  border: 1px solid #DDD;
+  background-color: #EAFAF1;
+  float:right;
+}
+.ui.row.description{
+  height: 30%;
+  border-bottom: 1px solid #DDD;
+}
+.ui.row.users{
+  height:70%;
+}
+/*            */

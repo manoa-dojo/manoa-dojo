@@ -29,7 +29,15 @@ FlowRouter.route('/study-section', {
   name: 'Study_Section_Page',
   action() {
 
-    BlazeLayout.render('App_Body', { main: 'Study_Section_Page' });
+    BlazeLayout.render('Section_Body', { main: 'Study_Section_Page' });
+  },
+});
+
+FlowRouter.route('/study-section/:_id', {
+  name: 'Joined_Section_Page',
+  action() {
+
+    BlazeLayout.render('Section_Body', { main: 'Joined_Section_Page' });
   },
 });
 

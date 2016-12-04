@@ -1,0 +1,49 @@
+<template name="Joined_Section_Page">
+  <div class="ui container">
+    <h3>Messages</h3>
+    <div class="ui messages container">
+      <div class="ui comments topleft">
+        <div class="comment">
+          <a class="avatar">
+            <img src="/images/stephen.jpg" style="width:35px;height:35px;">
+          </a>
+          <div class="content">
+            <a class="author">Matt</a>
+            <div class="metadata">
+              <span class="date">Today at 5:42PM</span>
+            </div>
+            <div class="text">
+              How artistic!
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form class="ui reply form">
+        <div class="field">
+          <textarea name="Text1" cols="40" rows="5"></textarea>
+        </div>
+        <div class="ui blue labeled submit icon button" style="float:right">
+          <i class="icon edit"></i> Send
+        </div>
+        <div class="ui red labeled submit icon button" style="float:right">
+          Exit
+        </div>
+
+
+      </form>
+
+    </div>
+    <div id="roomInfo">
+      <div class="ui row description">
+        <h3 class="ui dividing header">Description</h3>
+      </div>
+      <div class="ui row users">
+        <h3 class="ui dividing header">Users (1/5)</h3>
+          {{#each user in sectionUsers}}
+            {{user.user}}({{user.role}})
+          {{/each}}
+      </div>
+    </div>
+  </div>
+</template>

@@ -2,7 +2,7 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
-import { UserData, UserDataSchema } from '../../api/sections/userdata.js';
+import { UserData, UserDataSchema } from '../../api/userdata/userdata.js';
 
 /* eslint-disable no-param-reassign */
 

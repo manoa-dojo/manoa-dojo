@@ -1,6 +1,6 @@
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
-import { UserData } from '../../api/sections/userdata.js';
+import { UserData } from '../../api/userdata/userdata.js';
 
 Template.Landing_Page.onCreated(function onCreated() {
 	// console.log(Meteor.userId());

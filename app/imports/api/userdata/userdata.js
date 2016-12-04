@@ -6,9 +6,97 @@ import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { _ } from 'meteor/underscore';
 import { check } from 'meteor/check';
+import { Mongo } from 'meteor/mongo';
+import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+
+/* eslint-disable object-shorthand */
+
+export const UserData = new Mongo.Collection('UserData');
+
+/**
+ * Create the schema for Stuff
+ */
+export const UserDataSchema = new SimpleSchema({
+  userId: {
+    label: 'userId',
+    type: String,
+    optional: true,
+    max: 200,
+  },
+  userName: {
+    label: 'userName',
+    type: String,
+    max: 200,
+  },
+  firstName: {
+    label: 'firstName',
+    defaultValue: '',
+    type: String,
+    max: 200,
+  },
+  lastName: {
+    label: 'lastName',
+    defaultValue: '',
+    type: String,
+    max: 200,
+  },
+  avatar: {
+    label: 'avatar',
+    type: String,
+    optional: true,
+    max: 200,
+  },
+  telephone: {
+    label: 'telephone',
+    defaultValue: '',
+    type: String,
+  },
+  sessionsAttended: {
+    label: 'sessionsAttended',
+    defaultValue: 0,
+    type: Number,
+  },
+  sessionsCreated: {
+    label: 'sessionsCreated',
+    defaultValue: 0,
+    type: Number,
+  },
+  sessionsAttendedThisMonth: {
+    label: 'sessionsAttendedThisMonth',
+    defaultValue: 0,
+    type: Number,
+  },
+  sessionsCreatedThisMonth: {
+    label: 'sessionsCreatedThisMonth',
+    defaultValue: 0,
+    type: Number,
+  },
+  grasshopperSubjects: {
+    label: 'grasshopperSubjects',
+    type: [String],
+    defaultValue: [],
+    minCount: 0,
+    max: 200,
+  },
+  senseiSubjects: {
+    label: 'senseiSubjects',
+    type: [String],
+    defaultValue: [],
+    minCount: 0,
+    max: 200,
+  },
+  currentInSection: {
+    label: 'currentInSection',
+    type: String,
+    optional: true,
+    max: 200,
+  }
+});
+
+UserData.attachSchema(UserDataSchema);
 
 Meteor.methods({
-  'updateUser'(field, value){
+  'updateUser'(userId, field, value){
     check(field, String);
 
     if (! this.userId){
@@ -16,29 +104,29 @@ Meteor.methods({
     }
     if (field === 'firstName') {
       check(value, String);
-      Meteor.users.update(this.userId, { $set: { firstName: value } });
+      UserData.update(userId, { $set: { firstName: value } });
     } else if (field === 'lastName') {
       check(value, String);
-      Meteor.users.update(this.userId, { $set: { lastName: value } });
+      UserData.update(userId, { $set: { lastName: value } });
     } else if (field === 'avatar'){
       check(value, String);
-      Meteor.users.update(this.userId, { $set: { avatar: value } });
+      UserData.update(userId, { $set: { avatar: value } });
     } else if (field === 'senseiPts'){
       check(value, Number);
-      Meteor.users.update(this.userId, { $inc: { senseiPts: value } });
+      UserData.update(userId, { $inc: { senseiPts: value } });
     } else if (field === 'grassPts') {
       check(value, Number);
-      Meteor.users.update(this.userId, { $inc: { grassPts: value } });
+      UserData.update(userId, { $inc: { grassPts: value } });
     } else if (field === 'grassSubjects') {
       check(value, String);
-      Meteor.users.update(this.userId, { $push: { grassSubjects: value } });
+      UserData.update(userId, { $push: { grassSubjects: value } });
     } else if (field === 'senseiSubjects') {
       check(value, String);
-      Meteor.users.update(this.userId, { $push: { senseiSubjects: value } });
+      UserData.update(userId, { $push: { senseiSubjects: value } });
     } else if (field === 'currentInSection') {
-      Meteor.users.update(this.userId, { $set: { currentInSection: value } });
+      UserData.update(userId, { $set: { currentInSection: value } });
     } else {
-      console.log('Invalid field');
+      throw new Meteor.Error('Invalid Field');
     }
   },
 })

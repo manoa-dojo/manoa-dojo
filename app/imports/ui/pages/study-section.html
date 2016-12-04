@@ -1,14 +1,25 @@
 <template name="Study_Section_Page">
+  <div class="ui container">
+    Section Type:
+    <div class="ui selection dropdown" id="select" style="margin-left:5px;">
+      <input name="type" type="hidden" value="default">
+      <i class="dropdown icon"></i>
+      <div class="text">All</div>
+      <div class="menu">
+        <div class="item" data-value="all">All</div>
+        <div class="item" data-value="current">Current</div>
+        <div class="item" data-value="comingUp">Coming Up</div>
+      </div>
+    </div>
+  </div>
   {{#if currentUser}}
   <div class="ui container">
-    {{#if Template.subscriptionsReady}}
-      <h1>Available Study Sections</h1>
-      Session Type:
-      <select class="ui dropdown">
-        <option value="all">All</option>
-        <option value="current">Current</option>
-        <option value="comingUp">Coming Up</option>
-      </select>
+      <!--<select class="ui dropdown">-->
+        <!--<option value="all">All</option>-->
+        <!--<option value="current">Current</option>-->
+        <!--<option value="comingUp">Coming Up</option>-->
+      <!--</select>-->
+      {{#if Template.subscriptionsReady}}
       <table style="margin-top:20px;" class="ui celled table">
         <thead>
         <tr>
@@ -37,16 +48,14 @@
             <a>More..</a>
           </div>
         </td>
-        <td>{{section.createdBy}}</td>
-        {{#if ownerSec section.createdBy section._id}}
-            <td><a href="" class="removeBt" name="{{section._id}}">Cancel</a></td>
-        {{else}}
+        <td><a href="{{pathFor 'User_Profile_Page' _id=section.createdBy.user}}">{{section.createdBy.user}}</a>({{section.createdBy.role}})</td>
+
           {{#if currentInSec section._id}}
             <td><a style="color:darkgray;">Joined</a></td>
           {{else}}
             <td><a href="" class="joinBt" name="{{section._id}}">Join</a></td>
           {{/if}}
-        {{/if}}
+
         </tr>
         <tr></tr>
         {{/each}}

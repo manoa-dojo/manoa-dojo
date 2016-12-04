@@ -51,7 +51,7 @@ Template.Create_Section_Page.events({
     console.log(startTime);
     const endTime= new Date(event.target.endDate.value + ' ' + event.target.endTime.value);
     console.log(typeof(endTime));
-    const currentCapacity = 1;
+    const currentCapacity = 0;
     const maxCapacity = event.target.people.value;
     let p = instance.$('input[name="purpose"]:checked').val();
     let purpose = '';
@@ -62,14 +62,16 @@ Template.Create_Section_Page.events({
     }
     console.log(purpose);
     const roomNumber = event.target.room.value;
-    const createdBy = Meteor.user().userName;
+    const role = event.target.role.value;
+    const createdBy = {user:Meteor.user().userName,role:role};
     console.log(createdBy);
     console.log(typeof(createdBy));
     const description = event.target.description.value;
-    let usersIn = ["zhenfeng"];
+    let usersIn = [{user:Meteor.user().userName,role:role}];
+    let likes = 0;
     console.log(usersIn);
     console.log(usersIn instanceof Array);
-    const newSection = { course, startTime, endTime, currentCapacity, maxCapacity, purpose, roomNumber, createdBy, description, usersIn };
+    const newSection = { course, startTime, endTime, currentCapacity, maxCapacity, purpose, roomNumber, createdBy, description, usersIn, likes };
     console.log(newSection);
     // Clear out any old validation errors.
     instance.context.resetValidation();
@@ -80,7 +82,7 @@ Template.Create_Section_Page.events({
     if (instance.context.isValid()) {
       Meteor.call('sections.insert',newSection);
       instance.messageFlags.set(displayErrorMessages, false);
-      FlowRouter.go('Study_Section_Page');
+
     } else {
       instance.messageFlags.set(displayErrorMessages, true);
       console.log("it's not valid");
