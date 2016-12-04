@@ -73,5 +73,7 @@ Template.Study_Section_Page.events({
     const oldSec = Meteor.user().currentInSection;
     Meteor.call('updateUser','currentInSection', event.target.name);
     Meteor.call('sections.join', event.target.name, oldSec, Meteor.user().userName);
+    Meteor.call('sections.countSessionsAttended', event.target.name);
+    Meteor.call('sections.countSessionsAttendedThisMonth', event.target.name);
   }
 });

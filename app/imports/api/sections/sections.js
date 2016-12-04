@@ -2,11 +2,11 @@
  * Created by X on 2016/11/1.
  */
 
-import { Mongo } from 'meteor/mongo';
-import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import { Meteor } from 'meteor/meteor';
-import { _ } from 'meteor/underscore';
-import { check } from 'meteor/check';
+import {Mongo} from 'meteor/mongo';
+import {SimpleSchema} from 'meteor/aldeed:simple-schema';
+import {Meteor} from 'meteor/meteor';
+import {_} from 'meteor/underscore';
+import {check} from 'meteor/check';
 /* eslint-disable object-shorthand */
 
 export const Sections = new Mongo.Collection('Sections');
@@ -81,17 +81,45 @@ Meteor.methods({
   'sections.insert'(newSection) {
     check(newSection, Object);
     // console.log(newSection.endTime);
-    if (!this.userId){
+    if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
     Sections.insert(newSection);
   },
-  'sections.join'(newSec,oldSec, user){
-    check(user,String);
-    if (!this.userId){
+  'sections.join'(newSec, oldSec, user){
+    check(user, String);
+    if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
-    Sections.update(oldSec, { $pull: {usersIn: user}});
-    Sections.update(newSec, { $push: {usersIn: user}});
-  }
+    Sections.update(oldSec, { $pull: { usersIn: user } });
+    Sections.update(newSec, { $push: { usersIn: user } });
+  },
+  'sections.countSessionsAttended'(user) {
+    check(user, String);
+    if (!this.userId) {
+      throw new Meteor.Error('not-authorized');
+    }
+    Sections.update(user.sessionsAttended + 1);
+  },
+  'sections.countSessionsAttendedThisMonth'(user) {
+    check(user, String);
+    if (!this.userId) {
+      throw new Meteor.Error('not-authorized');
+    }
+    Sections.update(user.sessionsAttendedThisMonth + 1);
+  },
+  'sections.countSessionsCreated'(user) {
+    check(user, String);
+    if (!this.userId) {
+      throw new Meteor.Error('not-authorized');
+    }
+    Sections.update(user.sessionsCreated + 1);
+  },
+  'sections.countSessionsCreatedThisMonth'(user) {
+    check(user, String);
+    if (!this.userId) {
+      throw new Meteor.Error('not-authorized');
+    }
+    Sections.update(user.sessionsCreatedThisMonth + 1);
+  },
 })

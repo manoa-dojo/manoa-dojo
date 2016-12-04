@@ -86,4 +86,8 @@ Template.Create_Section_Page.events({
       console.log("it's not valid");
     }
   },
+  'click .submit'(event, instance) {
+    Meteor.call('sections.countSessionsCreateded', event.target.name);
+    Meteor.call('sections.countSessionsCreatedThisMonth', event.target.name);
+  }
 });
