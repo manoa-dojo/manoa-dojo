@@ -2,11 +2,10 @@
  * Created by X on 2016/11/1.
  */
 import { Template } from 'meteor/templating';
-import { Sections } from '../../api/sections/sections.js';
 import { UserData } from '../../api/userdata/userdata.js';
 import { Meteor } from 'meteor/meteor';
 import { ReactiveVar } from 'meteor/reactive-var';
-
+import { Sections } from '../../api/sections/sections.js';
 
 Template.Study_Section_Page.onCreated(function onCreated() {
   this.autorun(() => {
@@ -43,8 +42,8 @@ Template.Study_Section_Page.helpers({
     //     // Sections.remove(section._id);
     //   }
     // }
-    console.log(UserData.find().fetch());
-    console.log(Sections.find().fetch());
+    // console.log(UserData.find().fetch());
+    // console.log(Sections.find().fetch());
     // console.log(Template.instance().dropdownValue.get());
     if (Template.instance().dropdownValue.get() === 'comingUp'){
       return Sections.find({ startTime: { $gte: new Date()}});
@@ -73,8 +72,14 @@ Template.Study_Section_Page.helpers({
     return Sections.findOne({_id: secId}).startTime > new Date();
   },
   getRole(array, name){
-    console.log(_.findWhere(array, {user: name}).role);
+    // console.log(_.findWhere(array, {user: name}).role);
     return _.findWhere(array, {user: name}).role;
+  },
+  liked(secId) {
+    const user = UserData.findOne({userName: Meteor.user().userName});
+    const likedSection = user.likedSection;
+    // console.log($.inArray(secId, likedSection));
+    return $.inArray(secId, likedSection) != -1;
   }
 
 });
@@ -95,25 +100,56 @@ Template.Study_Section_Page.events({
     const user = UserData.findOne({userName: Meteor.user().userName});
     const oldSec = user.currentInSection;
     const newSec = Sections.findOne({_id:event.target.name});
-    if (oldSec === '') {
-      Meteor.call('updateUser',user._id, 'currentInSection', event.target.name);
-      Meteor.call('sections.join', event.target.name, oldSec, Meteor.user().userName);
-    }else{
-      if (confirm('You are currently already in a study section. Do you wish to leave and join `${newSec.course}` section?')) {
-        Meteor.call('updateUser',user._id, 'currentInSection', event.target.name);
-        Meteor.call('sections.join', event.target.name, oldSec, Meteor.user().userName);
+    if (oldSec) {
+      if (confirm(`You are currently already in a study section. Do you wish to leave and join ${newSec.course} section?`)) {
+        $('.small.modal').modal({
+          onDeny    : function(){
+            Meteor.call('updateUser',user._id, 'currentInSection', event.target.name);
+            Meteor.call('sections.join', event.target.name, oldSec, Meteor.user().userName,'Grasshopper');
+            $('.small.modal').modal('hide');
+            FlowRouter.go('Joined_Section_Page',{_id: event.target.name});
+          },
+          onApprove : function() {
+            Meteor.call('updateUser',user._id, 'currentInSection', event.target.name);
+            Meteor.call('sections.join', event.target.name, oldSec, Meteor.user().userName,'Sensei');
+            $('.small.modal').modal('hide');
+            FlowRouter.go('Joined_Section_Page',{_id: event.target.name});
+          }
+        }).modal('show');
+
       }
+    }else{
+      $('.small.modal').modal({
+        onDeny    : function(){
+          Meteor.call('updateUser',user._id, 'currentInSection', event.target.name);
+          Meteor.call('sections.join', event.target.name, oldSec, Meteor.user().userName,'Grasshopper');
+          $('.small.modal').modal('hide');
+          FlowRouter.go('Joined_Section_Page',{_id: event.target.name});
+        },
+        onApprove : function() {
+          Meteor.call('updateUser',user._id, 'currentInSection', event.target.name);
+          Meteor.call('sections.join', event.target.name, oldSec, Meteor.user().userName,'Sensei');
+          // $('.small.modal').on('hidden.bs.modal', function() {
+          $('.small.modal').modal('hide');
+            FlowRouter.go('Joined_Section_Page',{_id: event.target.name});
+          // }).modal('hide');
+        }
+      }).modal('show')
+
     }
   },
-  'click .removeBt'(event,instance){
+  'click .likeBt'(event,instance){
     const user = UserData.findOne({userName: Meteor.user().userName});
-    if (confirm('Do you really want to cancel this section?')) {
-      event.preventDefault();
-      Meteor.call('sections.remove',event.target.name);
-      Meteor.call('updateUser',user._id, 'currentInSection', '');
-    }
-    return false;
-  }
+    event.preventDefault();
+    Meteor.call('sections.liked',event.target.name);
+    Meteor.call('updateUser',user._id, 'likedSection',event.target.name);
+  },
+  'click .unlikeBt'(event,instance){
+    const user = UserData.findOne({userName: Meteor.user().userName});
+    event.preventDefault();
+    Meteor.call('sections.unliked',event.target.name);
+    Meteor.call('updateUser',user._id, 'unlikedSection',event.target.name);
+  },
 });
 /*
  {{#if ownerSec section.createdBy section._id}}

@@ -43,7 +43,9 @@ Meteor.publish('UserData2', function publishUserData() {
 Meteor.publish('SectionMessages', function(sectionId) {
   if (this.userId) {
     return Messages.find({ section : sectionId });
+    // return Messages.find();
   } else {
+
     this.ready();
   }
 

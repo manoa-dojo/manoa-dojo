@@ -11,19 +11,31 @@ Template.Section_Body.onCreated(function landingBodyOnCreated() {
 
 Template.Section_Body.helpers({
   sectionNumber() {
+
     return UserData.findOne({userName: Meteor.user().userName}).currentInSection;
 
+  },
+  activeTabEnable(e){
+    console.log(e);
+    console.log(FlowRouter.getParam('_id'));
+    if (e == 'B') {
+      if (FlowRouter.getParam('_id')) {
+        return true;
+      }else{
+        return false;
+      }
+    } else {
+        if (FlowRouter.getParam('_id')) {
+          return false;
+        }
+        else {
+          return true;
+        }
+    }
   }
   // placeholder: if you display dynamic data in your layout, you will put your template helpers here.
 });
 Template.Section_Body.onRendered(function landingBodyOnRendered() {
-  if (FlowRouter.getParam('_id')){
-    $(".step.A").removeClass("active");
-    $(".step.B").addClass("active");
-  }else{
-    $(".step.B").removeClass("active");
-    $(".step.A").addClass("active");
-  }
 
   // placeholder: typically you will put global subscriptions here if you remove the autopublish package.
 });

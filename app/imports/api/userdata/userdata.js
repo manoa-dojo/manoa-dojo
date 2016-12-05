@@ -88,9 +88,17 @@ export const UserDataSchema = new SimpleSchema({
   currentInSection: {
     label: 'currentInSection',
     type: String,
+    defaultValue: '',
     optional: true,
     max: 200,
-  }
+  },
+  likedSection: {
+    label: 'likedSection',
+    type: [String],
+    defaultValue: [],
+    minCount: 0,
+    max: 200,
+  },
 });
 
 UserData.attachSchema(UserDataSchema);
@@ -125,6 +133,10 @@ Meteor.methods({
       UserData.update(userId, { $push: { senseiSubjects: value } });
     } else if (field === 'currentInSection') {
       UserData.update(userId, { $set: { currentInSection: value } });
+    } else if (field === 'likedSection') {
+      UserData.update(userId, { $push: { likedSection: value } });
+    } else if (field === 'unlikedSection') {
+      UserData.update(userId, { $pull: { likedSection: value } });
     } else {
       throw new Meteor.Error('Invalid Field');
     }

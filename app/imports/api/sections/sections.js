@@ -71,13 +71,13 @@ export const SectionsSchema = new SimpleSchema({
     label: 'usersIn',
     type: [Object],
     minCount: 0,
-    optional: false,
+    defaultValue: [],
+    optional: true,
     blackbox: true,
   },
   likes: {
     label: 'likes',
     type: Number,
-    min: 0,
     optional: true,
   }
 });
@@ -97,30 +97,59 @@ Meteor.methods({
       }else{
         console.log('good ' + result);
 
-        const user = UserData.findOne({userName: Meteor.user().userName});
-        Meteor.call('updateUser',user._id, 'currentInSection', result);
-        FlowRouter.go('Joined_Section_Page',{_id: result});
+        // const user = UserData.findOne({userName: Meteor.user().userName});
+        // Meteor.call('updateUser',user._id, 'currentInSection', result);
+        // FlowRouter.go('Joined_Section_Page',{_id: result});
       }
 
     });
 
   },
-  'sections.join'(newSec,oldSec, user){
+  'sections.join'(newSec,oldSec, user, role){
     check(user,String);
+    check(role,String);
     if (!this.userId){
       throw new Meteor.Error('not-authorized');
     }
     if (oldSec !== ''){
       Sections.update(oldSec, { $pull: {usersIn: {user:user}}});
+      Sections.update(oldSec, { $inc: {currentCapacity: -1}});
     }
+    Sections.update(newSec, { $inc: {currentCapacity: 1}});
+    Sections.update(newSec, { $push: {usersIn: {user:user,role:role}}});
+  },
+  'sections.exit'(SecId, user){
+    check(user,String);
+    check(SecId,String);
+    if (!this.userId){
+      throw new Meteor.Error('not-authorized');
+    }
+    Sections.update(SecId, { $inc: {currentCapacity: -1}});
+    Sections.update(SecId, { $pull: {usersIn: {user:user}}});
 
-    Sections.update(newSec, { $push: {usersIn: {user:user}}});
   },
   'sections.remove'(id){
     check(id,String);
     if (!this.userId){
       throw new Meteor.Error('not-authorized');
     }
+
     Sections.remove(id);
+    Meteor.call('messages.delete',id);
   },
+  'sections.liked'(id){
+    check(id,String);
+    if (!this.userId){
+      throw new Meteor.Error('not-authorized');
+    }
+    Sections.update(id, { $inc: { likes: 1 } });
+  },
+  'sections.unliked'(id){
+    check(id,String);
+    if (!this.userId){
+      throw new Meteor.Error('not-authorized');
+    }
+    Sections.update(id, { $inc: { likes: -1 } });
+  },
+
 })

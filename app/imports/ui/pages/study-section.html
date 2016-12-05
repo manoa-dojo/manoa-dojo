@@ -14,6 +14,7 @@
   </div>
   {{#if currentUser}}
   <div class="ui container">
+
       <!--<select class="ui dropdown">-->
         <!--<option value="all">All</option>-->
         <!--<option value="current">Current</option>-->
@@ -31,7 +32,8 @@
           <th>Room</th>
           <th>More Info</th>
           <th>CreatedBy</th>
-          <th>Join</th>
+          <th>Likes</th>
+          <th>Action</th>
         </tr>
         </thead>
         <tbody>
@@ -49,13 +51,27 @@
           </div>
         </td>
         <td><a href="{{pathFor 'User_Profile_Page' _id=section.createdBy.user}}">{{section.createdBy.user}}</a>({{section.createdBy.role}})</td>
+        <td>{{section.likes}}</td>
+        {{#if futureSec section._id}}
+          {{#if liked section._id}}
+            <td><i class="thumbs up blue icon"></i><a href="" class="unlikeBt" name="{{section._id}}">unLike</a></td>
+          {{else}}
+            <td><i class="thumbs up icon"></i><a href="" class="likeBt" name="{{section._id}}">Like</a></td>
+          {{/if}}
 
+        {{else}}
           {{#if currentInSec section._id}}
             <td><a style="color:darkgray;">Joined</a></td>
           {{else}}
             <td><a href="" class="joinBt" name="{{section._id}}">Join</a></td>
+            <div class="ui small modal">
+              <div class="actions">
+                <div class="ui button cancel">Join as Grasshopper</div>
+                <div class="ui button ok">Join as Sensei</div>
+              </div>
+            </div>
           {{/if}}
-
+        {{/if}}
         </tr>
         <tr></tr>
         {{/each}}

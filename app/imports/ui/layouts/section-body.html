@@ -1,14 +1,14 @@
 <template name="Section_Body">
   {{> Header}}
-  <div class="ui container" style="margin-bottom:15px;">
+  <div class="ui container" style="margin-bottom:15px;margin-top:15px;">
     <div class="ui steps">
-      <a href="{{pathFor 'Study_Section_Page'}}" class="step A">
+      <a href="{{pathFor 'Study_Section_Page'}}" class="{{#if activeTabEnable 'A'}}active{{/if}} step">
         <div class="content">
           <div class="title">Section List</div>
         </div>
       </a>
       {{#if sectionNumber}}
-      <a href="{{pathFor 'Joined_Section_Page' _id=sectionNumber}}" class="step B">
+      <a href="{{pathFor 'Joined_Section_Page' _id=sectionNumber}}" class="{{#if activeTabEnable 'B'}}active{{/if}} step">
         <div class="content">
           <div class="title">Section Room</div>
         </div>

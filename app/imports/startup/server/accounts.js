@@ -38,7 +38,7 @@ Accounts.onCreateUser((options, user) => {
    * Initialize userData collection.
    */
   console.log("Made new user!");
-  const newUserData = {userName: id.toLowerCase(), firstName: '', lastName : '', telephone : '', sessionsAttended: 0, sessionsCreated: 0, sessionsAttendedThisMonth: 0, sessionsCreatedThisMonth: 0, grasshopperSubjects: [], senseiSubjects: []};
+  const newUserData = {userName: id.toLowerCase(), firstName: '', lastName :'', avatar: '/images/random.jpg', telephone : '', sessionsAttended: 0, sessionsCreated: 0, sessionsAttendedThisMonth: 0, sessionsCreatedThisMonth: 0, grasshopperSubjects: [], senseiSubjects: [], likedSection: []};
   UserData.insert(newUserData);
   console.log(UserData.find().fetch());
   console.log("Inserted data!");

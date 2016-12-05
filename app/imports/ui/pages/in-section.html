@@ -1,49 +1,79 @@
 <template name="Joined_Section_Page">
-  <div class="ui container">
-    <h3>Messages</h3>
-    <div class="ui messages container">
-      <div class="ui comments topleft">
-        <div class="comment">
-          <a class="avatar">
-            <img src="/images/stephen.jpg" style="width:35px;height:35px;">
-          </a>
-          <div class="content">
-            <a class="author">Matt</a>
-            <div class="metadata">
-              <span class="date">Today at 5:42PM</span>
-            </div>
-            <div class="text">
-              How artistic!
-            </div>
+
+    <div class="ui container">
+    {{#if sectionAvailable}}
+      <h3>Welcome to Study Section {{sectionName}}!</h3>
+      <div class="ui messages container">
+        <div class="ui comments topleft">
+          {{#if sectionMessages}}
+            {{#each message in sectionMessages}}
+              <div class="comment">
+                <a class="avatar">
+                  <img src="{{userAvatar message.user}}" style="width:35px;height:35px;">
+                </a>
+                <div class="content">
+                  <a class="author">{{message.user}}</a>
+                  <div class="metadata">
+
+                    <span class="date"><span data-livestamp="{{message.createdAt.toISOString}}"></span></span>
+                  </div>
+                  <div class="text">
+                    {{message.content}}
+                  </div>
+                </div>
+              </div>
+            {{/each}}
+          {{/if}}
+        </div>
+
+        <form class="ui reply form">
+          <div class="field">
+
+            <textarea name="Text1" id="Text1" cols="40" rows="5"></textarea>
+          </div>
+          <button class="ui blue labeled submit icon button" style="float:right" type="submit">
+            <i class="icon edit"></i> Send
+          </button>
+          <button class="ui red labeled submit icon button" id="exitBt" style="float:right">
+            Exit
+          </button>
+
+
+        </form>
+
+      </div>
+      <div id="roomInfo">
+        <div class="ui row description">
+          <h3 class="ui dividing teal header" style="margin-top:5px;"><i class="book blue icon"></i>Description</h3>
+          {{#if sectionDescription}}
+            {{sectionDescription}}
+          {{/if}}
+        </div>
+        <div class="ui row users">
+          <h3 class="ui dividing teal header" style="margin-top:5px;"><i class="users blue icon"></i>Users (1/5)</h3>
+          <div class="ui middle aligned selection list">
+            {{#if sectionUsers}}
+              {{#each user in sectionUsers}}
+                <div class="item">
+                  <img class="ui avatar image" style="width:35px;height:35px;" src="{{userAvatar user.user}}">
+                  <div class="content">
+                    <div class="header">{{user.user}}({{user.role}})</div>
+                  </div>
+                </div>
+              {{/each}}
+            {{/if}}
           </div>
         </div>
       </div>
+    {{else}}
+      <div class="ui negative message">
 
-      <form class="ui reply form">
-        <div class="field">
-          <textarea name="Text1" cols="40" rows="5"></textarea>
+        <div class="header">
+          We're sorry, this section is not available
         </div>
-        <div class="ui blue labeled submit icon button" style="float:right">
-          <i class="icon edit"></i> Send
-        </div>
-        <div class="ui red labeled submit icon button" style="float:right">
-          Exit
-        </div>
+        <p>That section has expired
+        </p></div>
+    {{/if}}
 
-
-      </form>
-
-    </div>
-    <div id="roomInfo">
-      <div class="ui row description">
-        <h3 class="ui dividing header">Description</h3>
-      </div>
-      <div class="ui row users">
-        <h3 class="ui dividing header">Users (1/5)</h3>
-          {{#each user in sectionUsers}}
-            {{user.user}}({{user.role}})
-          {{/each}}
-      </div>
-    </div>
   </div>
 </template>

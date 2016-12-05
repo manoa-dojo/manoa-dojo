@@ -34,10 +34,37 @@ export const MessagesSchema = new SimpleSchema({
   },
   createdAt: {
     label: 'createdAt',
-    type: String,
+    type: Date,
     optional: false,
-    max: 200,
   },
 });
 
 Messages.attachSchema(MessagesSchema);
+
+Meteor.methods({
+  'messages.insert'(newMessage) {
+    check(newMessage, Object);
+    // console.log(newSection.endTime);
+    if (!this.userId){
+      throw new Meteor.Error('not-authorized');
+    }
+    Messages.insert(newMessage,function(err,result){
+      if (err){
+        console.log(result);
+      }else{
+        console.log('good ' + result);
+      }
+    });
+  },
+  'messages.delete'(secId) {
+    check(secId, String);
+    // console.log(newSection.endTime);
+    if (!this.userId){
+      throw new Meteor.Error('not-authorized');
+    }
+    const expiredMessages = Messages.find({section:secId}).fetch();
+    for (let message of expiredMessages){
+      Messages.remove(message._id);
+    }
+  },
+})

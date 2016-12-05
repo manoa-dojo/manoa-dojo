@@ -1,63 +1,113 @@
 <template name="User_Home_Page">
   {{#if currentUser}}
-  <h2 style="text-align: center"> Your Upcoming Study Buddy Sessions:</h2>
+  <h2 style="text-align: center"> Your Interested Study Buddy Sessions:</h2>
 
   <div class="ui container">
+    {{#if Template.subscriptionsReady}}
+      <table style="margin-top:20px;" class="ui celled table">
+        <thead>
+        <tr>
+          <th>Course</th>
+          <th>Type</th>
+          <th>Available Spot</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+          <th>Room</th>
+          <th>More Info</th>
+          <th>CreatedBy</th>
+          <th>Likes</th>
+          <th>Action</th>
+          <th>Join</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each section in sectionsLikedList}}
+          <tr>
+            <td>{{section.course}}</td>
+            <td>{{section.purpose}}</td>
+            <td>{{section.currentCapacity}}/{{section.maxCapacity}}</td>
+            <td>{{section.startTime.toLocaleString}}</td>
+            <td>{{section.endTime.toLocaleString}}</td>
+            <td>{{section.roomNumber}}</td>
+            <td>
+              <div data-tooltip={{section.description}}>
+                <a>More..</a>
+              </div>
+            </td>
+            <td><a href="{{pathFor 'User_Profile_Page' _id=section.createdBy.user}}">{{section.createdBy.user}}</a>({{section.createdBy.role}})</td>
+            <td>{{section.likes}}</td>
+            <td><i class="thumbs up blue icon"></i><a href="" class="unlikeBt" name="{{section._id}}">unLike</a></td>
+            {{#if currentInSec section._id}}
+              <td><a style="color:darkgray;">Joined</a></td>
+            {{else}}
+              <td><a href="" class="joinBt" name="{{section._id}}">Join</a></td>
+            {{/if}}
+          </tr>
+        {{/each}}
+        </tbody>
+      </table>
+      <a class="ui blue button" href="{{pathFor 'Calendar_Page'}}">Calendar View</a>
+      <h2 style="text-align: center"> Study Sessions You Scheduled:</h2>
 
-    <table style="margin-top: 20px" class="ui celled table">
-      <thead>
-      <tr>
-        <th>First</th>
-        <th>Last</th>
-        <th>Subject</th>
-        <th>Time</th>
-        <th>Phone</th>
-        <th>Edit</th>
-      </tr>
-      </thead>
+      <table style="margin-top:20px;" class="ui celled table">
+        <thead>
+        <tr>
+          <th>Course</th>
+          <th>Type</th>
+          <th>Available Spot</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+          <th>Room</th>
+          <th>More Info</th>
+          <th>CreatedBy</th>
+          <th>Likes</th>
+          <th>Action</th>
+          <th>Join</th>
+          <th>Remove</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each section in sectionsMakedList}}
+          <tr>
+            <td>{{section.course}}</td>
+            <td>{{section.purpose}}</td>
+            <td>{{section.currentCapacity}}/{{section.maxCapacity}}</td>
+            <td>{{section.startTime.toLocaleString}}</td>
+            <td>{{section.endTime.toLocaleString}}</td>
+            <td>{{section.roomNumber}}</td>
+            <td>
+              <div data-tooltip={{section.description}}>
+                <a>More..</a>
+              </div>
+            </td>
+            <td><a href="{{pathFor 'User_Profile_Page' _id=section.createdBy.user}}">{{section.createdBy.user}}</a>({{section.createdBy.role}})</td>
+            <td>{{section.likes}}</td>
+            {{#if liked section._id}}
+              <td><i class="thumbs up blue icon"></i><a href="" class="unlikeBt" name="{{section._id}}">unLike</a></td>
+            {{else}}
+              <td><i class="thumbs up icon"></i><a href="" class="likeBt" name="{{section._id}}">Like</a></td>
+            {{/if}}
+            {{#if currentInSec section._id}}
+              <td><a style="color:darkgray;">Joined</a></td>
+            {{else}}
+              <td><a href="" class="joinBt" name="{{section._id}}">Join</a></td>
+              <div class="ui small modal">
+                <div class="actions">
+                  <div class="ui button cancel">Join as Grasshopper</div>
+                  <div class="ui button ok">Join as Sensei</div>
+                </div>
+              </div>
+            {{/if}}
+            <td><a href="" class="removeBt" name="{{section._id}}">Cancel</a></td>
+          </tr>
+        {{/each}}
+        </tbody>
+      </table>
+      <a class="ui green button" href="{{pathFor 'Create_Section_Page'}}">Create Study Section</a> <a class="ui red button" href="{{pathFor 'Study_Section_Page'}}">Meet Right Now!</a>
+    {{else}}
+      {{> Loading}}
+    {{/if}}
 
-      <tbody>
-      <tr>
-        <td>Stephen</td>
-        <td>Mau</td>
-        <td>ICS 314</td>
-        <td>10/25/16, 20:30</td>
-        <td>808-271-8928</td>
-        <td><a href="{{pathFor 'Create_Section'}}">Edit</a></td>
-      </tr>
-      </tbody>
-
-    </table>
-
-    <a class="ui blue button" href="{{pathFor 'Calendar_Page'}}">Calendar View</a>
-
-    <h2 style="text-align: center"> Future Sessions That May Interest You:</h2>
-
-    <table style="margin-top: 20px" class="ui celled table">
-      <thead>
-      <tr>
-        <th>First</th>
-        <th>Last</th>
-        <th>Subject</th>
-        <th>Time</th>
-        <th>Phone</th>
-        <th>Join</th>
-      </tr>
-      </thead>
-
-      <tbody>
-      <tr>
-        <td>Philip</td>
-        <td>Johnson</td>
-        <td>ICS 314</td>
-        <td>10/26/16, 8:00</td>
-        <td>808-956-3489</td>
-        <td><a href="#">Join</a></td>
-      </tr>
-      </tbody>
-
-    </table>
-    <a class="ui green button" href="{{pathFor 'Create_Section_Page'}}">Create Study Section</a> <a class="ui red button" href="{{pathFor 'Study_Section_Page'}}">Meet Right Now!</a>
   </div>
   {{/if}}
 </template>

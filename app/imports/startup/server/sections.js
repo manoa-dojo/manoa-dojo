@@ -2,6 +2,8 @@
  * Created by X on 2016/11/1.
  */
 import {Sections} from '../../api/sections/sections.js';
+import {UserData} from '../../api/userdata/userdata.js';
+import {Messages} from '../../api/chatroom/messages.js';
 import {_} from 'meteor/underscore';
 import { Meteor } from 'meteor/meteor';
 
@@ -29,14 +31,27 @@ Meteor.setInterval(function() {
 
   let expiredSec = Sections.find({endTime: { $lte: new Date() }}).fetch();
   for (let section of expiredSec) {
+    const owner = section.createdBy.user;
     // console.log(section.currentCapacity);
-    for (let user of section.usersIn){
+    for (let userObject of section.usersIn){
       // console.log(user);
-      let userId = Meteor.users.findOne({userName: user});
+      let userElement = UserData.findOne({userName: userObject.user});
+      if (userElement.userName == owner){
+        UserData.update(userElement._id, { $inc: { sessionsCreated: 1 } });
+      }
+      else{
+        UserData.update(userElement._id, { $inc: { sessionsAttended: 1 } });
+      }
+      UserData.update(userElement._id, { $set: { currentInSection: '' } });
       // console.log(userId);
-      Meteor.users.update(userId._id, { $inc: { senseiPts: 2 } });
+
     }
     Sections.remove(section._id);
+    const expiredMessages = Messages.find({section:section._id}).fetch();
+    for (let message of expiredMessages){
+      Messages.remove(message._id);
+    }
+
   }
 
 }, 5000);

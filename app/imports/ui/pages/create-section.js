@@ -46,11 +46,11 @@ Template.Create_Section_Page.events({
     event.preventDefault();
     // Get name (text field)
     const course = event.target.course.value;
-    console.log(course);
+    // console.log(course);
     const startTime = new Date(event.target.startDate.value + ' ' + event.target.startTime.value);
-    console.log(startTime);
+    // console.log(startTime);
     const endTime= new Date(event.target.endDate.value + ' ' + event.target.endTime.value);
-    console.log(typeof(endTime));
+    // console.log(typeof(endTime));
     const currentCapacity = 0;
     const maxCapacity = event.target.people.value;
     let p = instance.$('input[name="purpose"]:checked').val();
@@ -60,19 +60,19 @@ Template.Create_Section_Page.events({
     }else{
        purpose = p;
     }
-    console.log(purpose);
+    // console.log(purpose);
     const roomNumber = event.target.room.value;
     const role = event.target.role.value;
     const createdBy = {user:Meteor.user().userName,role:role};
-    console.log(createdBy);
-    console.log(typeof(createdBy));
+    // console.log(createdBy);
+    // console.log(typeof(createdBy));
     const description = event.target.description.value;
-    let usersIn = [{user:Meteor.user().userName,role:role}];
+    let usersIn = [];
     let likes = 0;
-    console.log(usersIn);
-    console.log(usersIn instanceof Array);
+    // console.log(usersIn);
+    // console.log(usersIn instanceof Array);
     const newSection = { course, startTime, endTime, currentCapacity, maxCapacity, purpose, roomNumber, createdBy, description, usersIn, likes };
-    console.log(newSection);
+    // console.log(newSection);
     // Clear out any old validation errors.
     instance.context.resetValidation();
     // Invoke clean so that newStudentData reflects what will be inserted.
@@ -82,7 +82,7 @@ Template.Create_Section_Page.events({
     if (instance.context.isValid()) {
       Meteor.call('sections.insert',newSection);
       instance.messageFlags.set(displayErrorMessages, false);
-
+      FlowRouter.go('Study_Section_Page')
     } else {
       instance.messageFlags.set(displayErrorMessages, true);
       console.log("it's not valid");
