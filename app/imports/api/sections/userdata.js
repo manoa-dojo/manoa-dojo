@@ -46,6 +46,13 @@ export const UserDataSchema = new SimpleSchema({
   telephone: {
     label: 'telephone',
     defaultValue: '',
+    optional: true,
+    type: String,
+  },
+  description: {
+    label: 'telephone',
+    defaultValue: '',
+    optional: true,
     type: String,
   },
   sessionsAttended: {
@@ -87,7 +94,7 @@ export const UserDataSchema = new SimpleSchema({
     type: String,
     optional: true,
     max: 200,
-  }
+  },
 });
 
 UserData.attachSchema(UserDataSchema);

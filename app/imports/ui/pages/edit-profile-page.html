@@ -6,7 +6,7 @@
         <label>Name</label>
         <div class="two fields">
           <div class="field">
-            <input type="text" name="firstName" id="firstName" placeholder="First Name">
+            <input type="text" name="firstName" id="firstName" placeholder="First Name" value="{{userProfile 'firstName'}}">
             {{#if displayFieldError 'firstName' }}
             <div class="ui error message">
               <p>You must specify your first name.</p>
@@ -14,7 +14,7 @@
             {{/if}}
           </div>
           <div class="field">
-            <input type="text" name="lastName" id="lastName" placeholder="Last Name">
+            <input type="text" name="lastName" id="lastName" placeholder="Last Name" value="{{userProfile 'lastName'}}">
             {{#if displayFieldError 'lastName' }}
             <div class="ui error message">
               <p>You must specify your last name.</p>
@@ -25,12 +25,9 @@
       </div>
       <div class="field">
         <label>Contact Info</label>
-        <div class="two fields">
+        <div class="field">
           <div class="field">
-            <input type="text" name="email" id="email" placeholder="Alt. Email">
-          </div>
-          <div class="field">
-            <input type="text" name="telephone" id="telephone" placeholder="Cell Phone #">
+            <input type="text" name="telephone" id="telephone" placeholder="Cell Phone #" value="{{userProfile 'telephone'}}">
             {{#if displayFieldError 'telephone' }}
             <div class="ui error message">
               <p>You must specify your phone number.</p>
@@ -41,101 +38,83 @@
       </div>
       <div class="field">
         <label>Description (Optional)</label>
-        <input type="text" name="description" id="description">
+        <input type="text" name="description" id="description" placeholder="Description (Optional)" value="{{userProfile 'description'}}">
       </div>
       <div class="ui inverted segment">Add or update your sensei and grasshopper subjects here</div>
       <div class="ui grid">
         <div class="eight wide column">
+          {{#each subject in subjectListCol1}}
           <div class="inline fields">
-            <label>ICS 111</label>
+            <label>{{subject}}</label>
             <div class="field">
               <div class="ui radio checkbox">
-                <input type="radio" name="ICS111" id="ICS111g" value="grasshopper" tabindex="0"
-                       class="hidden">
+                {{#if checkSubject subject 'g'}}
+                <input type="radio" name="{{subject}}" id="{{subject}} g1" value="grasshopper" tabindex="0" checked="" class="hidden">
+                {{else}}
+                <input type="radio" name="{{subject}}" id="{{subject}} g2" value="grasshopper" tabindex="0" class="hidden">
+                {{/if}}
                 <label>Grasshopper</label>
               </div>
             </div>
             <div class="field">
               <div class="ui radio checkbox">
-                <input type="radio" name="ICS111" id="ICS111s" value="sensei" tabindex="0" class="hidden">
+                {{#if checkSubject subject 's'}}
+                <input type="radio" name="{{subject}}" id="{{subject}} s1" value="sensei" tabindex="0" checked="" class="hidden">
+                {{else}}
+                <input type="radio" name="{{subject}}" id="{{subject}} s2" value="sensei" tabindex="0" class="hidden">
+                {{/if}}
                 <label>Sensei</label>
               </div>
             </div>
             <div class="field">
               <div class="ui radio checkbox">
-                <input type="radio" name="ICS111" id="ICS111n" value="none" checked="" tabindex="0" class="hidden">
-                <label>No Interest</label>
+                {{#if checkSubject subject 'n'}}
+                <input type="radio" name="{{subject}}" id="{{subject}} n1" value="none" tabindex="0" checked="" class="hidden">
+                {{else}}
+                <input type="radio" name="{{subject}}" id="{{subject}} n2" value="none" tabindex="0" class="hidden">
+                {{/if}}
+                <label>None</label>
               </div>
             </div>
           </div>
-          <div class="inline fields">
-            <label>ICS 141</label>
-            <div class="field">
-              <div class="ui radio checkbox">
-                <input type="radio" name="ICS141" id="ICS141g" value="grasshopper" tabindex="1"
-                       class="hidden">
-                <label>Grasshopper</label>
-              </div>
-            </div>
-            <div class="field">
-              <div class="ui radio checkbox">
-                <input type="radio" name="ICS141" id="ICS141s" value="sensei" tabindex="1" class="hidden">
-                <label>Sensei</label>
-              </div>
-            </div>
-            <div class="field">
-              <div class="ui radio checkbox">
-                <input type="radio" name="ICS141" id="ICS414n" value="none" checked="" tabindex="1" class="hidden">
-                <label>No Interest</label>
-              </div>
-            </div>
-          </div>
+          {{/each}}
         </div>
         <div class="eight wide column">
+          {{#each subject2 in subjectListCol2}}
           <div class="inline fields">
-            <label>ICS 111</label>
+            <label>{{subject2}}</label>
             <div class="field">
               <div class="ui radio checkbox">
-                <input type="radio" name="ICS211" id="ICS211g" value="grasshopper" tabindex="0"
-                       class="hidden">
+                {{#if checkSubject subject2 'g'}}
+                <input type="radio" name="{{subject2}}" id="{{subject2}} g1" value="grasshopper" tabindex="0" checked="" class="hidden">
+                {{else}}
+                <input type="radio" name="{{subject2}}" id="{{subject2}} g2" value="grasshopper" tabindex="0" class="hidden">
+                {{/if}}
                 <label>Grasshopper</label>
               </div>
             </div>
             <div class="field">
               <div class="ui radio checkbox">
-                <input type="radio" name="ICS211" id="ICS211s" value="sensei" tabindex="0" class="hidden">
+                {{#if checkSubject subject2 's'}}
+                <input type="radio" name="{{subject2}}" id="{{subject2}} s1" value="sensei" tabindex="0" checked="" class="hidden">
+                {{else}}
+                <input type="radio" name="{{subject2}}" id="{{subject2}} s2" value="sensei" tabindex="0" class="hidden">
+                {{/if}}
                 <label>Sensei</label>
               </div>
             </div>
             <div class="field">
               <div class="ui radio checkbox">
-                <input type="radio" name="ICS211" id="ICS211n" value="none" checked="" tabindex="0" class="hidden">
-                <label>No Interest</label>
+                {{#if checkSubject subject2 'n'}}
+                <input type="radio" name="{{subject2}}" id="{{subject2}} n1" value="none" tabindex="0" checked="" class="hidden">
+                {{else}}
+                <input type="radio" name="{{subject2}}" id="{{subject2}} n2" value="none" tabindex="0" class="hidden">
+                {{/if}}
+                <label>None</label>
               </div>
             </div>
           </div>
-          <div class="inline fields">
-            <label>ICS 141</label>
-            <div class="field">
-              <div class="ui radio checkbox">
-                <input type="radio" name="ICS212" id="ICS212g" value="grasshopper" tabindex="1"
-                       class="hidden">
-                <label>Grasshopper</label>
-              </div>
-            </div>
-            <div class="field">
-              <div class="ui radio checkbox">
-                <input type="radio" name="ICS212" id="ICS212s" value="sensei" tabindex="1" class="hidden">
-                <label>Sensei</label>
-              </div>
-            </div>
-            <div class="field">
-              <div class="ui radio checkbox">
-                <input type="radio" name="ICS212" id="ICS212n" value="none" checked="" tabindex="1" class="hidden">
-                <label>No Interest</label>
-              </div>
-            </div>
-          </div>
+          {{/each}}
         </div>
       </div>
       <button class="ui button" type="submit">Submit</button>

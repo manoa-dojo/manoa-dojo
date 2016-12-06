@@ -30,7 +30,10 @@ Template.User_Profile_Page.helpers({
       return false;
   },
   userProfile() {
-    return UserData.findOne({userName: Meteor.user().userName});
+    return UserData.findOne({userName: FlowRouter.getParam('_id')});
+  },
+  isSet(field) {
+    return field != '';
   }
 });
 

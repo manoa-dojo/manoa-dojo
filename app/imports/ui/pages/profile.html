@@ -22,37 +22,56 @@
           <img src="/images/stephen.jpg">
         </div>
         <div class="content">
-          <div class="header">Stephen Mau</div>
-          <div class="description">
-            I'm a fourth-year Computer Engineering Students. My hobbies include chess, video games, and hiking.
+          <div class="header">
+
           </div>
+          {{#if isSet userProfile.description}}
+          <div class="description">
+            {{userProfile.description}}
+          </div>
+          {{/if}}
         </div>
         <div class="ui blue inverted attached segment">
           <i class="mail icon"></i>
-          Smau4@hawaii.edu
+          {{userProfile.userName}}@hawaii.edu
         </div>
+        {{#if isSet userProfile.telephone}}
         <div class="ui inverted attached segment">
-          Top Student in:
-          <div class="ui green mini button">
-            ICS 314
-          </div>
-          <div class="ui green mini button">
-            ICS 321
-          </div>
+          {{userProfile.telephone}}
         </div>
-        <div class="ui inverted attached segment">
-          Top Teacher in:
-          <div class="ui green mini button">
-            ICS 211
-          </div>
-          <div class="ui green mini button">
-            ICS 212
-          </div>
-        </div>
+        {{/if}}
+        <!--<div class="ui inverted attached segment">-->
+        <!--Top Student in:-->
+        <!--<div class="ui green mini button">-->
+        <!--ICS 314-->
+        <!--</div>-->
+        <!--<div class="ui green mini button">-->
+        <!--ICS 321-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="ui inverted attached segment">-->
+        <!--Top Teacher in:-->
+        <!--<div class="ui green mini button">-->
+        <!--ICS 211-->
+        <!--</div>-->
+        <!--<div class="ui green mini button">-->
+        <!--ICS 212-->
+        <!--</div>-->
+        <!--</div>-->
       </div>
     </div>
 
     <div class="column" style="width:70%;">
+      <div class="ui blue inverted segment">
+        <i class="user icon"></i>
+        {{#if isSet userProfile.firstName}}
+        {{userProfile.firstName}} {{userProfile.lastName}}
+        {{else}}
+        Set your profile page by clicking the pencil!
+        {{/if}}
+      </div>
+
+
       <div class="ui secondary pointing menu">
         <a id="overview" class="item menuItemA">
           Overview
@@ -71,71 +90,53 @@
           <div class="row">
             <div class="eight wide column">
               <h1 style="color: darkgreen">Sessions Created</h1>
-              <!--<h3>{{profile.sessionsCreated}}</h3>-->
+              <h3>{{userProfile.sessionsCreated}}</h3>
             </div>
             <div class="eight wide column">
               <h1 style="color: darkgreen">Sessions Attended</h1>
-              <!--<h3>{{profile.sessionsAttended}}</h3>-->
+              <h3>{{userProfile.sessionsAttended}}</h3>
             </div>
           </div>
           <div class="row">
             <div class="eight wide column">
               <h1 style="color: darkgreen">Sensei Points</h1>
-              <!--<h3>{{profile.sessionsAttendedThisMonth}}</h3>-->
+              <h3>{{userProfile.sessionsAttendedThisMonth}}</h3>
             </div>
             <div class="eight wide column">
               <h1 style="color: darkgreen">Grasshopper Points</h1>
-              <!--<h3>{{profile.sessionsCreatedThisMonth}}</h3>-->
+              <h3>{{userProfile.sessionsCreatedThisMonth}}</h3>
             </div>
           </div>
         </div>
       </div>
       <div class="ui segment details">
         <div class="ui internally celled grid">
-          <div class="six wide column">
+          <div class="eight wide column">
             <div class="ui selection list">
               <a class="item">
                 <div class="ui green label">Grasshopper Subjects</div>
               </a>
 
+              {{#each grasshopperSubject in userProfile.grasshopperSubjects}}
               <a class="item">
-                <div class="ui horizontal label">ICS 314</div>
+                <div class="ui horizontal label">{{grasshopperSubject}}</div>
               </a>
-              <a class="item">
-                <div class="ui horizontal label">ICS 321</div>
-              </a>
+              {{/each}}
 
             </div>
           </div>
-          <div class="six wide column">
+          <div class="eight wide column">
             <div class="ui selection list">
               <a class="item">
                 <div class="ui red label">Sensei Subjects</div>
               </a>
 
+              {{#each senseiSubject in userProfile.senseiSubjects}}
               <a class="item">
-                <div class="ui horizontal label">ICS 141</div>
+                <div class="ui horizontal label">{{senseiSubject}}</div>
               </a>
-              <a class="item">
-                <div class="ui horizontal label">ICS 212</div>
-              </a>
+              {{/each}}
 
-            </div>
-          </div>
-          <div class="four wide column">
-            <div class="ui selection list">
-              <a class="item">
-                <i class="facebook icon"></i>
-              </a>
-              <a href="{{pathFor 'Calendar_Page'}}" class="item">
-                <i class="calendar icon"></i>
-              </a>
-              <a class="item">
-                <i class="slack icon"></i>
-              </a>
-              <a class="item">
-                <i class="mail icon"></i>
-              </a>
             </div>
           </div>
         </div>

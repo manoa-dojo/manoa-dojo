@@ -1,14 +1,12 @@
-import { Template } from 'meteor/templating';
-import { ReactiveDict } from 'meteor/reactive-dict';
-import { FlowRouter } from 'meteor/kadira:flow-router';
-import { _ } from 'meteor/underscore';
-import { UserData, UserDataSchema } from '../../api/sections/userdata.js';
+import {Template} from 'meteor/templating';
+import {ReactiveDict} from 'meteor/reactive-dict';
+import {FlowRouter} from 'meteor/kadira:flow-router';
+import {_} from 'meteor/underscore';
+import {UserData, UserDataSchema} from '../../api/sections/userdata.js';
 
 /* eslint-disable no-param-reassign */
 
 const displayErrorMessages = 'displayErrorMessages';
-
-
 
 Template.Edit_Profile_Page.onCreated(function onCreated() {
   this.messageFlags = new ReactiveDict();
@@ -24,6 +22,49 @@ Template.Edit_Profile_Page.helpers({
     const errorKeys = Template.instance().context.invalidKeys();
     return _.find(errorKeys, (keyObj) => keyObj.name === fieldName);
   },
+  userProfile(fieldName) {
+    const profile = UserData.findOne({ userName: Meteor.user().userName });
+    return profile && profile[fieldName];
+  },
+  isSet(field) {
+    return field != '';
+  },
+  subjectListCol1(){
+    return ["ICS 111", "ICS 141"];
+  },
+  subjectListCol2(){
+    return ["ICS 211", "ICS 212"];
+  },
+  //Checks if subject is at grasshopper(g), sensei(s), or not interested(n)
+  checkSubject(subject, level) {
+    const profile = UserData.findOne({ userName: Meteor.user().userName });
+    if (level == "g") {
+      for (var i = 0; i < profile.grasshopperSubjects.length; i++) {
+        if(profile.grasshopperSubjects[i] == subject)
+          return true;
+      }
+      return false;
+    }
+    if (level == "s") {
+      for (var i = 0; i < profile.senseiSubjects.length; i++) {
+        if(profile.senseiSubjects[i] == subject)
+          return true;
+      }
+      return false;
+    }
+    if (level == "n") {
+      for (var i = 0; i < profile.senseiSubjects.length; i++) {
+        if(profile.senseiSubjects[i] == subject)
+          return false;
+      }
+      for (i = 0; i < profile.grasshopperSubjects.length; i++) {
+        if(profile.grasshopperSubjects[i] == subject)
+          return false;
+      }
+      return true;
+    }
+    return true;
+  }
 });
 
 Template.Edit_Profile_Page.onRendered(function enableRadioCheckBox() {
@@ -42,7 +83,7 @@ Template.Edit_Profile_Page.events({
   'submit .edit-profile-form'(event, instance) {
     event.preventDefault();
     // Get name (text field)
-    const oldProfile = UserData.findOne({userName: Meteor.user().userName});
+    const oldProfile = UserData.findOne({ userName: Meteor.user().userName });
     const username = Meteor.user().userName;
     console.log(typeof(username));
     const firstName = event.target.firstName.value;
@@ -52,24 +93,25 @@ Template.Edit_Profile_Page.events({
     console.log(lastName);
     const telephone = event.target.telephone.value;
     console.log(telephone);
+    const description = event.target.description.value;
+    console.log(description);
     const subjects = ["ICS 111", "ICS 141", "ICS 211", "ICS 212"];
     let grasshopper = [];
     let sensei = [];
     let interest = [];
-    interest.push(instance.$('input[name="ICS111"]:checked').val());
-    interest.push(instance.$('input[name="ICS141"]:checked').val());
-    interest.push(instance.$('input[name="ICS211"]:checked').val());
-    interest.push(instance.$('input[name="ICS212"]:checked').val());
-    for(var i = 0; i < subjects.length; i++)
-    {
-      if(interest[i] == "grasshopper")
-      {
+    interest.push(instance.$('input[name="' + subjects[0] + '"]:checked').val());
+    interest.push(instance.$('input[name="' + subjects[1] + '"]:checked').val());
+    interest.push(instance.$('input[name="' + subjects[2] + '"]:checked').val());
+    interest.push(instance.$('input[name="' + subjects[3] + '"]:checked').val());
+
+    for (var i = 0; i < subjects.length; i++) {
+      if (interest[i] == "grasshopper") {
         grasshopper.push(subjects[i]);
       }
-      else if(interest[i] == "sensei")
-      {
-        sensei.push(subjects[i]);
-      }
+      else
+        if (interest[i] == "sensei") {
+          sensei.push(subjects[i]);
+        }
     }
     console.log(grasshopper);
     console.log(sensei);
@@ -77,8 +119,19 @@ Template.Edit_Profile_Page.events({
     console.log(Meteor.user().userName);
     var user = JSON.stringify(Meteor.user());
     alert(user);
-    console.log(UserData.findOne({userName: Meteor.user().userName}));
-    const updatedProfile = {userId: Meteor.userId(), userName: Meteor.user().userName, firstName: firstName, lastName : lastName, telephone : telephone, sessionsAttended: oldProfile.sessionsAttended + 1, sessionsCreated: oldProfile.sessionsCreated + 1, sessionsAttendedThisMonth: 0, sessionsCreatedThisMonth: 0, grasshopperSubjects: grasshopper, SenseiSubjects: sensei };
+    const updatedProfile = {
+      userId: Meteor.userId(),
+      userName: Meteor.user().userName,
+      firstName: firstName,
+      lastName: lastName,
+      telephone: telephone,
+      sessionsAttended: oldProfile.sessionsAttended + 1,
+      sessionsCreated: oldProfile.sessionsCreated + 1,
+      sessionsAttendedThisMonth: 0,
+      sessionsCreatedThisMonth: 0,
+      grasshopperSubjects: grasshopper,
+      senseiSubjects: sensei
+    };
     // Clear out any old validation errors.
     instance.context.resetValidation();
     // Invoke clean so that newStudentData reflects what will be inserted.
@@ -86,8 +139,9 @@ Template.Edit_Profile_Page.events({
     // Determine validity.
     instance.context.validate(updatedProfile);
     if (instance.context.isValid()) {
-      UserData.update(FlowRouter.getParam('_id'), {$set: updatedProfile});
-      FlowRouter.go('User_Profile_Page', {_id: updatedProfile.userName.toLowerCase()});
+      UserData.update(FlowRouter.getParam('_id'), { $set: updatedProfile });
+      console.log(UserData.findOne({ userName: Meteor.user().userName }));
+      FlowRouter.go('User_Profile_Page', { _id: updatedProfile.userName.toLowerCase() });
     } else {
       instance.messageFlags.set(displayErrorMessages, true);
       console.log("it's not valid");
