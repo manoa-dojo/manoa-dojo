@@ -23,6 +23,18 @@ Template.User_Profile_Page.helpers({
     const errorKeys = Template.instance().context.invalidKeys();
     return _.find(errorKeys, (keyObj) => keyObj.name === fieldName);
   },
+  matchUser: function(userData) {
+    if(typeof(userData) != "undefined")
+      return userData.userName !== "undefined";
+    else
+      return false;
+  },
+  userProfile() {
+    return UserData.findOne({userName: FlowRouter.getParam('_id')});
+  },
+  isSet(field) {
+    return field != '';
+  }
 });
 
 Template.User_Profile_Page.onCreated(function onCreated() {

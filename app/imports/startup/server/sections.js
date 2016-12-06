@@ -44,7 +44,6 @@ Meteor.setInterval(function() {
       }
       UserData.update(userElement._id, { $set: { currentInSection: '' } });
       // console.log(userId);
-
     }
     Sections.remove(section._id);
     const expiredMessages = Messages.find({section:section._id}).fetch();
