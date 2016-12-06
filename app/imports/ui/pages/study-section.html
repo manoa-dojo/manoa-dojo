@@ -55,9 +55,9 @@
         {{#if futureSec section._id}}
           {{#if liked section._id}}
             <td><i class="thumbs up blue icon"></i><a href="" class="unlikeBt" name="{{section._id}}">unLike</a></td>
-          {{else}}
+        {{else}}
             <td><i class="thumbs up icon"></i><a href="" class="likeBt" name="{{section._id}}">Like</a></td>
-          {{/if}}
+        {{/if}}
 
         {{else}}
           {{#if currentInSec section._id}}
@@ -68,6 +68,14 @@
               <div class="actions">
                 <div class="ui button cancel">Join as Grasshopper</div>
                 <div class="ui button ok">Join as Sensei</div>
+              </div>
+            </div>
+            <div class="ui roomfull modal">
+              <div class="content">
+                Room Full!
+              </div>
+              <div class="actions">
+                <div class="ui button ok">Ok</div>
               </div>
             </div>
           {{/if}}

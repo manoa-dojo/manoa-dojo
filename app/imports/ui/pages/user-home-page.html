@@ -37,10 +37,28 @@
             <td><a href="{{pathFor 'User_Profile_Page' _id=section.createdBy.user}}">{{section.createdBy.user}}</a>({{section.createdBy.role}})</td>
             <td>{{section.likes}}</td>
             <td><i class="thumbs up blue icon"></i><a href="" class="unlikeBt" name="{{section._id}}">unLike</a></td>
-            {{#if currentInSec section._id}}
-              <td><a style="color:darkgray;">Joined</a></td>
+            {{#if futureSec section._id}}
+              <td><a style="color:darkgray;">Coming Up</a></td>
             {{else}}
-              <td><a href="" class="joinBt" name="{{section._id}}">Join</a></td>
+              {{#if currentInSec section._id}}
+                <td><a style="color:darkgray;">Joined</a></td>
+              {{else}}
+                <td><a href="" class="joinBt" name="{{section._id}}">Join</a></td>
+                <div class="ui small modal">
+                  <div class="actions">
+                    <div class="ui button cancel">Join as Grasshopper</div>
+                    <div class="ui button ok">Join as Sensei</div>
+                  </div>
+                </div>
+                <div class="ui roomfull modal">
+                  <div class="content">
+                    Room Full!
+                  </div>
+                  <div class="actions">
+                    <div class="ui button ok">Ok</div>
+                  </div>
+                </div>
+              {{/if}}
             {{/if}}
           </tr>
         {{/each}}
@@ -87,17 +105,30 @@
             {{else}}
               <td><i class="thumbs up icon"></i><a href="" class="likeBt" name="{{section._id}}">Like</a></td>
             {{/if}}
-            {{#if currentInSec section._id}}
-              <td><a style="color:darkgray;">Joined</a></td>
+            {{#if futureSec section._id}}
+              <td><a style="color:darkgray;">Coming Up</a></td>
             {{else}}
-              <td><a href="" class="joinBt" name="{{section._id}}">Join</a></td>
-              <div class="ui small modal">
-                <div class="actions">
-                  <div class="ui button cancel">Join as Grasshopper</div>
-                  <div class="ui button ok">Join as Sensei</div>
+              {{#if currentInSec section._id}}
+                <td><a style="color:darkgray;">Joined</a></td>
+              {{else}}
+                <td><a href="" class="joinBt" name="{{section._id}}">Join</a></td>
+                <div class="ui small modal">
+                  <div class="actions">
+                    <div class="ui button cancel">Join as Grasshopper</div>
+                    <div class="ui button ok">Join as Sensei</div>
+                  </div>
                 </div>
-              </div>
+                <div class="ui roomfull modal">
+                  <div class="content">
+                    Room Full!
+                  </div>
+                  <div class="actions">
+                    <div class="ui button ok">Ok</div>
+                  </div>
+                </div>
+              {{/if}}
             {{/if}}
+
             <td><a href="" class="removeBt" name="{{section._id}}">Cancel</a></td>
           </tr>
         {{/each}}
