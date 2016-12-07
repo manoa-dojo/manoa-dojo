@@ -93,9 +93,9 @@ Meteor.methods({
     }
     Sections.insert(newSection,function(err,result){
       if (err){
-        console.log(result);
+        // console.log(result);
       }else{
-        console.log('good ' + result);
+        // console.log('good ' + result);
 
         // const user = UserData.findOne({userName: Meteor.user().userName});
         // Meteor.call('updateUser',user._id, 'currentInSection', result);

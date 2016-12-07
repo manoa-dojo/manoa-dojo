@@ -93,7 +93,7 @@ Template.Study_Section_Page.events({
 
   'change #select'(event,instance) {
     Template.instance().dropdownValue.set($('#select').dropdown('get value'));
-    console.log($('#select').dropdown('get value'));
+    // console.log($('#select').dropdown('get value'));
   },
   'click .joinBt'(event,instance){
     event.preventDefault();
@@ -101,7 +101,7 @@ Template.Study_Section_Page.events({
     const oldSec = user.currentInSection;
     const newSec = Sections.findOne({_id:event.target.name});
     if (newSec.currentCapacity >= newSec.maxCapacity){
-      $('.ui.roomfull.modal').modal('show');
+      $('#roomfullModal').modal('show');
       // throw new Meteor.Error('Room Full');
 
     }else {
@@ -112,17 +112,17 @@ Template.Study_Section_Page.events({
             Meteor.call('sections.join', event.target.name, oldSec, Meteor.user().userName, newSec.createdBy.role);
             FlowRouter.go('Joined_Section_Page', { _id: event.target.name });
           } else {
-            $('.small.modal').modal({
+            $('#joinModal').modal({
               onDeny: function () {
                 Meteor.call('updateUser', user._id, 'currentInSection', event.target.name);
                 Meteor.call('sections.join', event.target.name, oldSec, Meteor.user().userName, 'Grasshopper');
-                $('.small.modal').modal('hide');
+                $('#joinModal').modal('hide');
                 FlowRouter.go('Joined_Section_Page', { _id: event.target.name });
               },
               onApprove: function () {
                 Meteor.call('updateUser', user._id, 'currentInSection', event.target.name);
                 Meteor.call('sections.join', event.target.name, oldSec, Meteor.user().userName, 'Sensei');
-                $('.small.modal').modal('hide');
+                $('#joinModal').modal('hide');
                 FlowRouter.go('Joined_Section_Page', { _id: event.target.name });
               }
             }).modal('show');
@@ -134,17 +134,17 @@ Template.Study_Section_Page.events({
           Meteor.call('sections.join', event.target.name, oldSec, Meteor.user().userName, newSec.createdBy.role);
           FlowRouter.go('Joined_Section_Page', { _id: event.target.name });
         } else {
-          $('.small.modal').modal({
+          $('#joinModal').modal({
             onDeny: function () {
               Meteor.call('updateUser', user._id, 'currentInSection', event.target.name);
               Meteor.call('sections.join', event.target.name, oldSec, Meteor.user().userName, 'Grasshopper');
-              $('.small.modal').modal('hide');
+              $('#joinModal').modal('hide');
               FlowRouter.go('Joined_Section_Page', { _id: event.target.name });
             },
             onApprove: function () {
               Meteor.call('updateUser', user._id, 'currentInSection', event.target.name);
               Meteor.call('sections.join', event.target.name, oldSec, Meteor.user().userName, 'Sensei');
-              $('.small.modal').modal('hide');
+              $('#joinModal').modal('hide');
               FlowRouter.go('Joined_Section_Page', { _id: event.target.name });
             }
           }).modal('show');

@@ -19,7 +19,7 @@
       <div class="ui card"
            data-html="<div class='header'>User Rating</div><div class='content'><div class='ui star rating'><i class='active icon'></i><i class='active icon'></i><i class='active icon'></i><i class='icon'></i><i class='icon'></i></div></div>">
         <div class="image">
-          <img src="/images/stephen.jpg">
+          <img src="{{userProfile.avatar}}">
         </div>
         <div class="content">
           <div class="header">
@@ -73,10 +73,10 @@
 
 
       <div class="ui secondary pointing menu">
-        <a id="overview" class="item menuItemA">
+        <a id="overview" class="active item menuItemA">
           Overview
         </a>
-        <a id="personal" class="active item menuItemB">
+        <a id="personal" class="item menuItemB">
           Additional Details
         </a>
         {{#if matchUser userProfile}}
@@ -85,7 +85,7 @@
         </a>
         {{/if}}
       </div>
-      <div class="ui segment hide summary">
+      <div class="ui segment summary">
         <div class="ui internally celled grid">
           <div class="row">
             <div class="eight wide column">
@@ -97,19 +97,9 @@
               <h3>{{userProfile.sessionsAttended}}</h3>
             </div>
           </div>
-          <div class="row">
-            <div class="eight wide column">
-              <h1 style="color: darkgreen">Sensei Points</h1>
-              <h3>{{userProfile.sessionsAttendedThisMonth}}</h3>
-            </div>
-            <div class="eight wide column">
-              <h1 style="color: darkgreen">Grasshopper Points</h1>
-              <h3>{{userProfile.sessionsCreatedThisMonth}}</h3>
-            </div>
-          </div>
         </div>
       </div>
-      <div class="ui segment details">
+      <div class="ui segment hide details">
         <div class="ui internally celled grid">
           <div class="eight wide column">
             <div class="ui selection list">
@@ -117,11 +107,20 @@
                 <div class="ui green label">Grasshopper Subjects</div>
               </a>
 
-              {{#each grasshopperSubject in userProfile.grasshopperSubjects}}
+              {{#each subject in userProfile.grasshopperSubjects}}
               <a class="item">
-                <div class="ui horizontal label">{{grasshopperSubject}}</div>
+                <div class="ui horizontal label">{{subject}}</div>
+                {{#if myProfile}}
+                  <a href="" class="removeGrassSubBt" name="{{subject}}">Remove</a>
+                {{/if}}
               </a>
               {{/each}}
+              {{#if myProfile}}
+                <div class="ui input">
+                  <input type="text" max="10" name="grassSubject" id="grassSubject">
+                  <button class="ui button" id="addGrassSubject">Add</button>
+                </div>
+              {{/if}}
 
             </div>
           </div>
@@ -131,11 +130,20 @@
                 <div class="ui red label">Sensei Subjects</div>
               </a>
 
-              {{#each senseiSubject in userProfile.senseiSubjects}}
+              {{#each subject in userProfile.senseiSubjects}}
               <a class="item">
-                <div class="ui horizontal label">{{senseiSubject}}</div>
+                <div class="ui horizontal label">{{subject}}</div>
+                {{#if myProfile}}
+                  <a href="" class="removeSenseiSubBt" name="{{subject}}">Remove</a>
+                {{/if}}
               </a>
               {{/each}}
+              {{#if myProfile}}
+                <div class="ui input">
+                  <input class="ui input" type="text" max="10" name="senseiSubject" id="senseiSubject">
+                  <button class="ui button" id="addSenseiSubject">Add</button>
+                </div>
+              {{/if}}
 
             </div>
           </div>

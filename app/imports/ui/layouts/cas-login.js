@@ -11,6 +11,9 @@ Template.Cas_Login.helpers({
   },
   userProfile() {
     return UserData.findOne({userName: Meteor.user().userName});
+  },
+  active(route){
+    return route == FlowRouter.current().route.name;
   }
 })
 

@@ -1,12 +1,12 @@
 <template name="Header">
   <img style="max-height:175px" class="ui fluid image" src="/images/manoa-dojo-header.png">
   <div class="ui borderless topmenu inverted menu" id="mainheader">
-    <div class="ui container">
+    <div class="ui container borderless topmenu inverted menu">
       {{#if currentUser}}
-      <a class="home item" href="{{pathFor 'User_Home_Page'}}">Home</a>
-      <a class="right item" href="{{pathFor 'Study_Section_Page'}}">Study Section</a>
-      <a class="item" href="{{pathFor 'Calendar_Page'}}">Calendar</a>
-      <a class="item" href="{{pathFor 'Game_Page'}}">LeaderBoard</a>
+      <a class="home {{#if active 'User_Home_Page'}}active{{/if}} item" href="{{pathFor 'User_Home_Page'}}">Home</a>
+      <a class="right {{#if active 'Study_Section_Page'}}active{{/if}}{{#if active Joined_Section_Page}}active{{/if}} item" href="{{pathFor 'Study_Section_Page'}}">Study Section</a>
+      <a class="item {{#if active 'Calendar_Page'}}active{{/if}}" href="{{pathFor 'Calendar_Page'}}">Calendar</a>
+      <a class="item {{#if active 'Game_Page'}}active{{/if}}" href="{{pathFor 'Game_Page'}}">LeaderBoard</a>
       {{> Cas_Login}}
 
       {{else}}

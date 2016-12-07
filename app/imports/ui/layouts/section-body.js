@@ -16,8 +16,8 @@ Template.Section_Body.helpers({
 
   },
   activeTabEnable(e){
-    console.log(e);
-    console.log(FlowRouter.getParam('_id'));
+    // console.log(e);
+    // console.log(FlowRouter.getParam('_id'));
     if (e == 'B') {
       if (FlowRouter.getParam('_id')) {
         return true;

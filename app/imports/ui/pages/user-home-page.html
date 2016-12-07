@@ -112,20 +112,7 @@
                 <td><a style="color:darkgray;">Joined</a></td>
               {{else}}
                 <td><a href="" class="joinBt" name="{{section._id}}">Join</a></td>
-                <div class="ui small modal">
-                  <div class="actions">
-                    <div class="ui button cancel">Join as Grasshopper</div>
-                    <div class="ui button ok">Join as Sensei</div>
-                  </div>
-                </div>
-                <div class="ui roomfull modal">
-                  <div class="content">
-                    Room Full!
-                  </div>
-                  <div class="actions">
-                    <div class="ui button ok">Ok</div>
-                  </div>
-                </div>
+
               {{/if}}
             {{/if}}
 
@@ -135,6 +122,20 @@
         </tbody>
       </table>
       <a class="ui green button" href="{{pathFor 'Create_Section_Page'}}">Create Study Section</a> <a class="ui red button" href="{{pathFor 'Study_Section_Page'}}">Meet Right Now!</a>
+      <div class="ui small modal" id="smodal">
+        <div class="actions">
+          <div class="ui button cancel">Join as Grasshopper</div>
+          <div class="ui button ok">Join as Sensei</div>
+        </div>
+      </div>
+      <div class="ui roomfull modal" id="roomModal">
+        <div class="content">
+          Room Full!
+        </div>
+        <div class="actions">
+          <div class="ui button ok">Ok</div>
+        </div>
+      </div>
     {{else}}
       {{> Loading}}
     {{/if}}

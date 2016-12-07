@@ -34,7 +34,10 @@ Template.User_Profile_Page.helpers({
   },
   isSet(field) {
     return field != '';
-  }
+  },
+  myProfile(){
+    return Meteor.user().userName == FlowRouter.getParam('_id');
+  },
 });
 
 Template.User_Profile_Page.onCreated(function onCreated() {
@@ -65,5 +68,31 @@ Template.User_Profile_Page.events({
     $("a.menuItemB").addClass("active");
     $("div.details").removeClass("hide");
     $("div.summary").addClass("hide");
+  },
+  'click #addGrassSubject'(event, instance) {
+    event.preventDefault();
+    const user = UserData.findOne({userName: FlowRouter.getParam('_id')});
+    const subject =instance.$('input[name="grassSubject"]').val();
+    Meteor.call('updateUser',user._id,'grassSubjects',subject);
+
+  },
+  'click .removeGrassSubBt'(event, instance) {
+    event.preventDefault();
+    const user = UserData.findOne({userName: FlowRouter.getParam('_id')});
+    const subject =event.target.name;
+    Meteor.call('updateUser',user._id,'removeGrassSubjects',subject);
+  },
+  'click #addSenseiSubject'(event, instance) {
+    event.preventDefault();
+    const user = UserData.findOne({userName: FlowRouter.getParam('_id')});
+    const subject =instance.$('input[name="senseiSubject"]').val();
+    Meteor.call('updateUser',user._id,'senseiSubjects',subject);
+
+  },
+  'click .removeSenseiSubBt'(event, instance) {
+    event.preventDefault();
+    const user = UserData.findOne({userName: FlowRouter.getParam('_id')});
+    const subject =event.target.name;
+    Meteor.call('updateUser',user._id,'removeSenseiSubjects',subject);
   },
 });

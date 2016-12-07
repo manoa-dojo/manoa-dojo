@@ -23,12 +23,10 @@ Template.Game_Page.helpers({
     return _.find(errorKeys, (keyObj) => keyObj.name === fieldName);
   },
   sortSessionsAttended() {
-    const UserData = UserData.find();
-    return _.sortBy(UserData, 'sessionsAttended');
+    return UserData.find({}, {sort: {sessionsAttended: -1}, limit: 10});
   },
   sortSessionsCreated() {
-    const UserData = UserData.find();
-    return _.sortBy(UserData, 'sessionsCreated');
+    return UserData.find({}, {sort: {sessionsCreated: -1}, limit: 10});
   }
 });
 

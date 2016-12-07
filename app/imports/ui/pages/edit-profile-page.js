@@ -83,6 +83,7 @@ Template.Edit_Profile_Page.events({
   'submit .edit-profile-form'(event, instance) {
     event.preventDefault();
     // Get name (text field)
+
     const oldProfile = UserData.findOne({ userName: Meteor.user().userName });
     const username = Meteor.user().userName;
     console.log(typeof(username));
@@ -95,42 +96,46 @@ Template.Edit_Profile_Page.events({
     console.log(telephone);
     const description = event.target.description.value;
     console.log(description);
-    const subjects = ["ICS 111", "ICS 141", "ICS 211", "ICS 212"];
-    let grasshopper = [];
-    let sensei = [];
-    let interest = [];
-    interest.push(instance.$('input[name="' + subjects[0] + '"]:checked').val());
-    interest.push(instance.$('input[name="' + subjects[1] + '"]:checked').val());
-    interest.push(instance.$('input[name="' + subjects[2] + '"]:checked').val());
-    interest.push(instance.$('input[name="' + subjects[3] + '"]:checked').val());
-
-    for (var i = 0; i < subjects.length; i++) {
-      if (interest[i] == "grasshopper") {
-        grasshopper.push(subjects[i]);
-      }
-      else
-        if (interest[i] == "sensei") {
-          sensei.push(subjects[i]);
-        }
-    }
-    console.log(grasshopper);
-    console.log(sensei);
-    console.log(Meteor.userId());
-    console.log(Meteor.user().userName);
+    // const subjects = ["ICS 111", "ICS 141", "ICS 211", "ICS 212"];
+    // let grasshopper = [];
+    // let sensei = [];
+    // let interest = [];
+    // interest.push(instance.$('input[name="' + subjects[0] + '"]:checked').val());
+    // interest.push(instance.$('input[name="' + subjects[1] + '"]:checked').val());
+    // interest.push(instance.$('input[name="' + subjects[2] + '"]:checked').val());
+    // interest.push(instance.$('input[name="' + subjects[3] + '"]:checked').val());
+    //
+    // for (var i = 0; i < subjects.length; i++) {
+    //   if (interest[i] == "grasshopper") {
+    //     grasshopper.push(subjects[i]);
+    //   }
+    //   else
+    //     if (interest[i] == "sensei") {
+    //       sensei.push(subjects[i]);
+    //     }
+    // }
+    // console.log(grasshopper);
+    // console.log(sensei);
+    // console.log(Meteor.userId());
+    // console.log(Meteor.user().userName);
     var user = JSON.stringify(Meteor.user());
-    alert(user);
+    // alert(user);
     const updatedProfile = {
       userId: Meteor.userId(),
       userName: Meteor.user().userName,
       firstName: firstName,
       lastName: lastName,
+      avatar: oldProfile.avatar,
       telephone: telephone,
-      sessionsAttended: oldProfile.sessionsAttended + 1,
-      sessionsCreated: oldProfile.sessionsCreated + 1,
+      sessionsAttended: oldProfile.sessionsAttended,
+      sessionsCreated: oldProfile.sessionsCreated,
       sessionsAttendedThisMonth: 0,
       sessionsCreatedThisMonth: 0,
-      grasshopperSubjects: grasshopper,
-      senseiSubjects: sensei
+      grasshopperSubjects: oldProfile.grasshopperSubjects,
+      senseiSubjects: oldProfile.senseiSubjects,
+      currentInSection: oldProfile.currentInSection,
+      likedSection: oldProfile.likedSection,
+      description: description
     };
     // Clear out any old validation errors.
     instance.context.resetValidation();
@@ -141,7 +146,7 @@ Template.Edit_Profile_Page.events({
     if (instance.context.isValid()) {
       UserData.update(FlowRouter.getParam('_id'), { $set: updatedProfile });
       console.log(UserData.findOne({ userName: Meteor.user().userName }));
-      FlowRouter.go('User_Profile_Page', { _id: updatedProfile.userName.toLowerCase() });
+      FlowRouter.go('User_Profile_Page', { _id: updatedProfile.userName });
     } else {
       instance.messageFlags.set(displayErrorMessages, true);
       console.log("it's not valid");

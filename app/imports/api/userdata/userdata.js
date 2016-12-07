@@ -99,6 +99,12 @@ export const UserDataSchema = new SimpleSchema({
     minCount: 0,
     max: 200,
   },
+  description: {
+    label: 'description',
+    type: String,
+    optional: true,
+    max: 200,
+  },
 });
 
 UserData.attachSchema(UserDataSchema);
@@ -127,10 +133,16 @@ Meteor.methods({
       UserData.update(userId, { $inc: { grassPts: value } });
     } else if (field === 'grassSubjects') {
       check(value, String);
-      UserData.update(userId, { $push: { grassSubjects: value } });
+      UserData.update(userId, { $push: { grasshopperSubjects: value } });
+    } else if (field === 'removeGrassSubjects') {
+      check(value, String);
+      UserData.update(userId, { $pull: { grasshopperSubjects: value } });
     } else if (field === 'senseiSubjects') {
       check(value, String);
       UserData.update(userId, { $push: { senseiSubjects: value } });
+    } else if (field === 'removeSenseiSubjects') {
+      check(value, String);
+      UserData.update(userId, { $pull: { senseiSubjects: value } });
     } else if (field === 'currentInSection') {
       UserData.update(userId, { $set: { currentInSection: value } });
     } else if (field === 'likedSection') {

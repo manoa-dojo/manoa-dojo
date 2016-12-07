@@ -50,9 +50,9 @@ Meteor.methods({
     }
     Messages.insert(newMessage,function(err,result){
       if (err){
-        console.log(result);
+        // console.log(result);
       }else{
-        console.log('good ' + result);
+        // console.log('good ' + result);
       }
     });
   },

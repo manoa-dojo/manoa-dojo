@@ -5,3 +5,9 @@ import { Template } from 'meteor/templating';
 Template.Header.onRendered(function enableDropDown() {
   this.$('.dropdown').dropdown();
 });
+Template.Header.helpers({
+  active(route) {
+    // console.log(FlowRouter.current());
+    return route == FlowRouter.current().route.name;
+  }
+});

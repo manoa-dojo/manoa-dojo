@@ -2,14 +2,17 @@
 
       <div class="ui dropdown icon item">
         <i class="user icon"></i>
+        {{#if currentUser}}
+          &nbsp;{{userProfile.userName}}
+        {{/if}}
         <i class="dropdown icon"></i>
 
         <div class="menu">
         {{#if currentUser}}
           {{#if matchUser userProfile}}
-          <a class="item" href="{{pathFor 'User_Profile_Page' _id=userProfile.userName}}">Profile</a>
+          <a class="{{#if active User_Profile_Page}}active{{/if}} item" href="{{pathFor 'User_Profile_Page' _id=userProfile.userName}}">Profile</a>
           {{/if}}
-          <a class="item" href="{{pathFor 'Create_Section_Page'}}">Create Study Section</a>
+          <a class="{{#if active Create_Section_Page}}active{{/if}} item" href="{{pathFor 'Create_Section_Page'}}">Create Study Section</a>
           <a class="item cas-logout">Logout</a>
         {{else}}
           <a class="item cas-login">Login</a>

@@ -22,13 +22,7 @@ Template.Joined_Section_Page.onCreated(function Joined_Section_PageOnCreated() {
 
 Template.Joined_Section_Page.onRendered(function Joined_Section_PageOnRendered() {
   this.subscribe('Sections');
-  $("#Text1").keypress(function (e) {
-    if(e.which == 13 && !e.shiftKey) {
-      $(this).closest("form").submit();
-      e.preventDefault();
-      return false;
-    }
-  });
+
 
 });
 
@@ -107,6 +101,33 @@ Template.Joined_Section_Page.events({
       FlowRouter.go('Study_Section_Page');
     }
     return false;
+  },
+  'keyup #Text1'(event,instance){
+    event.preventDefault();
+    if(event.which == 13 && !event.shiftKey) {
+      var $cont = $('.ui.comments.topleft');
+      const user = Meteor.user().userName;
+      const section = FlowRouter.getParam('_id');
+      const content = $("#Text1").val()
+      // console.log(content);
+      const createdAt = new Date();
+
+      const newMessage = {user, section, content, createdAt};
+      instance.context.resetValidation();
+      // Invoke clean so that newStudentData reflects what will be inserted.
+      MessagesSchema.clean(newMessage);
+      // Determine validity.
+      instance.context.validate(newMessage);
+      if (instance.context.isValid()) {
+        Meteor.call('messages.insert',newMessage);
+        $cont[0].scrollTop = $cont[0].scrollHeight;
+        $("#Text1").val('');
+        instance.messageFlags.set(displayErrorMessages, false);
+      } else {
+        instance.messageFlags.set(displayErrorMessages, true);
+        console.log("it's not valid");
+      }
+    }
   },
   // placeholder: if you add a form to this top-level layout, handle the associated events here.
 
