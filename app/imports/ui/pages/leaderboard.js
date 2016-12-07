@@ -2,6 +2,7 @@ import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { _ } from 'meteor/underscore';
 import { FlowRouter } from 'meteor/kadira:flow-router';
+import { UserData, UserDataSchema } from '../../api/userdata/userdata.js';
 
 /* eslint-disable no-param-reassign */
 
@@ -21,6 +22,14 @@ Template.Game_Page.helpers({
     const errorKeys = Template.instance().context.invalidKeys();
     return _.find(errorKeys, (keyObj) => keyObj.name === fieldName);
   },
+  sortSessionsAttended() {
+    const UserData = UserData.find();
+    return _.sortBy(UserData, 'sessionsAttended');
+  },
+  sortSessionsCreated() {
+    const UserData = UserData.find();
+    return _.sortBy(UserData, 'sessionsCreated');
+  }
 });
 
 // Template.Add_Contact_Page.onRendered(function enableSemantic() {
@@ -33,17 +42,17 @@ Template.Game_Page.helpers({
 // });
 
 Template.Game_Page.events({
-  'click .menuItemA'(event, instance) {
+  'click .created'(event, instance) {
     event.preventDefault();
-    $("a.menuItemB").removeClass("active");
-    $("a.menuItemA").addClass("active");
+    $("a.attended").removeClass("active");
+    $("a.created").addClass("active");
     $("div.summary").removeClass("hide");
     $("div.details").addClass("hide");
   },
-  'click .menuItemB'(event, instance) {
+  'click .attended'(event, instance) {
     event.preventDefault();
-    $("a.menuItemA").removeClass("active");
-    $("a.menuItemB").addClass("active");
+    $("a.created").removeClass("active");
+    $("a.attended").addClass("active");
     $("div.details").removeClass("hide");
     $("div.summary").addClass("hide");
   },
