@@ -27,7 +27,7 @@ Template.Game_Page.helpers({
   },
   sortSessionsCreated() {
     return UserData.find({}, { sort: { sessionsCreated: -1 }, limit: 10 });
-  }
+  },
 });
 
 // Template.Add_Contact_Page.onRendered(function enableSemantic() {
