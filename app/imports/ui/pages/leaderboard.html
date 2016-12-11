@@ -27,7 +27,7 @@
     </div>
   </div>
 
-  <div class="ui segment hide summary">
+  <div class="ui segment summary">
     <div class="ui center container">
       <div align="center">
         <h1 style="text-align: center">
@@ -50,12 +50,15 @@
           <td>{{UserData.sessionsCreated}}</td>
         </tr>
         {{/each}}
+        {{#each UserData in createdRanking}}
+        <td>{{UserData.sessionsCreated}}</td>
+        {{/each}}
         </tbody>
       </table>
     </div>
   </div>
 
-  <div class="ui segment details">
+  <div class="ui segment hide details">
     <div class="ui center container">
       <div align="center">
         <h1 style="text-align: center">
@@ -77,6 +80,9 @@
           <td>{{UserData.userName}}</td>
           <td>{{UserData.sessionsAttended}}</td>
         </tr>
+        {{/each}}
+        {{#each UserData in attendanceRanking}}
+        <td>{{UserData.sessionsAttended}}</td>
         {{/each}}
         </tbody>
       </table>
