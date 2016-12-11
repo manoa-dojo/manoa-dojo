@@ -1,8 +1,8 @@
-import { Template } from 'meteor/templating';
-import { ReactiveDict } from 'meteor/reactive-dict';
-import { _ } from 'meteor/underscore';
-import { FlowRouter } from 'meteor/kadira:flow-router';
-import { UserData, UserDataSchema } from '../../api/userdata/userdata.js';
+import {Template} from 'meteor/templating';
+import {ReactiveDict} from 'meteor/reactive-dict';
+import {_} from 'meteor/underscore';
+import {FlowRouter} from 'meteor/kadira:flow-router';
+import {UserData, UserDataSchema} from '../../api/userdata/userdata.js';
 
 /* eslint-disable no-param-reassign */
 
@@ -23,10 +23,10 @@ Template.Game_Page.helpers({
     return _.find(errorKeys, (keyObj) => keyObj.name === fieldName);
   },
   sortSessionsAttended() {
-    return UserData.find({}, {sort: {sessionsAttended: -1}, limit: 10});
+    return UserData.find({}, { sort: { sessionsAttended: -1 }, limit: 10 });
   },
   sortSessionsCreated() {
-    return UserData.find({}, {sort: {sessionsCreated: -1}, limit: 10});
+    return UserData.find({}, { sort: { sessionsCreated: -1 }, limit: 10 });
   }
 });
 
@@ -44,14 +44,27 @@ Template.Game_Page.events({
     event.preventDefault();
     $("a.attended").removeClass("active");
     $("a.created").addClass("active");
+    $("a.belts").removeClass("active");
     $("div.summary").removeClass("hide");
     $("div.details").addClass("hide");
+    $("div.info").addClass("hide");
   },
   'click .attended'(event, instance) {
     event.preventDefault();
     $("a.created").removeClass("active");
     $("a.attended").addClass("active");
+    $("a.belts").removeClass("active");
     $("div.details").removeClass("hide");
     $("div.summary").addClass("hide");
+    $("div.info").addClass("hide");
   },
+  'click .belts'(event, instance) {
+    event.preventDefault();
+    $("a.belts").addClass("active");
+    $("a.attended").removeClass("active");
+    $("a.created").removeClass("active");
+    $("div.details").addClass("hide");
+    $("div.summary").addClass("hide");
+    $("div.info").removeClass("hide");
+  }
 });
