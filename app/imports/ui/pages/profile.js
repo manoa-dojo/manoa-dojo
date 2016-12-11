@@ -74,7 +74,7 @@ Template.User_Profile_Page.events({
     const user = UserData.findOne({userName: FlowRouter.getParam('_id')});
     const subject =instance.$('input[name="grassSubject"]').val();
     Meteor.call('updateUser',user._id,'grassSubjects',subject);
-
+    instance.$('input[name="grassSubject"]').val('');
   },
   'click .removeGrassSubBt'(event, instance) {
     event.preventDefault();
@@ -87,7 +87,7 @@ Template.User_Profile_Page.events({
     const user = UserData.findOne({userName: FlowRouter.getParam('_id')});
     const subject =instance.$('input[name="senseiSubject"]').val();
     Meteor.call('updateUser',user._id,'senseiSubjects',subject);
-
+    instance.$('input[name="senseiSubject"]').val('');
   },
   'click .removeSenseiSubBt'(event, instance) {
     event.preventDefault();

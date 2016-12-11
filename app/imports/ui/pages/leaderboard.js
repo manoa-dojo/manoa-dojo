@@ -23,9 +23,14 @@ Template.Game_Page.helpers({
     return _.find(errorKeys, (keyObj) => keyObj.name === fieldName);
   },
   sortSessionsAttended() {
+    console.log(UserData.find().fetch());
+    console.log(UserData.find({}, {sort: {sessionsAttended: -1}, limit: 10}).fetch());
     return UserData.find({}, {sort: {sessionsAttended: -1}, limit: 10});
   },
   sortSessionsCreated() {
+    console.log('sctioncreated');
+    console.log(UserData.find().fetch());
+    console.log(UserData.find({}, {sort: {sessionsCreated: -1}, limit: 10}).fetch());
     return UserData.find({}, {sort: {sessionsCreated: -1}, limit: 10});
   }
 });

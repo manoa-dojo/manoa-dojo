@@ -1,9 +1,26 @@
 <template name="Calendar_Page">
-
-  <div class="ui container">
+  {{#if Template.subscriptionsReady}}
+   <div class="ui container">
+     <div class="ui mini horizontal divided list">
+       <div class="item">
+         <i class="orange circle icon"></i>
+         <div class="content">
+           <div class="header">Liked Sections</div>
+         </div>
+       </div>
+       <div class="item">
+         <i class="green circle icon"></i>
+         <div class="content">
+           <div class="header">Made Sections</div>
+         </div>
+       </div>
+     </div>
     {{#if currentUser}}
       {{>fullcalendar options}}
     {{else}}
     {{/if}}
   </div>
+  {{else}}
+    {{> Loading}}
+  {{/if}}
 </template>

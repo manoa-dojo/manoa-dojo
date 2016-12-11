@@ -70,14 +70,41 @@ Template.Edit_Profile_Page.helpers({
 Template.Edit_Profile_Page.onRendered(function enableRadioCheckBox() {
   this.$('.ui.radio.checkbox').checkbox();
 });
-// Template.Add_Contact_Page.onRendered(function enableSemantic() {
-//   const instance = this;
-//   instance.$('select.ui.dropdown').dropdown();
-//   instance.$('.ui.selection.dropdown').dropdown();
-//   instance.$('select.dropdown').dropdown();
-//   instance.$('.ui.checkbox').checkbox();
-//   instance.$('.ui.radio.checkbox').checkbox();
-// });
+Template.Edit_Profile_Page.onRendered(function enableSemantic() {
+  $('.edit-profile-form')
+      .form({
+        fields: {
+          name: {
+            identifier: 'firstName',
+            rules: [
+              {
+                type   : 'empty',
+                prompt : 'Please enter your firstName'
+              }
+            ]
+          },
+          lastName: {
+            identifier: 'lastName',
+            rules: [
+              {
+                type   : 'empty',
+                prompt : 'Please enter your lastName'
+              }
+            ]
+          },
+          telephone: {
+            identifier: 'telephone',
+            rules: [
+              {
+                type   : 'empty',
+                prompt : 'Please enter your telephone'
+              }
+            ]
+          }
+        }
+      })
+  ;
+});
 
 Template.Edit_Profile_Page.events({
   'submit .edit-profile-form'(event, instance) {

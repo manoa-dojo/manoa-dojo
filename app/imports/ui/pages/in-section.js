@@ -71,6 +71,7 @@ Template.Joined_Section_Page.events({
   'submit .ui.reply.form'(event, instance) {
     event.preventDefault();
     const user = Meteor.user().userName;
+    var $cont = $('.ui.comments.topleft');
     const section = FlowRouter.getParam('_id');
     const content = $("#Text1").val()
     // console.log(content);
@@ -84,6 +85,7 @@ Template.Joined_Section_Page.events({
     instance.context.validate(newMessage);
     if (instance.context.isValid()) {
       Meteor.call('messages.insert',newMessage);
+      $cont[0].scrollTop = $cont[0].scrollHeight;
       event.target.Text1.value = '';
       instance.messageFlags.set(displayErrorMessages, false);
     } else {

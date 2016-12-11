@@ -42,7 +42,7 @@ Template.Study_Section_Page.helpers({
     //     // Sections.remove(section._id);
     //   }
     // }
-    // console.log(UserData.find().fetch());
+    console.log(UserData.find().fetch());
     // console.log(Sections.find().fetch());
     // console.log(Template.instance().dropdownValue.get());
     if (Template.instance().dropdownValue.get() === 'comingUp'){

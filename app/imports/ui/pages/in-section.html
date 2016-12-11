@@ -50,19 +50,23 @@
           {{/if}}
         </div>
         <div class="ui row users">
-          <h3 class="ui dividing teal header" style="margin-top:5px;"><i class="users blue icon"></i>Users (1/5)</h3>
-          <div class="ui middle aligned selection list">
-            {{#if sectionUsers}}
+          {{#if sectionUsers}}
+            <h3 class="ui dividing teal header" style="margin-top:5px;"><i class="users blue icon"></i>Users ({{sectionUsers.length}}/5)</h3>
+            <div class="ui middle aligned selection list">
+
               {{#each user in sectionUsers}}
-                <div class="item">
-                  <img class="ui avatar image" style="width:35px;height:35px;" src="{{userAvatar user.user}}">
-                  <div class="content">
-                    <div class="header">{{user.user}}({{user.role}})</div>
-                  </div>
-                </div>
+
+                  <a class="item" href="{{pathFor 'User_Profile_Page' _id=user.user}}">
+                    <img class="ui avatar image" style="width:35px;height:35px;" src="{{userAvatar user.user}}">
+                    <div class="content">
+                      <div class="header">{{user.user}}({{user.role}})</div>
+                    </div>
+                  </a>
+
               {{/each}}
-            {{/if}}
-          </div>
+
+            </div>
+          {{/if}}
         </div>
       </div>
     {{else}}

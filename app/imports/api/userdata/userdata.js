@@ -133,13 +133,19 @@ Meteor.methods({
       UserData.update(userId, { $inc: { grassPts: value } });
     } else if (field === 'grassSubjects') {
       check(value, String);
-      UserData.update(userId, { $push: { grasshopperSubjects: value } });
+      if (_.indexOf(UserData.findOne({_id:userId}).grasshopperSubjects, value) == -1){
+        UserData.update(userId, { $push: { grasshopperSubjects: value } });
+      }
+
     } else if (field === 'removeGrassSubjects') {
       check(value, String);
       UserData.update(userId, { $pull: { grasshopperSubjects: value } });
     } else if (field === 'senseiSubjects') {
       check(value, String);
-      UserData.update(userId, { $push: { senseiSubjects: value } });
+      if (_.indexOf( UserData.findOne({_id:userId}).senseiSubjects,value) == -1){
+        UserData.update(userId, { $push: { senseiSubjects: value } });
+      }
+
     } else if (field === 'removeSenseiSubjects') {
       check(value, String);
       UserData.update(userId, { $pull: { senseiSubjects: value } });
