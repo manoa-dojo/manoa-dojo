@@ -74,10 +74,10 @@
 
       <div class="ui secondary pointing menu">
         <a id="overview" class="active item menuItemA">
-          Overview
+          User Overview
         </a>
         <a id="personal" class="item menuItemB">
-          Additional Details
+          User Subjects
         </a>
         {{#if matchUser userProfile}}
         <a href="{{pathFor 'Edit_Profile_Page' _id=userProfile._id}}" class="right item edit-profile">
@@ -111,15 +111,19 @@
               <a class="item">
                 <div class="ui horizontal label">{{subject}}</div>
                 {{#if myProfile}}
-                  <a href="" class="removeGrassSubBt" name="{{subject}}">Remove</a>
+                <a href="" class="removeGrassSubBt" name="{{subject}}">Remove</a>
                 {{/if}}
               </a>
               {{/each}}
               {{#if myProfile}}
-                <div class="ui input">
-                  <input type="text" max="10" name="grassSubject" id="grassSubject">
-                  <button class="ui button" id="addGrassSubject">Add</button>
-                </div>
+              <div class="ui input">
+                <select class="ui selection dropdown grass" id="search-select1">
+                  {{#each subject in subjectList}}
+                  <option value="{{subject}}">{{subject}}</option>
+                  {{/each}}
+                </select>
+                <button class="ui button" id="addGrassSubject">Add Class</button>
+              </div>
               {{/if}}
 
             </div>
@@ -134,15 +138,19 @@
               <a class="item">
                 <div class="ui horizontal label">{{subject}}</div>
                 {{#if myProfile}}
-                  <a href="" class="removeSenseiSubBt" name="{{subject}}">Remove</a>
+                <a href="" class="removeSenseiSubBt" name="{{subject}}">Remove</a>
                 {{/if}}
               </a>
               {{/each}}
               {{#if myProfile}}
-                <div class="ui input">
-                  <input class="ui input" type="text" max="10" name="senseiSubject" id="senseiSubject">
-                  <button class="ui button" id="addSenseiSubject">Add</button>
-                </div>
+              <div class="ui input">
+                <select class="ui selection dropdown sensei" id="search-select2">
+                  {{#each subject in subjectList}}
+                  <option value="{{subject}}">{{subject}}</option>
+                  {{/each}}
+                </select>
+                <button class="ui button" id="addSenseiSubject">Add Class</button>
+              </div>
               {{/if}}
 
             </div>

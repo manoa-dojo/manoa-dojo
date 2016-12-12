@@ -4,9 +4,16 @@ import { _ } from 'meteor/underscore';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { UserData } from '../../api/userdata/userdata.js';
 import { Meteor } from 'meteor/meteor';
+//import { subjects } from '../../api/subjects/subjects.js';
 
 /* eslint-disable no-param-reassign */
 
+const subjects = [
+  "ICS 111",
+  "ICS 141",
+  "ICS 211",
+  "ICS 212"
+];
 const displayErrorMessages = 'displayErrorMessages';
 
 Template.User_Profile_Page.onCreated(function onCreated() {
@@ -38,6 +45,9 @@ Template.User_Profile_Page.helpers({
   myProfile(){
     return Meteor.user().userName == FlowRouter.getParam('_id');
   },
+  subjectList(){
+    return subjects;
+  }
 });
 
 Template.User_Profile_Page.onCreated(function onCreated() {
@@ -55,6 +65,18 @@ Template.User_Profile_Page.onCreated(function onCreated() {
 // });
 
 Template.User_Profile_Page.events({
+  'click .dropdown icon grass'(event, instance) {
+    event.preventDefault();
+    $('#search-select1')
+        .dropdown()
+    ;
+  },
+  'click .dropdown icon sensei'(event, instance) {
+    event.preventDefault();
+    $('#search-select2')
+        .dropdown()
+    ;
+  },
   'click .menuItemA'(event, instance) {
     event.preventDefault();
     $("a.menuItemB").removeClass("active");
@@ -72,9 +94,10 @@ Template.User_Profile_Page.events({
   'click #addGrassSubject'(event, instance) {
     event.preventDefault();
     const user = UserData.findOne({userName: FlowRouter.getParam('_id')});
-    const subject =instance.$('input[name="grassSubject"]').val();
+    const e = document.getElementById("search-select1");
+    const subject = e.options[e.selectedIndex].text;
+    console.log(subject);
     Meteor.call('updateUser',user._id,'grassSubjects',subject);
-    instance.$('input[name="grassSubject"]').val('');
   },
   'click .removeGrassSubBt'(event, instance) {
     event.preventDefault();
@@ -85,9 +108,10 @@ Template.User_Profile_Page.events({
   'click #addSenseiSubject'(event, instance) {
     event.preventDefault();
     const user = UserData.findOne({userName: FlowRouter.getParam('_id')});
-    const subject =instance.$('input[name="senseiSubject"]').val();
+    const e = document.getElementById("search-select2");
+    const subject = e.options[e.selectedIndex].text;
+    console.log(subject);
     Meteor.call('updateUser',user._id,'senseiSubjects',subject);
-    instance.$('input[name="senseiSubject"]').val('');
   },
   'click .removeSenseiSubBt'(event, instance) {
     event.preventDefault();
