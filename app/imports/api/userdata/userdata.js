@@ -105,6 +105,28 @@ export const UserDataSchema = new SimpleSchema({
     optional: true,
     max: 200,
   },
+  attend_belt: {
+    label: 'attend_belt',
+    type: String,
+    defaultValue: "white-belt",
+    max: 200,
+  },
+  create_belt: {
+    label: 'create_belt',
+    type: String,
+    defaultValue: "white-belt",
+    max: 200,
+  },
+  belt_ranks: {
+    label: 'belt_ranks',
+    type: [Number],
+    defaultValue: [0, 1, 3, 5, 10, 15, 20, 25, 30],
+  },
+  belt_types: {
+    label: 'belt_types',
+    type: [String],
+    defaultValue: ["white", "yellow", "orange", "green", "blue", "purple", "brown", "red", "black"],
+  }
 });
 
 UserData.attachSchema(UserDataSchema);

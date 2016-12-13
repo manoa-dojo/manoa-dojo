@@ -162,7 +162,11 @@ Template.Edit_Profile_Page.events({
       senseiSubjects: oldProfile.senseiSubjects,
       currentInSection: oldProfile.currentInSection,
       likedSection: oldProfile.likedSection,
-      description: description
+      description: description,
+      attend_belt: oldProfile.attend_belt,
+      create_belt: oldProfile.create_belt,
+      belt_ranks: oldProfile.belt_ranks,
+      belt_types: oldProfile.belt_types
     };
     // Clear out any old validation errors.
     instance.context.resetValidation();
