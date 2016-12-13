@@ -30,7 +30,7 @@ Template.Calendar_Page.helpers({
     			title: section.course,
     			start: section.startTime.toLocaleString(),
     			end: section.endTime.toLocaleString(),
-                url: '../study-section',
+          url: '../study-section',
     			color: eventColor,
     		});
     	};
