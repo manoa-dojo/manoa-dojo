@@ -19,11 +19,18 @@
       <div class="ui card"
            data-html="<div class='header'>User Rating</div><div class='content'><div class='ui star rating'><i class='active icon'></i><i class='active icon'></i><i class='active icon'></i><i class='icon'></i><i class='icon'></i></div></div>">
         <div class="image">
-          <img src="{{userProfile.avatar}}">
+          <img src="http://pngimg.com/upload/pig_PNG2192.png">
+          <!--<img src="{{userProfile.avatar}}">-->
         </div>
         <div class="content">
           <div class="header">
+            <img src="/images/white-belt.png" style="width:25px;height:25px">{{userProfile.firstName}} {{userProfile.lastName}}
+            {{#if matchUser userProfile}}
+            <div class="ui segment">
+              Attend and create X more study sessions to increase your belt rank!
 
+            </div>
+            {{/if}}
           </div>
           {{#if isSet userProfile.description}}
           <div class="description">
@@ -62,14 +69,13 @@
     </div>
 
     <div class="column" style="width:70%;">
-      <div class="ui blue inverted segment">
+      {{#if isSet userProfile.firstName}}
+      {{else}}
+      <div class="ui segment">
         <i class="user icon"></i>
-        {{#if isSet userProfile.firstName}}
-        {{userProfile.firstName}} {{userProfile.lastName}}
-        {{else}}
         Set your profile page by clicking the pencil!
-        {{/if}}
       </div>
+      {{/if}}
 
 
       <div class="ui secondary pointing menu">
