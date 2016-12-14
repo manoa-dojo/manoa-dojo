@@ -39,6 +39,9 @@ Template.User_Profile_Page.helpers({
   userProfile() {
     return UserData.findOne({userName: FlowRouter.getParam('_id')});
   },
+  userExists() {
+    return UserData.findOne({userName: FlowRouter.getParam('_id')}) != undefined;
+  },
   isSet(field) {
     return field != '';
   },
@@ -47,7 +50,31 @@ Template.User_Profile_Page.helpers({
   },
   subjectList(){
     return subjects;
-  }
+  },
+  beltTypeCreated(){
+    var profile = UserData.findOne({userName: FlowRouter.getParam('_id')});
+    var i = 0;
+    console.log(profile.belt_ranks);
+    while(profile.sessionsCreated >= profile.belt_ranks[i] && i < 9){
+      i++;
+    }
+    console.log(profile.belt_ranks[0]);
+    profile.create_belt = profile.belt_types[i-1];
+    console.log(profile.belt_types[i-1]);
+    return profile.belt_types[i-1];
+  },
+  beltTypeAttended(){
+    var profile = UserData.findOne({userName: FlowRouter.getParam('_id')});
+    var i = 0;
+    console.log(profile.belt_ranks);
+    while(profile.sessionsAttended >= profile.belt_ranks[i] && i < 9){
+      i++;
+    }
+    console.log(profile.belt_ranks[0]);
+    profile.attend_belt = profile.belt_types[i-1];
+    console.log(profile.belt_types[i-1]);
+    return profile.belt_types[i-1];
+  },
 });
 
 Template.User_Profile_Page.onCreated(function onCreated() {

@@ -123,6 +123,7 @@ Template.Edit_Profile_Page.events({
     console.log(telephone);
     const description = event.target.description.value;
     console.log(description);
+    const avatar = event.target.avatar.value;
     // const subjects = ["ICS 111", "ICS 141", "ICS 211", "ICS 212"];
     // let grasshopper = [];
     // let sensei = [];
@@ -152,7 +153,7 @@ Template.Edit_Profile_Page.events({
       userName: Meteor.user().userName,
       firstName: firstName,
       lastName: lastName,
-      avatar: oldProfile.avatar,
+      avatar: avatar,
       telephone: telephone,
       sessionsAttended: oldProfile.sessionsAttended,
       sessionsCreated: oldProfile.sessionsCreated,

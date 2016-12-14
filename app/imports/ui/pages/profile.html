@@ -11,26 +11,24 @@
       margin-left: 40px;
     }
   </style>
+
+  {{#if userExists}}
   <div class="ui container">
   </div>
-
   <div class="ui two column grid container">
     <div class="column" style="width:30%;">
       <div class="ui card"
            data-html="<div class='header'>User Rating</div><div class='content'><div class='ui star rating'><i class='active icon'></i><i class='active icon'></i><i class='active icon'></i><i class='icon'></i><i class='icon'></i></div></div>">
         <div class="image">
-          <img src="http://pngimg.com/upload/pig_PNG2192.png">
-          <!--<img src="{{userProfile.avatar}}">-->
+          {{#if isSet userProfile.avatar}}
+          <img src="{{userProfile.avatar}}">
+          {{else}}
+          <img src="/images/random.jpg">
+          {{/if}}
         </div>
         <div class="content">
           <div class="header">
-            <img src="/images/white-belt.png" style="width:25px;height:25px">{{userProfile.firstName}} {{userProfile.lastName}}
-            {{#if matchUser userProfile}}
-            <div class="ui segment">
-              Attend and create X more study sessions to increase your belt rank!
-
-            </div>
-            {{/if}}
+            {{userProfile.firstName}} {{userProfile.lastName}}
           </div>
           {{#if isSet userProfile.description}}
           <div class="description">
@@ -44,6 +42,7 @@
         </div>
         {{#if isSet userProfile.telephone}}
         <div class="ui inverted attached segment">
+          <i class="call icon"></i>
           {{userProfile.telephone}}
         </div>
         {{/if}}
@@ -95,16 +94,25 @@
         <div class="ui internally celled grid">
           <div class="row">
             <div class="eight wide column">
-              <h1 style="color: darkgreen">Sessions Created</h1>
+              <h1 style="color: darkgreen">Sessions Created <img src="/images/{{beltTypeCreated}}-belt.png"
+                                                                 style="width:25px;height:25px"></h1>
               <h3>{{userProfile.sessionsCreated}}</h3>
             </div>
             <div class="eight wide column">
-              <h1 style="color: darkgreen">Sessions Attended</h1>
+              <h1 style="color: darkgreen">Sessions Attended <img src="/images/{{beltTypeAttended}}-belt.png"
+                                                                  style="width:25px;height:25px"></h1>
               <h3>{{userProfile.sessionsAttended}}</h3>
             </div>
           </div>
         </div>
+        {{#if matchUser userProfile}}
+        <div class="ui fluid raised center aligned segment">
+          Attend and create more study sessions to change your belt colors! For more information about belts, click <a
+            href="{{pathFor 'Game_Page'}}">here</a>.
+        </div>
+        {{/if}}
       </div>
+
       <div class="ui segment hide details">
         <div class="ui internally celled grid">
           <div class="eight wide column">
@@ -162,7 +170,17 @@
             </div>
           </div>
         </div>
+        {{#if matchUser userProfile}}
+        <div class="ui fluid raised center aligned segment">
+          Add subjects to let others know your overall subject knowledge!
+        </div>
+        {{/if}}
       </div>
     </div>
   </div>
+  {{else}}
+  <div class="ui inverted fluid raised center aligned segment">
+    User not found.
+  </div>
+  {{/if}}
 </template>

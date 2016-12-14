@@ -6,7 +6,7 @@
         <label>Name</label>
         <div class="two fields">
           <div class="field">
-            <input type="text" name="firstName" id="firstName" placeholder="{{userProfile 'firstName'}}">
+            <input type="text" name="firstName" id="firstName" placeholder="First Name" value="{{userProfile 'firstName'}}">
             {{#if displayFieldError 'firstName' }}
             <div class="ui error message">
               <p>You must specify your first name.</p>
@@ -14,7 +14,7 @@
             {{/if}}
           </div>
           <div class="field">
-            <input type="text" name="lastName" id="lastName" placeholder="{{userProfile 'lastName'}}">
+            <input type="text" name="lastName" id="lastName" placeholder="Last Name" value="{{userProfile 'lastName'}}">
             {{#if displayFieldError 'lastName' }}
             <div class="ui error message">
               <p>You must specify your last name.</p>
@@ -27,7 +27,7 @@
         <label>Contact Info</label>
         <div class="field">
           <div class="field">
-            <input type="text" name="telephone" id="telephone" placeholder="{{userProfile 'telephone'}}">
+            <input type="text" name="telephone" id="telephone" placeholder="Telephone" value="{{userProfile 'telephone'}}">
             {{#if displayFieldError 'telephone' }}
             <div class="ui error message">
               <p>You must specify your phone number.</p>
@@ -38,7 +38,12 @@
       </div>
       <div class="field">
         <label>Description (Optional)</label>
-        <input type="text" name="description" id="description" placeholder="{{userProfile 'description'}}">
+        <input type="text" name="description" id="description" placeholder="Description" value="{{userProfile 'description'}}">
+      </div>
+
+      <div class="field">
+        <label>Avatar</label>
+        <input type="text" name="avatar" id="avatar" placeholder="Picture Url" value="{{userProfile 'avatar'}}">
       </div>
 
       <button class="ui button" type="submit">Submit</button>
