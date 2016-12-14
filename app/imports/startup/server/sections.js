@@ -38,13 +38,20 @@ Meteor.setInterval(function() {
       let userElement = UserData.findOne({userName: userObject.user});
       if (userElement.userName == owner){
         UserData.update(userElement._id, { $inc: { sessionsCreated: 1 } });
-        let numberOfCreated = userElement.sessionsCreated;
+        let numberOfCreated = userElement.sessionsCreated + 1;
+        // console.log("numberOfCreated is equal " + numberOfCreated);
         let beltRanks = userElement.belt_ranks;
         let i = 0;
         let index = beltRanks.length - 1;
         for (i = 0; i < beltRanks.length;i++){
+          if (numberOfCreated == beltRanks[i]){
+            index = i;
+            // console.log("index is equal " + index);
+            break;
+          }
           if (numberOfCreated < beltRanks[i]){
             index = i - 1;
+            // console.log("index is less than " + index);
             break;
           }
         }
@@ -53,11 +60,15 @@ Meteor.setInterval(function() {
       }
       else{
         UserData.update(userElement._id, { $inc: { sessionsAttended: 1 } });
-        let numberOfAttended = userElement.sessionsAttended;
+        let numberOfAttended = userElement.sessionsAttended + 1;
         let beltRanks = userElement.belt_ranks;
         let i = 0;
         let index = beltRanks.length - 1;
         for (i = 0; i < beltRanks.length;i++){
+          if (numberOfAttended == beltRanks[i]){
+            index = i;
+            break;
+          }
           if (numberOfAttended < beltRanks[i]){
             index = i - 1;
             break;

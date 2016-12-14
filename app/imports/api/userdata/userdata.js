@@ -108,13 +108,13 @@ export const UserDataSchema = new SimpleSchema({
   attend_belt: {
     label: 'attend_belt',
     type: String,
-    defaultValue: "white-belt",
+    defaultValue: "white",
     max: 200,
   },
   create_belt: {
     label: 'create_belt',
     type: String,
-    defaultValue: "white-belt",
+    defaultValue: "white",
     max: 200,
   },
   belt_ranks: {
@@ -125,7 +125,7 @@ export const UserDataSchema = new SimpleSchema({
   belt_types: {
     label: 'belt_types',
     type: [String],
-    defaultValue: ["white-belt", "yellow-belt", "orange-belt", "green-belt", "blue-belt", "purple-belt", "brown-belt", "red-belt", "black-belt"],
+    defaultValue: ["white", "yellow", "orange", "green", "blue", "purple", "brown", "red", "black"],
   }
 });
 
