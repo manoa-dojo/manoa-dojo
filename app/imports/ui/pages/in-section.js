@@ -42,15 +42,17 @@ Template.Joined_Section_Page.helpers({
     // console.log(Messages.find().fetch());
     return Sections.findOne({_id: FlowRouter.getParam('_id')}).usersIn;
   },
+  sectionCapacity(){
+    return Sections.findOne({_id: FlowRouter.getParam('_id')}).maxCapacity;
+  },
   sectionDescription(){
     return Sections.findOne({_id: FlowRouter.getParam('_id')}).description;
   },
   sectionName(){
-
     return Sections.findOne({_id: FlowRouter.getParam('_id')}).course;
   },
   userAvatar(userName){
-    return UserData.findOne({userName: Meteor.user().userName}).avatar;
+    return UserData.findOne({userName: userName}).avatar;
   },
   sectionAvailable(){
     return Sections.findOne({_id: FlowRouter.getParam('_id')});
