@@ -178,6 +178,7 @@ Template.Edit_Profile_Page.events({
     if (instance.context.isValid()) {
       UserData.update(FlowRouter.getParam('_id'), { $set: updatedProfile });
       console.log(UserData.findOne({ userName: Meteor.user().userName }));
+      instance.messageFlags.set(displayErrorMessages, false);
       FlowRouter.go('User_Profile_Page', { _id: updatedProfile.userName });
     } else {
       instance.messageFlags.set(displayErrorMessages, true);
