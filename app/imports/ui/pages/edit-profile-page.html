@@ -1,6 +1,6 @@
 <template name="Edit_Profile_Page">
   <div style="margin-top: 20px" class="ui container">
-    <form class="ui form edit-profile-form {{ errorClass }}">
+    <form class="ui form edit-profile-form {{successClass}} {{ errorClass }}">
       <h4 class="ui dividing header">Edit Profile</h4>
       <div class="field">
         <label>Name</label>
@@ -42,7 +42,7 @@
       </div>
 
       <div class="field">
-        <label>Avatar</label>
+        <label>Avatar URL</label>
         <input type="text" name="avatar" id="avatar" placeholder="Picture Url" value="{{userProfile 'avatar'}}">
       </div>
 

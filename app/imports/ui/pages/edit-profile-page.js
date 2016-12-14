@@ -29,12 +29,6 @@ Template.Edit_Profile_Page.helpers({
   isSet(field) {
     return field != '';
   },
-  subjectListCol1(){
-    return ["ICS 111", "ICS 141"];
-  },
-  subjectListCol2(){
-    return ["ICS 211", "ICS 212"];
-  },
   //Checks if subject is at grasshopper(g), sensei(s), or not interested(n)
   checkSubject(subject, level) {
     const profile = UserData.findOne({ userName: Meteor.user().userName });
@@ -121,9 +115,9 @@ Template.Edit_Profile_Page.events({
     console.log(lastName);
     const telephone = event.target.telephone.value;
     console.log(telephone);
-    const description = event.target.description.value;
+    var description = event.target.description.value;
     console.log(description);
-    const avatar = event.target.avatar.value;
+    var avatar = event.target.avatar.value;
     // const subjects = ["ICS 111", "ICS 141", "ICS 211", "ICS 212"];
     // let grasshopper = [];
     // let sensei = [];
@@ -148,6 +142,14 @@ Template.Edit_Profile_Page.events({
     // console.log(Meteor.user().userName);
     var user = JSON.stringify(Meteor.user());
     // alert(user);
+    if(description == ''){
+      description = '';
+      console.log(description);
+    }
+    if(avatar == ''){
+      avatar = "/images/random.jpg";
+      console.log(avatar);
+    }
     const updatedProfile = {
       userId: Meteor.userId(),
       userName: Meteor.user().userName,
@@ -177,7 +179,6 @@ Template.Edit_Profile_Page.events({
     instance.context.validate(updatedProfile);
     if (instance.context.isValid()) {
       UserData.update(FlowRouter.getParam('_id'), { $set: updatedProfile });
-      console.log(UserData.findOne({ userName: Meteor.user().userName }));
       instance.messageFlags.set(displayErrorMessages, false);
       FlowRouter.go('User_Profile_Page', { _id: updatedProfile.userName });
     } else {
