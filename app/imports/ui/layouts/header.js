@@ -7,7 +7,7 @@ Template.Header.onRendered(function enableDropDown() {
 });
 Template.Header.helpers({
   active(route) {
-    console.log(FlowRouter.current().route.name + "and input is " + route);
+    // console.log(FlowRouter.current().route.name + "and input is " + route);
     return route == FlowRouter.current().route.name;
   }
 });
