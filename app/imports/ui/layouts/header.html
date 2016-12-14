@@ -1,5 +1,7 @@
 <template name="Header">
-  <img style="max-height:175px" class="ui fluid image" src="/images/manoa-dojo-header.png">
+  <div class="header-image">
+    <a href="{{pathFor 'User_Home_Page'}}"><img class="ui left image" style="height: 100%; width: auto; padding: 10px" src="/images/manoa-dojo-logo-white.png"></a>
+  </div>
   <div class="ui borderless topmenu inverted menu" id="mainheader">
     <div class="ui container borderless topmenu inverted menu">
       {{#if currentUser}}
