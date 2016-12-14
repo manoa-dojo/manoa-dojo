@@ -38,9 +38,34 @@ Meteor.setInterval(function() {
       let userElement = UserData.findOne({userName: userObject.user});
       if (userElement.userName == owner){
         UserData.update(userElement._id, { $inc: { sessionsCreated: 1 } });
+        let numberOfCreated = userElement.sessionsCreated;
+        let beltRanks = userElement.belt_ranks;
+        let i = 0;
+        let index = beltRanks.length - 1;
+        for (i = 0; i < beltRanks.length;i++){
+          if (numberOfCreated < beltRanks[i]){
+            index = i - 1;
+            break;
+          }
+        }
+        let beltType = userElement.belt_types;
+        UserData.update(userElement._id, { $set: { create_belt: beltType[index] } });
       }
       else{
         UserData.update(userElement._id, { $inc: { sessionsAttended: 1 } });
+        let numberOfAttended = userElement.sessionsAttended;
+        let beltRanks = userElement.belt_ranks;
+        let i = 0;
+        let index = beltRanks.length - 1;
+        for (i = 0; i < beltRanks.length;i++){
+          if (numberOfAttended < beltRanks[i]){
+            index = i - 1;
+            break;
+          }
+        }
+        let beltType = userElement.belt_types;
+        UserData.update(userElement._id, { $set: { attend_belt: beltType[index] } });
+
       }
       UserData.update(userElement._id, { $set: { currentInSection: '' } });
       // console.log(userId);

@@ -125,7 +125,7 @@ export const UserDataSchema = new SimpleSchema({
   belt_types: {
     label: 'belt_types',
     type: [String],
-    defaultValue: ["white", "yellow", "orange", "green", "blue", "purple", "brown", "red", "black"],
+    defaultValue: ["white-belt", "yellow-belt", "orange-belt", "green-belt", "blue-belt", "purple-belt", "brown-belt", "red-belt", "black-belt"],
   }
 });
 
