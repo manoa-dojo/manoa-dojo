@@ -120,7 +120,7 @@ export const UserDataSchema = new SimpleSchema({
   belt_ranks: {
     label: 'belt_ranks',
     type: [Number],
-    defaultValue: [0, 2, 5, 8, 10, 13, 15, 18, 20],
+    defaultValue: [0, 1, 4, 7, 9, 12, 14, 17, 19],
   },
   belt_types: {
     label: 'belt_types',
