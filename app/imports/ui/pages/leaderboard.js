@@ -28,6 +28,14 @@ Template.Game_Page.helpers({
   sortSessionsCreated() {
     return UserData.find({}, {sort: {sessionsCreated: -1}, limit: 10});
   },
+  beltTypeAttended() {
+    UserData.attend_belt = UserData.belt_types;
+    return UserData.attend_belt;
+  },
+  beltTypeCreated() {
+    UserData.create_belt = UserData.belt_types;
+    return UserData.create_belt;
+  },
   attendanceRanking() {
     if (UserData.sessionsAttended = 0) {
       return console.log('Attendance belt ranking: white');
