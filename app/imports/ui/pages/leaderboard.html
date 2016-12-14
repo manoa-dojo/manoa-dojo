@@ -1,6 +1,6 @@
 <template name="Game_Page">
   {{#if Template.subscriptionsReady}}
-    {{#if currentUser}}
+  {{#if currentUser}}
 
 
   <div class="ui one column grid container">
@@ -21,6 +21,9 @@
       <a id="topSessionAttendence" class="item attended">
         Sessions Attended
       </a>
+      <a id="aboutBelts" class="item belts">
+        About Belt Ranks
+      </a>
     </div>
   </div>
 
@@ -37,14 +40,18 @@
         <tr>
           <th>Name</th>
           <th>No. of Sessions Created</th>
+          <th>Belt Rank</th>
         </tr>
         </thead>
         <tbody>
         {{#each UserData in sortSessionsCreated}}
         <tr>
-         <td>{{UserData.userName}}</td>
-         <td>{{UserData.sessionsCreated}}</td>
+          <td>{{UserData.userName}}</td>
+          <td>{{UserData.sessionsCreated}}</td>
+          <td>Check console for belt rank</td>
         </tr>
+        {{/each}}
+        {{#each UserData in createdRanking}}
         {{/each}}
         </tbody>
       </table>
@@ -64,6 +71,7 @@
         <tr>
           <th>Name</th>
           <th>No. of Sessions Attended</th>
+          <th>Belt Rank</th>
         </tr>
         </thead>
         <tbody>
@@ -71,16 +79,98 @@
         <tr>
           <td>{{UserData.userName}}</td>
           <td>{{UserData.sessionsAttended}}</td>
+          <td>Check console for belt rank</td>
         </tr>
+        {{/each}}
+        {{#each UserData in attendanceRanking}}
         {{/each}}
         </tbody>
       </table>
     </div>
   </div>
 
+  <div class="ui segment hide info">
+    <div class="ui center container">
+      <div align="center">
+        <h1>About Belt Ranks</h1>
+      </div>
+      <h2>What are Belt Ranks?</h2>
+      <p>Belt ranks are a way of tracking your progress in the Manoa Dojo. They are based off of the same belt rankings
+        that are used in martial arts.</p>
+
+      <h2>What are the different ranks?</h2>
+      <p>There are nine belt ranks. In order they are white, yellow, orange, green, blue purple brown, red, and
+        black.</p>
+
+      <h2>How do I advance my Belt Rank?</h2>
+      <p>As you create or join sessions in Manoa Dojo, your progress is counted. Once you reach a certain number of
+        sessions created or joined, you will advance to the next belt rank. Below is a table showing the requirements
+        for each belt rank in order of progression.</p>
+      <table class="ui center celled padded definition table">
+        <thead>
+        <tr>
+          <th></th>
+          <th>Belt Rank</th>
+          <th>Requirements</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>White</td>
+          <td><img class="belt-rank" src="../images/white-belt.png"></td>
+          <td>Default starting rank</td>
+        </tr>
+        <tr>
+          <td>Yellow</td>
+          <td><img class="belt-rank" src="../images/yellow-belt.png"></td>
+          <td>Create or attend 1 session</td>
+        </tr>
+        <tr>
+          <td>Orange</td>
+          <td><img class="belt-rank" src="../images/orange-belt.png"></td>
+          <td>Create or attend 3 sessions</td>
+        </tr>
+        <tr>
+          <td>Green</td>
+          <td><img class="belt-rank" src="../images/green-belt.png"></td>
+          <td>Create or attend 5 sessions</td>
+        </tr>
+        <tr>
+          <td>Blue</td>
+          <td><img class="belt-rank" src="../images/blue-belt.png"></td>
+          <td>Create or attend 10 sessions</td>
+        </tr>
+        <tr>
+          <td>Purple</td>
+          <td><img class="belt-rank" src="../images/purple-belt.png"></td>
+          <td>Create or attend 15 sessions</td>
+        </tr>
+        <tr>
+          <td>Brown</td>
+          <td><img class="belt-rank" src="../images/brown-belt.png"></td>
+          <td>Create or attend 20 sessions</td>
+        </tr>
+        <tr>
+          <td>Red</td>
+          <td><img class="belt-rank" src="../images/red-belt.png"></td>
+          <td>Create or attend 25 sessions</td>
+        </tr>
+        <tr>
+          <td>Black</td>
+          <td><img class="belt-rank" src="../images/black-belt.png"></td>
+          <td>Create or attend 30 sessions</td>
+        </tr>
+        </tbody>
+      </table>
+
+      <h2>I just joined/created a study session, why isn't my rank updating?</h2>
+      <p>In order for rankings to be truly accurate, they are updated at the end of every study session.</p>
+    </div>
+  </div>
+
   {{else}}
   {{/if}}
   {{else}}
-    {{> Loading}}
+  {{> Loading}}
   {{/if}}
 </template>
