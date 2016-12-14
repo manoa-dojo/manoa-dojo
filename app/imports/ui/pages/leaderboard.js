@@ -27,57 +27,7 @@ Template.Game_Page.helpers({
   },
   sortSessionsCreated() {
     return UserData.find({}, {sort: {sessionsCreated: -1}, limit: 10});
-  },
-  beltTypeAttended() {
-    UserData.attend_belt = UserData.belt_types;
-    return UserData.attend_belt;
-  },
-  beltTypeCreated() {
-    UserData.create_belt = UserData.belt_types;
-    return UserData.create_belt;
-  },
-  attendanceRanking() {
-    if (UserData.sessionsAttended = 0) {
-      return console.log('Attendance belt ranking: white');
-    } else if (UserData.sessionsAttended < 3) {
-      return console.log('Attendance belt ranking: yellow');
-    } else if (UserData.sessionsAttended = 3 || UserData.sessionsAttended < 5) {
-      return console.log('Attendance belt ranking: orange');
-    } else if (UserData.sessionsAttended = 5 || UserData.sessionsAttended < 10) {
-      return console.log('Attendance belt ranking: green');
-    } else if (UserData.sessionsAttended = 10 || UserData.sessionsAttended < 15) {
-      return console.log('Attendance belt ranking: blue');
-    } else if (UserData.sessionsAttended = 15 || UserData.sessionsAttended < 20) {
-      return console.log('Attendance belt ranking: purple');
-    } else if (UserData.sessionsAttended = 20 || UserData.sessionsAttended < 25) {
-      return console.log('Attendance belt ranking: brown');
-    } else if (UserData.sessionsAttended = 25 || UserData.sessionsAttended < 30) {
-      return console.log('Attendance belt ranking: red');
-    } else if (UserData.sessionsAttended >= 30) {
-      return console.log('Attendance belt ranking: black')
-    }
-  },
-  createdRanking() {
-    if (UserData.sessionsCreated == 0) {
-      return console.log('Created belt ranking: white');
-    } else if (UserData.sessionsCreated < 3) {
-      return console.log('Created belt ranking: yellow');
-    } else if (UserData.sessionsCreated = 3 || UserData.sessionsCreated < 5) {
-      return console.log('Created belt ranking: orange');
-    } else if (UserData.sessionsCreated = 5 || UserData.sessionsCreated < 10) {
-      return console.log('Created belt ranking: green');
-    } else if (UserData.sessionsCreated = 10 || UserData.sessionsCreated < 15) {
-      return console.log('Created belt ranking: blue');
-    } else if (UserData.sessionsCreated = 15 || UserData.sessionsCreated < 20) {
-      return console.log('Created belt ranking: purple');
-    } else if (UserData.sessionsCreated = 20 || UserData.sessionsCreated < 25) {
-      return console.log('Created belt ranking: brown');
-    } else if (UserData.sessionsCreated = 25 || UserData.sessionsCreated < 30) {
-      return console.log('Created belt ranking: red');
-    } else if (UserData.sessionsCreated >= 30) {
-      return console.log('Created belt ranking: black')
-    }
-  },
+  }
 });
 
 // Template.Add_Contact_Page.onRendered(function enableSemantic() {
