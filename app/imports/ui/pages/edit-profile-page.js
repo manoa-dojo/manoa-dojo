@@ -27,7 +27,7 @@ Template.Edit_Profile_Page.helpers({
     return profile && profile[fieldName];
   },
   isSet(field) {
-    return field != '';
+    return (field != "First Name" && field != "Last Name" && field != "Telephone" && field != "");
   },
   //Checks if subject is at grasshopper(g), sensei(s), or not interested(n)
   checkSubject(subject, level) {
@@ -65,39 +65,39 @@ Template.Edit_Profile_Page.onRendered(function enableRadioCheckBox() {
   this.$('.ui.radio.checkbox').checkbox();
 });
 Template.Edit_Profile_Page.onRendered(function enableSemantic() {
-  $('.edit-profile-form')
-      .form({
-        fields: {
-          name: {
-            identifier: 'firstName',
-            rules: [
-              {
-                type   : 'empty',
-                prompt : 'Please enter your firstName'
-              }
-            ]
-          },
-          lastName: {
-            identifier: 'lastName',
-            rules: [
-              {
-                type   : 'empty',
-                prompt : 'Please enter your lastName'
-              }
-            ]
-          },
-          telephone: {
-            identifier: 'telephone',
-            rules: [
-              {
-                type   : 'empty',
-                prompt : 'Please enter your telephone'
-              }
-            ]
-          }
-        }
-      })
-  ;
+  // $('.edit-profile-form')
+  //     .form({
+  //       fields: {
+  //         firstName: {
+  //           identifier: 'firstName',
+  //           rules: [
+  //             {
+  //               type   : 'empty',
+  //               prompt : 'Please enter your firstName'
+  //             }
+  //           ]
+  //         },
+  //         lastName: {
+  //           identifier: 'lastName',
+  //           rules: [
+  //             {
+  //               type   : 'empty',
+  //               prompt : 'Please enter your lastName'
+  //             }
+  //           ]
+  //         },
+  //         telephone: {
+  //           identifier: 'telephone',
+  //           rules: [
+  //             {
+  //               type   : 'empty',
+  //               prompt : 'Please enter your telephone'
+  //             }
+  //           ]
+  //         }
+  //       }
+  //     })
+  // ;
 });
 
 Template.Edit_Profile_Page.events({
@@ -116,41 +116,13 @@ Template.Edit_Profile_Page.events({
     const telephone = event.target.telephone.value;
     console.log(telephone);
     var description = event.target.description.value;
-    console.log(description);
     var avatar = event.target.avatar.value;
-    // const subjects = ["ICS 111", "ICS 141", "ICS 211", "ICS 212"];
-    // let grasshopper = [];
-    // let sensei = [];
-    // let interest = [];
-    // interest.push(instance.$('input[name="' + subjects[0] + '"]:checked').val());
-    // interest.push(instance.$('input[name="' + subjects[1] + '"]:checked').val());
-    // interest.push(instance.$('input[name="' + subjects[2] + '"]:checked').val());
-    // interest.push(instance.$('input[name="' + subjects[3] + '"]:checked').val());
-    //
-    // for (var i = 0; i < subjects.length; i++) {
-    //   if (interest[i] == "grasshopper") {
-    //     grasshopper.push(subjects[i]);
-    //   }
-    //   else
-    //     if (interest[i] == "sensei") {
-    //       sensei.push(subjects[i]);
-    //     }
-    // }
-    // console.log(grasshopper);
-    // console.log(sensei);
-    // console.log(Meteor.userId());
-    // console.log(Meteor.user().userName);
-    var user = JSON.stringify(Meteor.user());
+    //var user = JSON.stringify(Meteor.user());
     // alert(user);
-    if(description == ''){
-      description = '';
-      console.log(description);
-    }
-    if(avatar == ''){
+    if(!avatar){
       avatar = "/images/random.jpg";
-      console.log(avatar);
     }
-    const updatedProfile = {
+    var updatedProfile = {
       userId: Meteor.userId(),
       userName: Meteor.user().userName,
       firstName: firstName,
@@ -171,6 +143,12 @@ Template.Edit_Profile_Page.events({
       belt_ranks: oldProfile.belt_ranks,
       belt_types: oldProfile.belt_types
     };
+
+    if(!description){
+      updatedProfile.description = '';
+      delete updatedProfile.description;
+      console.log(updatedProfile);
+    }
     // Clear out any old validation errors.
     instance.context.resetValidation();
     // Invoke clean so that newStudentData reflects what will be inserted.
