@@ -1,6 +1,6 @@
 <template name="Edit_Profile_Page">
   <div style="margin-top: 20px" class="ui container">
-    <form class="ui form edit-profile-form {{ errorClass }}">
+    <form class="ui form edit-profile-form {{successClass}} {{ errorClass }}">
       <h4 class="ui dividing header">Edit Profile</h4>
       <div class="field">
         <label>Name</label>
@@ -8,7 +8,7 @@
           <div class="field">
             <input type="text" name="firstName" id="firstName" placeholder="First Name" value="{{userProfile 'firstName'}}">
             {{#if displayFieldError 'firstName' }}
-            <div class="ui error message">
+            <div class="ui negative message">
               <p>You must specify your first name.</p>
             </div>
             {{/if}}
@@ -16,7 +16,7 @@
           <div class="field">
             <input type="text" name="lastName" id="lastName" placeholder="Last Name" value="{{userProfile 'lastName'}}">
             {{#if displayFieldError 'lastName' }}
-            <div class="ui error message">
+            <div class="ui negative message">
               <p>You must specify your last name.</p>
             </div>
             {{/if}}
@@ -29,7 +29,7 @@
           <div class="field">
             <input type="text" name="telephone" id="telephone" placeholder="Telephone" value="{{userProfile 'telephone'}}">
             {{#if displayFieldError 'telephone' }}
-            <div class="ui error message">
+            <div class="ui negative message">
               <p>You must specify your phone number.</p>
             </div>
             {{/if}}
@@ -42,7 +42,7 @@
       </div>
 
       <div class="field">
-        <label>Avatar</label>
+        <label>Avatar URL</label>
         <input type="text" name="avatar" id="avatar" placeholder="Picture Url" value="{{userProfile 'avatar'}}">
       </div>
 

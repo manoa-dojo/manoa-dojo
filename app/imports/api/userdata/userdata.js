@@ -30,13 +30,11 @@ export const UserDataSchema = new SimpleSchema({
   },
   firstName: {
     label: 'firstName',
-    defaultValue: '',
     type: String,
     max: 200,
   },
   lastName: {
     label: 'lastName',
-    defaultValue: '',
     type: String,
     max: 200,
   },
@@ -48,8 +46,8 @@ export const UserDataSchema = new SimpleSchema({
   },
   telephone: {
     label: 'telephone',
-    defaultValue: '',
     type: String,
+    max: 200,
   },
   sessionsAttended: {
     label: 'sessionsAttended',

@@ -52,7 +52,7 @@ Accounts.validateNewUser(function (user) {
         // User already exists.
       }else{
         console.log("Made new user!");
-        const newUserData = {userName: id.toLowerCase(), firstName: '', lastName :'', avatar: '/images/random.jpg', telephone : '', sessionsAttended: 0, sessionsCreated: 0, sessionsAttendedThisMonth: 0, sessionsCreatedThisMonth: 0, grasshopperSubjects: [], senseiSubjects: [], likedSection: []};
+        const newUserData = {userName: id.toLowerCase(), firstName: "First Name", lastName :"Last Name", avatar: "/images/random.jpg", telephone : "Telephone", sessionsAttended: 0, sessionsCreated: 0, sessionsAttendedThisMonth: 0, sessionsCreatedThisMonth: 0, grasshopperSubjects: [], senseiSubjects: [], likedSection: []};
         UserData.insert(newUserData);
         console.log(UserData.find().fetch());
         console.log("Inserted data!");

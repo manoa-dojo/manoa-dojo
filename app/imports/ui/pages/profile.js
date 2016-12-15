@@ -43,7 +43,7 @@ Template.User_Profile_Page.helpers({
     return UserData.findOne({userName: FlowRouter.getParam('_id')}) != undefined;
   },
   isSet(field) {
-    return field != '';
+      return (field != "First Name" && field != ""  && field != "NULL_DESCRIPTION");
   },
   myProfile(){
     return Meteor.user().userName == FlowRouter.getParam('_id');
