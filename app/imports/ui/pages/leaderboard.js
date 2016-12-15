@@ -23,14 +23,9 @@ Template.Game_Page.helpers({
     return _.find(errorKeys, (keyObj) => keyObj.name === fieldName);
   },
   sortSessionsAttended() {
-    console.log(UserData.find().fetch());
-    console.log(UserData.find({}, {sort: {sessionsAttended: -1}, limit: 10}).fetch());
     return UserData.find({}, {sort: {sessionsAttended: -1}, limit: 10});
   },
   sortSessionsCreated() {
-    console.log('sctioncreated');
-    console.log(UserData.find().fetch());
-    console.log(UserData.find({}, {sort: {sessionsCreated: -1}, limit: 10}).fetch());
     return UserData.find({}, {sort: {sessionsCreated: -1}, limit: 10});
   }
 });
@@ -49,14 +44,27 @@ Template.Game_Page.events({
     event.preventDefault();
     $("a.attended").removeClass("active");
     $("a.created").addClass("active");
+    $("a.belts").removeClass("active");
     $("div.summary").removeClass("hide");
     $("div.details").addClass("hide");
+    $("div.info").addClass("hide");
   },
   'click .attended'(event, instance) {
     event.preventDefault();
     $("a.created").removeClass("active");
     $("a.attended").addClass("active");
+    $("a.belts").removeClass("active");
     $("div.details").removeClass("hide");
     $("div.summary").addClass("hide");
+    $("div.info").addClass("hide");
   },
+  'click .belts'(event, instance) {
+    event.preventDefault();
+    $("a.belts").addClass("active");
+    $("a.attended").removeClass("active");
+    $("a.created").removeClass("active");
+    $("div.details").addClass("hide");
+    $("div.summary").addClass("hide");
+    $("div.info").removeClass("hide");
+  }
 });

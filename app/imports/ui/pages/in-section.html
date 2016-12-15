@@ -51,7 +51,7 @@
         </div>
         <div class="ui row users">
           {{#if sectionUsers}}
-            <h3 class="ui dividing teal header" style="margin-top:5px;"><i class="users blue icon"></i>Users ({{sectionUsers.length}}/5)</h3>
+            <h3 class="ui dividing teal header" style="margin-top:5px;"><i class="users blue icon"></i>Users ({{sectionUsers.length}}/{{sectionCapacity}})</h3>
             <div class="ui middle aligned selection list">
 
               {{#each user in sectionUsers}}

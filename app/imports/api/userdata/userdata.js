@@ -30,13 +30,11 @@ export const UserDataSchema = new SimpleSchema({
   },
   firstName: {
     label: 'firstName',
-    defaultValue: '',
     type: String,
     max: 200,
   },
   lastName: {
     label: 'lastName',
-    defaultValue: '',
     type: String,
     max: 200,
   },
@@ -48,8 +46,8 @@ export const UserDataSchema = new SimpleSchema({
   },
   telephone: {
     label: 'telephone',
-    defaultValue: '',
     type: String,
+    max: 200,
   },
   sessionsAttended: {
     label: 'sessionsAttended',
@@ -108,19 +106,19 @@ export const UserDataSchema = new SimpleSchema({
   attend_belt: {
     label: 'attend_belt',
     type: String,
-    defaultValue: "white-belt",
+    defaultValue: "white",
     max: 200,
   },
   create_belt: {
     label: 'create_belt',
     type: String,
-    defaultValue: "white-belt",
+    defaultValue: "white",
     max: 200,
   },
   belt_ranks: {
     label: 'belt_ranks',
     type: [Number],
-    defaultValue: [0, 1, 3, 5, 10, 15, 20, 25, 30],
+    defaultValue: [0, 2, 5, 8, 10, 13, 15, 18, 20],
   },
   belt_types: {
     label: 'belt_types',

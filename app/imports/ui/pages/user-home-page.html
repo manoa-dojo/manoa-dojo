@@ -1,6 +1,6 @@
 <template name="User_Home_Page">
   {{#if currentUser}}
-  <h2 style="text-align: center"> Your Interested Study Buddy Sessions:</h2>
+  <h2 style="text-align: center"> Liked Study Sessions:</h2>
 
   <div class="ui container">
     {{#if Template.subscriptionsReady}}
@@ -65,7 +65,7 @@
         </tbody>
       </table>
       <a class="ui blue button" href="{{pathFor 'Calendar_Page'}}">Calendar View</a>
-      <h2 style="text-align: center"> Study Sessions You Scheduled:</h2>
+      <h2 style="text-align: center"> Scheduled Study Sessions:</h2>
 
       <table style="margin-top:20px;" class="ui celled table">
         <thead>

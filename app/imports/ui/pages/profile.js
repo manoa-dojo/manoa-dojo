@@ -39,15 +39,42 @@ Template.User_Profile_Page.helpers({
   userProfile() {
     return UserData.findOne({userName: FlowRouter.getParam('_id')});
   },
+  userExists() {
+    return UserData.findOne({userName: FlowRouter.getParam('_id')}) != undefined;
+  },
   isSet(field) {
-    return field != '';
+      return (field != "First Name" && field != ""  && field != "NULL_DESCRIPTION");
   },
   myProfile(){
     return Meteor.user().userName == FlowRouter.getParam('_id');
   },
   subjectList(){
     return subjects;
-  }
+  },
+  beltTypeCreated(){
+    var profile = UserData.findOne({userName: FlowRouter.getParam('_id')});
+    var i = 0;
+    // console.log(profile.belt_ranks);
+    while(profile.sessionsCreated >= profile.belt_ranks[i] && i < 9){
+      i++;
+    }
+    // console.log(profile.belt_ranks[0]);
+    profile.create_belt = profile.belt_types[i-1];
+    // console.log(profile.belt_types[i-1]);
+    return profile.belt_types[i-1];
+  },
+  beltTypeAttended(){
+    var profile = UserData.findOne({userName: FlowRouter.getParam('_id')});
+    var i = 0;
+    // console.log(profile.belt_ranks);
+    while(profile.sessionsAttended >= profile.belt_ranks[i] && i < 9){
+      i++;
+    }
+    // console.log(profile.belt_ranks[0]);
+    profile.attend_belt = profile.belt_types[i-1];
+    // console.log(profile.belt_types[i-1]);
+    return profile.belt_types[i-1];
+  },
 });
 
 Template.User_Profile_Page.onCreated(function onCreated() {
@@ -96,7 +123,7 @@ Template.User_Profile_Page.events({
     const user = UserData.findOne({userName: FlowRouter.getParam('_id')});
     const e = document.getElementById("search-select1");
     const subject = e.options[e.selectedIndex].text;
-    console.log(subject);
+    // console.log(subject);
     Meteor.call('updateUser',user._id,'grassSubjects',subject);
   },
   'click .removeGrassSubBt'(event, instance) {
@@ -110,7 +137,7 @@ Template.User_Profile_Page.events({
     const user = UserData.findOne({userName: FlowRouter.getParam('_id')});
     const e = document.getElementById("search-select2");
     const subject = e.options[e.selectedIndex].text;
-    console.log(subject);
+    // console.log(subject);
     Meteor.call('updateUser',user._id,'senseiSubjects',subject);
   },
   'click .removeSenseiSubBt'(event, instance) {

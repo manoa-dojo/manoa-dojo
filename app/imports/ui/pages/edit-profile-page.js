@@ -27,13 +27,7 @@ Template.Edit_Profile_Page.helpers({
     return profile && profile[fieldName];
   },
   isSet(field) {
-    return field != '';
-  },
-  subjectListCol1(){
-    return ["ICS 111", "ICS 141"];
-  },
-  subjectListCol2(){
-    return ["ICS 211", "ICS 212"];
+    return (field != "First Name" && field != "Last Name" && field != "Telephone" && field != "");
   },
   //Checks if subject is at grasshopper(g), sensei(s), or not interested(n)
   checkSubject(subject, level) {
@@ -71,39 +65,39 @@ Template.Edit_Profile_Page.onRendered(function enableRadioCheckBox() {
   this.$('.ui.radio.checkbox').checkbox();
 });
 Template.Edit_Profile_Page.onRendered(function enableSemantic() {
-  $('.edit-profile-form')
-      .form({
-        fields: {
-          name: {
-            identifier: 'firstName',
-            rules: [
-              {
-                type   : 'empty',
-                prompt : 'Please enter your firstName'
-              }
-            ]
-          },
-          lastName: {
-            identifier: 'lastName',
-            rules: [
-              {
-                type   : 'empty',
-                prompt : 'Please enter your lastName'
-              }
-            ]
-          },
-          telephone: {
-            identifier: 'telephone',
-            rules: [
-              {
-                type   : 'empty',
-                prompt : 'Please enter your telephone'
-              }
-            ]
-          }
-        }
-      })
-  ;
+  // $('.edit-profile-form')
+  //     .form({
+  //       fields: {
+  //         firstName: {
+  //           identifier: 'firstName',
+  //           rules: [
+  //             {
+  //               type   : 'empty',
+  //               prompt : 'Please enter your firstName'
+  //             }
+  //           ]
+  //         },
+  //         lastName: {
+  //           identifier: 'lastName',
+  //           rules: [
+  //             {
+  //               type   : 'empty',
+  //               prompt : 'Please enter your lastName'
+  //             }
+  //           ]
+  //         },
+  //         telephone: {
+  //           identifier: 'telephone',
+  //           rules: [
+  //             {
+  //               type   : 'empty',
+  //               prompt : 'Please enter your telephone'
+  //             }
+  //           ]
+  //         }
+  //       }
+  //     })
+  // ;
 });
 
 Template.Edit_Profile_Page.events({
@@ -113,46 +107,27 @@ Template.Edit_Profile_Page.events({
 
     const oldProfile = UserData.findOne({ userName: Meteor.user().userName });
     const username = Meteor.user().userName;
-    console.log(typeof(username));
     const firstName = event.target.firstName.value;
-    console.log(typeof(firstName));
-    console.log(firstName);
     const lastName = event.target.lastName.value;
-    console.log(lastName);
     const telephone = event.target.telephone.value;
-    console.log(telephone);
-    const description = event.target.description.value;
-    console.log(description);
-    // const subjects = ["ICS 111", "ICS 141", "ICS 211", "ICS 212"];
-    // let grasshopper = [];
-    // let sensei = [];
-    // let interest = [];
-    // interest.push(instance.$('input[name="' + subjects[0] + '"]:checked').val());
-    // interest.push(instance.$('input[name="' + subjects[1] + '"]:checked').val());
-    // interest.push(instance.$('input[name="' + subjects[2] + '"]:checked').val());
-    // interest.push(instance.$('input[name="' + subjects[3] + '"]:checked').val());
-    //
-    // for (var i = 0; i < subjects.length; i++) {
-    //   if (interest[i] == "grasshopper") {
-    //     grasshopper.push(subjects[i]);
-    //   }
-    //   else
-    //     if (interest[i] == "sensei") {
-    //       sensei.push(subjects[i]);
-    //     }
-    // }
-    // console.log(grasshopper);
-    // console.log(sensei);
-    // console.log(Meteor.userId());
-    // console.log(Meteor.user().userName);
-    var user = JSON.stringify(Meteor.user());
+    var description = event.target.description.value;
+    var avatar = event.target.avatar.value;
+    // console.log(typeof(username));
+    // console.log(typeof(firstName));
+    // console.log(firstName);
+    // console.log(lastName);
+    // console.log(telephone);
+    //var user = JSON.stringify(Meteor.user());
     // alert(user);
-    const updatedProfile = {
+    if(!avatar){
+      avatar = "/images/random.jpg";
+    }
+    var updatedProfile = {
       userId: Meteor.userId(),
       userName: Meteor.user().userName,
       firstName: firstName,
       lastName: lastName,
-      avatar: oldProfile.avatar,
+      avatar: avatar,
       telephone: telephone,
       sessionsAttended: oldProfile.sessionsAttended,
       sessionsCreated: oldProfile.sessionsCreated,
@@ -168,6 +143,12 @@ Template.Edit_Profile_Page.events({
       belt_ranks: oldProfile.belt_ranks,
       belt_types: oldProfile.belt_types
     };
+
+    if(!description){
+      updatedProfile.description = '';
+      delete updatedProfile.description;
+      // console.log(updatedProfile);
+    }
     // Clear out any old validation errors.
     instance.context.resetValidation();
     // Invoke clean so that newStudentData reflects what will be inserted.
@@ -176,11 +157,11 @@ Template.Edit_Profile_Page.events({
     instance.context.validate(updatedProfile);
     if (instance.context.isValid()) {
       UserData.update(FlowRouter.getParam('_id'), { $set: updatedProfile });
-      console.log(UserData.findOne({ userName: Meteor.user().userName }));
+      instance.messageFlags.set(displayErrorMessages, false);
       FlowRouter.go('User_Profile_Page', { _id: updatedProfile.userName });
     } else {
       instance.messageFlags.set(displayErrorMessages, true);
-      console.log("it's not valid");
+      // console.log("it's not valid");
     }
   },
 });

@@ -27,21 +27,8 @@ Accounts.onCreateUser((options, user) => {
   if (! user.services.cas) {
     throw new Error('Expected login with UH Cas only.');
   }
-  //New custom fields added.
-  const { id } = user.services.cas;
-  console.log(user.services.cas);
-  console.log(id.toLowerCase());
-  user.userName = id;
-  console.log(user.userName);
 
-  /**
-   * Initialize userData collection.
-   */
-  console.log("Made new user!");
-  const newUserData = {userName: id.toLowerCase(), firstName: '', lastName :'', avatar: '/images/random.jpg', telephone : '', sessionsAttended: 0, sessionsCreated: 0, sessionsAttendedThisMonth: 0, sessionsCreatedThisMonth: 0, grasshopperSubjects: [], senseiSubjects: [], likedSection: []};
-  UserData.insert(newUserData);
-  console.log(UserData.find().fetch());
-  console.log("Inserted data!");
+
   // Don't forget to return the new user object at the end!
   return user;
 });
@@ -51,6 +38,25 @@ Accounts.validateNewUser(function (user) {
   if (user) {
     const username = user.services.cas.id;
     if (username && _.contains(Meteor.settings.allowed_users, username)) {
+      //New custom fields added.
+      const { id } = user.services.cas;
+      console.log(user.services.cas);
+      console.log(id.toLowerCase());
+      user.userName = id;
+      console.log(user.userName);
+
+      /**
+       * Initialize userData collection.
+       */
+      if (UserData.findOne({userName: id})){
+        // User already exists.
+      }else{
+        console.log("Made new user!");
+        const newUserData = {userName: id.toLowerCase(), firstName: "First Name", lastName :"Last Name", avatar: "/images/random.jpg", telephone : "Telephone", sessionsAttended: 0, sessionsCreated: 0, sessionsAttendedThisMonth: 0, sessionsCreatedThisMonth: 0, grasshopperSubjects: [], senseiSubjects: [], likedSection: []};
+        UserData.insert(newUserData);
+        console.log(UserData.find().fetch());
+        console.log("Inserted data!");
+      }
       return true;
     }
   }

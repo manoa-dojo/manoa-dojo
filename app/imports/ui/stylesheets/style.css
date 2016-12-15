@@ -142,12 +142,15 @@ p{
   border-radius:5px;
   border: 1px solid deepskyblue;
 }
-/*            */
-
-
 
 .header-image{
   height: 100px;
   background-image: url('/images/library-girl-dark.jpg');
   background-size: 100%;
+}
+
+/* Images */
+.belt-rank {
+  height: 50px;
+  width: 50px;
 }
