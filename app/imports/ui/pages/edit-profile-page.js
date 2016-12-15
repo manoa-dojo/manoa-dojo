@@ -107,16 +107,16 @@ Template.Edit_Profile_Page.events({
 
     const oldProfile = UserData.findOne({ userName: Meteor.user().userName });
     const username = Meteor.user().userName;
-    console.log(typeof(username));
     const firstName = event.target.firstName.value;
-    console.log(typeof(firstName));
-    console.log(firstName);
     const lastName = event.target.lastName.value;
-    console.log(lastName);
     const telephone = event.target.telephone.value;
-    console.log(telephone);
     var description = event.target.description.value;
     var avatar = event.target.avatar.value;
+    // console.log(typeof(username));
+    // console.log(typeof(firstName));
+    // console.log(firstName);
+    // console.log(lastName);
+    // console.log(telephone);
     //var user = JSON.stringify(Meteor.user());
     // alert(user);
     if(!avatar){
@@ -147,7 +147,7 @@ Template.Edit_Profile_Page.events({
     if(!description){
       updatedProfile.description = '';
       delete updatedProfile.description;
-      console.log(updatedProfile);
+      // console.log(updatedProfile);
     }
     // Clear out any old validation errors.
     instance.context.resetValidation();
@@ -161,7 +161,7 @@ Template.Edit_Profile_Page.events({
       FlowRouter.go('User_Profile_Page', { _id: updatedProfile.userName });
     } else {
       instance.messageFlags.set(displayErrorMessages, true);
-      console.log("it's not valid");
+      // console.log("it's not valid");
     }
   },
 });
